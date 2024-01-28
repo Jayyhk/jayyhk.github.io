@@ -208,10 +208,14 @@ button {
 ========*/
 
 .center {
+  display: flex;
+  align-items: center;
+}
+
+.test_center {
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
 }
 
