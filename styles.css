@@ -15,8 +15,27 @@
   box-sizing: border-box;
 }
 
+::-webkit-selection,::selection {
+  background: var(--primary);
+  color: var(--bg)
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--bg-alt)
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border: 4px solid var(--bg);
+  border-radius: .5em
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-alt)
+}
+
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth
 }
 
 body {
@@ -130,7 +149,6 @@ button {
 
 .link--nav {
   color: var(--clr-fg);
-  text-transform: lowercase;
   font-weight: 500;
 }
 
@@ -140,11 +158,13 @@ button {
 }
 
 .btn {
+  background-color: var(--primary);
+  border-radius: 2em;
+  color: var(--bg);
   display: block;
   padding: 0.8em 1.4em;
   font-weight: 500;
   font-size: 0.9rem;
-  text-transform: lowercase;
   transition: transform 0.2s ease-in-out;
 }
 

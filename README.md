@@ -4,4 +4,5 @@ Welcome to my website!
 
 ### ToDo:
 
+- Add custom scrollbar
 - Add music showcase
