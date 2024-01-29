@@ -197,6 +197,36 @@ button {
   right: 0;
 }
 
+.emailbtn--outline {
+  color: var(--clr-primary);
+  border: 2px solid var(--clr-primary);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.emailbtn--outline:focus,
+.emailbtn--outline:hover {
+  color: var(--clr-bg);
+}
+
+.emailbtn--outline:before {
+  content: "";
+  position: absolute;
+  background-color: var(--clr-primary);
+  right: 100%;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: right 0.2s ease-in-out;
+}
+
+.emailbtn--outline:hover::before,
+.emailbtn--outline:focus::before {
+  right: 0;
+}
+
 .btn--plain {
   text-transform: initial;
   background-color: var(--clr-bg-alt);
