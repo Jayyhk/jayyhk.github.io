@@ -1,5 +1,5 @@
 # [jayyhk.github.io](https://jayyhk.github.io)
 
-### Welcome to my personal website!
+### Welcome to my website!
 
 Built with ❤️
