@@ -315,7 +315,8 @@ main {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
-  grid-gap: 2em;
+  gap: 2.5em;
+  margin-bottom: 2.5em;
 }
 
 .project {
@@ -390,7 +391,7 @@ main {
   transition: transform 0.2s ease-in-out;
 }
 
-.scroll-top a {
+.scroll-top .scroll-top-btn {
   background-color: var(--clr-scroll);
   border-radius: 50%;
   padding: 0.5em 0.8em;

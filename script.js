@@ -46,14 +46,18 @@ const displayList = () => {
 
 btnHamburger.addEventListener("click", displayList);
 
-const scrollUp = () => {
-  const btnScrollTop = document.querySelector(".scroll-top");
+const btnScrollContainer = document.querySelector(".scroll-top");
+const btnScrollTop = document.querySelector(".scroll-top-btn");
 
-  if (body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    btnScrollTop.style.display = "block";
+const scrollUp = () => {
+  if (window.scrollY > 500) {
+    btnScrollContainer.style.display = "block";
   } else {
-    btnScrollTop.style.display = "none";
+    btnScrollContainer.style.display = "none";
   }
 };
+window.addEventListener("scroll", scrollUp);
 
-document.addEventListener("scroll", scrollUp);
+btnScrollTop.addEventListener("click", () =>
+  window.scrollTo({ top: 0, behavior: "smooth" })
+);

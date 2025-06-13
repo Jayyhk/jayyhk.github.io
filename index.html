@@ -101,11 +101,50 @@
 
         <div class="projects__grid">
           <div class="project">
+            <h3>phreddit</h3>
+            <p class="project__description">
+              A full-stack web application inspired by Reddit.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">MongoDB</li>
+              <li class="project__stack-item">Express</li>
+              <li class="project__stack-item">React</li>
+              <li class="project__stack-item">Node.js</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/phreddit"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
+            <h3>CSES-Code-Golf</h3>
+            <p class="project__description">
+              Accepted code golf solutions to the CSES Problem Set written in
+              Python 3.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">Python</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/BackupScheduler"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
             <h3>Coursphere</h3>
             <p class="project__description">
-              A full stack application built with NextJS utilizing OpenAI's API
-              to generate courseware and YouTube's API to provide related videos
-              for users.
+              A full stack application that generates courseware and provides
+              related videos for users.
             </p>
             <ul class="project__stack">
               <li class="project__stack-item">NextJS</li>
@@ -131,22 +170,41 @@
               <i aria-hidden="true" class="fas fa-external-link-alt"></i>
             </a> -->
           </div>
+        </div>
 
+        <div class="projects__grid">
           <div class="project">
             <h3>BackupScheduler</h3>
             <p class="project__description">
-              A minimalistic no-frills interface built using the CustomTkinter
-              UI-library to schedule, perform, and track file/directory backups
-              for Windows.
+              A minimalistic interface to schedule, perform, and track file
+              backups for Windows.
             </p>
             <ul class="project__stack">
               <li class="project__stack-item">Python</li>
               <li class="project__stack-item">Tkinter</li>
-              <li class="project__stack-item">Javascript</li>
             </ul>
 
             <a
               href="https://github.com/Jayyhk/BackupScheduler"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
+            <h3>LaTeX-Template</h3>
+            <p class="project__description">
+              My LaTeX template, primarily for mathematics and computer science
+              homework writeups.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">LaTeX</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/jsonGPT"
               target="_blank"
               aria-label="source code"
               class="link link--icon"
@@ -159,8 +217,7 @@
             <h3>jsonGPT</h3>
             <p class="project__description">
               A Typescript function that fixes problems JSON.parse() cannot
-              solve for OpenAI's API output by feeding the output back
-              into the API until it is valid JSON.
+              solve for OpenAI's API output.
             </p>
             <ul class="project__stack">
               <li class="project__stack-item">TypeScript</li>
@@ -185,17 +242,22 @@
         <ul class="skills__list">
           <li class="skills__list-item btn btn--plain">NextJS</li>
           <li class="skills__list-item btn btn--plain">React</li>
+          <li class="skills__list-item btn btn--plain">MongoDB</li>
+          <li class="skills__list-item btn btn--plain">Express</li>
+          <li class="skills__list-item btn btn--plain">Node.js</li>
           <li class="skills__list-item btn btn--plain">Prisma</li>
-          <li class="skills__list-item btn btn--plain">JavaScript</li>
+          <li class="skills__list-item btn btn--plain">NGINX</li>
+          <li class="skills__list-item btn btn--plain">Docker</li>
           <li class="skills__list-item btn btn--plain">TypeScript</li>
+          <li class="skills__list-item btn btn--plain">JavaScript</li>
           <li class="skills__list-item btn btn--plain">Python</li>
           <li class="skills__list-item btn btn--plain">Java</li>
           <li class="skills__list-item btn btn--plain">R</li>
           <li class="skills__list-item btn btn--plain">LaTeX</li>
           <li class="skills__list-item btn btn--plain">HTML</li>
           <li class="skills__list-item btn btn--plain">CSS</li>
+          <li class="skills__list-item btn btn--plain">GitHub Actions</li>
           <li class="skills__list-item btn btn--plain">Git</li>
-          <li class="skills__list-item btn btn--plain">Adobe Premiere Pro</li>
           <li class="skills__list-item btn btn--plain">Piano</li>
           <li class="skills__list-item btn btn--plain">Viola</li>
           <li class="skills__list-item btn btn--plain">MuseScore</li>
@@ -242,9 +304,13 @@
 
     <div class="scroll-container">
       <div class="scroll-top">
-        <a aria-label="Scroll up" href="#top">
+        <button
+          type="button"
+          aria-label="Scroll up"
+          class="btn btn--icon scroll-top-btn"
+        >
           <i aria-hidden="true" class="fas fa-arrow-up"></i>
-        </a>
+        </button>
       </div>
     </div>
 
