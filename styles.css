@@ -390,6 +390,67 @@ main {
   padding: 0.5em 0.8em;
 }
 
+/*======
+  blog
+======*/
+
+.blog__list {
+  list-style-position: outside;
+  margin: 2rem auto;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog__list-item .link--nav {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--clr-fg);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.blog__list-item .link--nav::after {
+  content: "";
+  flex: 1;
+  margin-left: 0.5rem;
+  border-bottom: 1px dashed var(--clr-fg-alt);
+}
+
+.blog__list-item .link--nav::before {
+  display: none;
+}
+
+.blog__list-item .link--nav:hover,
+.blog__list-item .link--nav:focus {
+  color: var(--clr-primary);
+}
+
+.blog__list-item .link-text {
+  position: relative;
+  display: inline-block;
+}
+
+.blog__list-item .link-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  height: 0.2em;
+  width: 0;
+  background-color: var(--clr-primary);
+  transition: width 0.2s ease-in;
+}
+
+.blog__list-item .link-text:hover::before,
+.blog__list-item .link-text:focus::before {
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   .header {
     height: 6em;
