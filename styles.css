@@ -303,11 +303,8 @@ main {
 }
 
 .about .link--icon {
-  margin-right: 0.8em;
-}
-
-.about .btn--outline {
-  margin-right: 1em;
+  margin: 0em 0.8em;
+  padding-bottom: 0em;
 }
 
 .projects__grid {
@@ -347,10 +344,6 @@ main {
   font-weight: 500;
   font-size: 0.8rem;
   color: var(--clr-fg-alt);
-}
-
-.project .link--icon {
-  margin-left: 0.5em;
 }
 
 .skills__list {
