@@ -508,4 +508,32 @@ main {
     display: flex;
     justify-content: flex-end;
   }
+
+  /* Responsive tables and math */
+  table {
+    font-size: 0.8em;
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .MathJax {
+    font-size: 80% !important;
+  }
+
+  .MathJax_Display {
+    overflow-x: auto;
+    padding: 0.5em;
+    max-width: 100%;
+  }
+
+  .post-content p {
+    overflow-x: auto;
+  }
+
+  .post-content div[style*="text-align: center"] {
+    overflow-x: auto;
+    padding: 0.5em;
+  }
 }
