@@ -451,6 +451,14 @@ main {
   width: 100%;
 }
 
+.quote-indent {
+  border-left: 4px solid var(--clr-primary);
+  padding-left: 1em;
+  margin: 1em 0;
+  background-color: var(--clr-bg-alt);
+  font-style: italic;
+}
+
 @media (max-width: 600px) {
   .header {
     height: 6em;

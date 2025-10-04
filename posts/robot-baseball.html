@@ -61,9 +61,351 @@
       <!-- Blog Post -->
       <section class="section blog-post">
         <h1>Robot Baseball</h1>
-        <p class="post-date">October 4, 2025</p>
+        <h3
+          style="font-size: 1.2em; margin-bottom: 2em; color: var(--clr-fg-alt)"
+        >
+          October 4, 2025
+        </h3>
         <div class="post-content">
-          
+          <p style="margin-bottom: 1.5em">
+            Lately I've been wanting to get back into solving the monthly Jane
+            Street puzzles. Back in the Summer of 2024 I solved a few of them,
+            but I've been busy with other things since then. With a little more
+            free time this semester, I decided to tackle the October 2025
+            puzzle,
+            <a
+              href="https://www.janestreet.com/puzzles/robot-baseball-index/"
+              class="link"
+              >Robot Baseball</a
+            >. A summary of the problem is as follows:
+          </p>
+
+          <p class="quote-indent" style="margin-bottom: 1.5em">
+            A pitcher and a batter are engaged in an at-bat. The pitcher can
+            throw either a ball or a strike, while the batter can either wait or
+            swing. If the pitcher throws a ball and the batter waits, the count
+            goes up by one ball. If the pitcher throws a ball and the batter
+            swings, the count goes up by one strike. If the pitcher throws a
+            strike and the batter waits, the count goes up by one strike. If the
+            pitcher throws a strike and the batter swings, then with probability
+            \( p \) the batter hits a home run (and the at-bat ends), and with
+            probability \( 1-p \) the count goes up by one strike. The at-bat
+            ends when the batter gets 4 balls (a walk), 3 strikes (an out), or
+            hits a home run. The batter earns 1 point for a walk, 0 points for
+            an out, and 4 points for a home run. Both players choose their
+            strategies simultaneously at each pitch, and both players know the
+            current count of balls and strikes. The goal is to find the value of
+            \( p \) that maximizes \( q \), where \( q \) is the probability
+            that the at-bat reaches a full count (3 balls and 2 strikes) before
+            ending, assuming both players play with optimal mixed strategies.
+          </p>
+
+          <p style="margin-bottom: 1.5em">
+            At first glance, this problem appeared slightly different from other
+            problems I was accustomed to, like filling in a grid, finding some
+            probability geometrically, or solving some cryptic riddle. This is
+            the first puzzle I encountered that involved game theory. The only
+            game theory knowledge I picked up was from AP Microeconomics in high
+            school, but that information has long left my brain. The only thing
+            I knew was that making a 2x2 payoff matrix would probably be useful.
+          </p>
+
+          <p>
+            Let \( P(b,s) \) be the expected points for the batter after \( b \)
+            balls and \( s \) strikes. I'm calling this function \( P \) because
+            it stands for "points".
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
+            \\ \hline \text{Pitcher Throws Ball} & P(b+1,s) & P(b,s+1) \\
+            \text{Pitcher Throws Strike} & P(b,s+1) & 4p + (1-p) \cdot P(b,s+1)
+            \\ \end{array} \]
+          </div>
+
+          <p>Let's replace these values with variables for simplicity:</p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
+            \\ \hline \text{Pitcher Throws Ball} & a & b \\ \text{Pitcher Throws
+            Strike} & c & d \\ \end{array} \]
+          </div>
+
+          <p>
+            At this point I did not know how to continue, and I had to read up
+            on some game theory notes. According to
+            <a
+              href="https://www3.nd.edu/~apilking/math10170/information/Lectures/16%20Optimal%20Mixed%20Strategy.pdf"
+              class="link"
+              >these lecture notes</a
+            >, the value of the game (expected payoff for the row player if both
+            players play optimally) is given by
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ \nu = \frac{ad - bc}{a - b - c + d} = \frac{P(b+1,s) \cdot (4p +
+            (1-p) \cdot P(b,s+1)) - P(b,s+1) \cdot P(b,s+1)}{P(b+1,s) - P(b,s+1)
+            - P(b,s+1) + 4p + (1-p) \cdot P(b,s+1)} \]
+          </div>
+
+          <p>
+            Ok great, we have some more information. Since our payoff matrix
+            entries are the batter's expected points, we can construct a
+            recurrence that gives the batter's expected value \( P(b,s) \) at
+            each count \( (b,s) \) under optimal play by both sides.
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ P(b, s) = \left.\begin{cases} 1, & \text{if } b = 4 \\ 0, &
+            \text{if } s = 3 \\ \displaystyle\frac{P(b+1,s) \cdot \left[4p +
+            (1-p) \cdot P(b,s+1)\right] - P(b,s+1)^2}{P(b+1,s) - 2P(b,s+1) + 4p
+            + (1-p) \cdot P(b,s+1)}, & \text{if } b \in [0,3] \text { and } s
+            \in [0,2] \\ \end{cases}\right\} \]
+          </div>
+
+          <p style="margin-bottom: 1.5em">
+            Let's break down this recurrence.
+            At 4 balls, the batter earns 1 point for a walk, and at 3 strikes,
+            the batter earns 0 points for an out, and for other counts, the
+            values of \( P(b,s) \) can be computed backwards from \( P(4,3) \)
+            using the formula we just derived.
+          </p>
+
+          <p>
+            From the same lecture notes, the optimal probability for the row
+            player to play Row 1 (pitcher throws a ball) is given by
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \begin{align*} \mathrm{Pr[Ball]} = \frac{d-c}{a-b-c+d} &= \frac{4p +
+            (1-p) \cdot P(b,s+1) - P(b,s+1)}{P(b+1,s) - P(b,s+1) - P(b,s+1) + 4p
+            + (1-p) \cdot P(b,s+1)} \\ &= \frac{p \cdot (4 - P(b,s+1))}{P(b+1,s)
+            - 2P(b,s+1) + 4p + P(b,s+1) - p \cdot P(b,s+1)} \\ &= \frac{p \cdot
+            (4 - P(b,s+1))}{P(b+1,s) - P(b,s+1) + p \cdot (4 - P(b,s+1))}
+            \end{align*}
+          </div>
+
+          <p style="margin-bottom: 1.5em">
+            Let us call this probability \( A(b,s) \), the pitcher's probability
+            of throwing a ball after \( b \) balls and \( s \) strikes. I chose
+            the letter \( A \) since I thought of "Event \( A \)" being the
+            event that the pitcher throws a ball.
+          </p>
+
+          <p>
+            The optimal probability for the row player to play Row 2 (pitcher
+            throws a strike) is given by
+          </p>
+          <p>\[ \mathrm{Pr[Strike]} = 1 - A(b,s) \]</p>
+
+          <p>
+            The optimal probability for the column player to play Column 1
+            (batter waits) is given by
+          </p>
+          <p>
+            \[ \mathrm{Pr[Wait]} = \frac{d-b}{a-b-c+d} = \frac{d-c}{a-b-c+d} =
+            A(b,s) \]
+          </p>
+
+          <p style="margin-bottom: 1.5em">since \( b = c = P(b,s+1) \).</p>
+
+          <p>
+            The optimal probability for the column player to play Column 2
+            (batter swings) is given by
+          </p>
+          <p>\[ \mathrm{Pr[Swing]} = 1 - A(b,s) \]</p>
+
+          <p>
+            Therefore, \( \mathrm{Pr}[\text{Ball}] = \mathrm{Pr}[\text{Wait}] =
+            A(b,s) \) and \( \mathrm{Pr}[\text{Strike}] =
+            \mathrm{Pr}[\text{Swing}] = 1 - A(b,s) \). All of these
+            probabilities can be written in terms of \( A(b,s) \), whose
+            recurrence is summarized as follows:
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ A(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
+            = 3 \\ \displaystyle\frac{p \cdot (4 - P(b,s+1))}{P(b+1,s) -
+            P(b,s+1) + p \cdot (4 - P(b,s+1))}, & \text{if } b \in [0,3] \text{
+            and } s \in [0,2] \end{cases}\right\} \]
+          </div>
+
+          <p style="margin-bottom: 1.5em">
+            This recurrence is a bit simpler than the one for \( P(b,s) \).
+            If we get 4 balls or 3 strikes, the at-bat ends, so the probability
+            the pitcher now throws a ball is 0 in these cases. Otherwise, we can just use
+            our formula for \( A(b,s) \) and work backwards from \( A(4, 0 \ldots 2) \)
+            and \( A(0 \ldots 3, 3) \) to compute all values of \( A(b,s) \).
+          </p>
+
+          <p>
+            Now we have enough information to compute the probability of
+            reaching any state in the game with \( b \) balls and \( s \)
+            strikes! We can summarize it cleanly in the following table:
+          </p>
+
+          <table style="margin: 2em auto; border-collapse: collapse">
+            <tr>
+              <th style="border: 1px solid #000; padding: 8px">
+                Pitcher (probability)
+              </th>
+              <th style="border: 1px solid #000; padding: 8px">
+                Batter (probability)
+              </th>
+              <th style="border: 1px solid #000; padding: 8px">New State</th>
+              <th style="border: 1px solid #000; padding: 8px">Probability</th>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #000; padding: 8px">
+                Ball (\( A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                Wait (\( A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                \( (b+1, s) \)
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">\( A^2 \)</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #000; padding: 8px">
+                Ball (\( A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                Swing (\( 1-A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                \( (b, s+1) \)
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">\( A(1-A) \)</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #000; padding: 8px">
+                Strike (\( 1-A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                Wait (\( A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                \( (b, s+1) \)
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">\( (1-A)A \)</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #000; padding: 8px">
+                Strike (\( 1-A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                Swing (\( 1-A \))
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                \( (b, s+1) \) with probability \( (1-p) \)
+              </td>
+              <td style="border: 1px solid #000; padding: 8px">
+                \( (1-A)^2 (1-p) \)
+              </td>
+            </tr>
+          </table>
+
+          <p style="margin-bottom: 1.5em">
+            Note that the case where the pitcher throws a strike and the batter
+            swings and hits a home run (with total probability \( (1-A)^2 p \))
+            is excluded since the at-bat ends. If we hit a home run early, we'll
+            never reach a full count!
+          </p>
+
+          <p>
+            Let \( F(b,s) \) be the probability, starting from the state with \(
+            b \) balls and \( s \) strikes of reaching a full count (remember: 3
+            balls and 2 strikes) before the at-bat ends. The letter \( F \)
+            stands for "full count." The recurrence for \( F(b,s) \) is given by
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ F(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
+            = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2
+            F(b+1, s) + 2A(b, s)(1-A(b, s)) F(b, s+1) + (1-A(b, s))^2 (1-p) F(b,
+            s+1), & \text{if } b \in [0,3] \text{ and } s \in [0,2]
+            \end{cases}\right\} \]
+          </div>
+
+          <p style="margin-bottom: 1.5em">
+            This is our final recurrence. It might look big and intimidating, but 
+            it's really not that bad. Let's break it down. 
+            If we get 4 balls or 3 strikes, the at-bat ends, so the probability
+            of reaching a full count is 0 in these cases. If we already have a
+            full count (3 balls and 2 strikes), then the probability of
+            reaching a full count is 1. Otherwise, we can use our table above to
+            compute \( F(b,s) \) in terms of \( F(b+1,s) \) and \( F(b,s+1) \). 
+            The first term in the core of our recurrence is 
+            \( (A(b, s))^2 F(b+1, s) \), which is multiplying the probability of 
+            the pitcher throwing a ball \( (A(b, s)) \), the batter waiting 
+            \( (A(b, s)) \), and the probability of reaching a full count from the new state
+            \( (b+1, s) \). The second term is the sum of the first two ways we can get 
+            to the state \( (b, s+1) \), which have the same probability given in the table. 
+            The third term is the case where the pitcher throws a strike and the 
+            batter swings and misses, so we multiply by the probability of missing, 
+            \( (1-p) \). Not so bad, right?
+          </p>
+
+          <p style="margin-bottom: 1.5em">
+            The last step is to find the value of \( p \) that maximizes \(
+            F(0,0) \), the probability of reaching a full count when starting
+            from 0 balls and 0 strikes. This maximum value is \( q \).
+          </p>
+
+          <p style="margin-bottom: 1.5em">
+            Using
+            <a
+              href="https://en.wikipedia.org/wiki/Golden-section_search"
+              class="link"
+              >golden-section search</a
+            >, we can find the optimal \( p \) in the interval [0,1] that
+            maximizes \( q \), assuming \( F(0,0) \) for each \( p \) is
+            unimodal. The function we choose for the search will
+            ultimately be a function of \( p \) because given \( p \), we can
+            compute all values of \( P(b,s) \), \( A(b,s) \), and then \( F(b,s)
+            \). Each of these tables can be computed with dynamic programming by
+            working backwards from the boundary cases and following the
+            recurrences defined above.
+          </p>
+
+          <p style="margin-bottom: 1.5em">
+            Using
+            <a href="./robot-baseball.py" class="link"> this Python code </a>,
+            we obtain the following results to 10 decimal places:
+          </p>
+          <ul style="margin-bottom: 1.5em; text-align: center">
+            <li>Optimal \( p \): \(~0.2269732360 \)</li>
+            <li>Optimal \( q \): \(~0.2959679934 \)</li>
+          </ul>
+
+          <p>
+            A plot of \( p \) versus \( q \) is shown in the following figure.
+          </p>
+          <img
+            src="./images/p-vs-q.png"
+            alt="Plot of p versus q"
+            style="
+              max-width: 100%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+            "
+          />
+
+          <p style="margin-bottom: 1.5em">
+            \( F(0,0) \) appears to be a unimodal function of \( p \), which is 
+            good since golden-section search is designed for unimodal functions.
+          </p>
+
+          <p>
+            I think this was a really fun puzzle that combined concepts from game 
+            theory, probability, and dynamic programming. Although I had to look up some
+            game theory concepts, I was able to piece everything together and
+            solve the problem. I would like to make a post like this for each Jane Street 
+            puzzle every month going forward, so stay tuned for more write-ups!
+          </p>
         </div>
       </section>
     </main>
