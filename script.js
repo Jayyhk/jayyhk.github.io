@@ -11,7 +11,11 @@ const addThemeClass = (bodyClass, btnClass) => {
 const getBodyTheme = localStorage.getItem("portfolio-theme");
 const getBtnTheme = localStorage.getItem("portfolio-btn-theme");
 
-addThemeClass(getBodyTheme, getBtnTheme);
+if (getBodyTheme) {
+  addThemeClass(getBodyTheme, getBtnTheme);
+} else {
+  addThemeClass("light", "fa-moon");
+}
 
 const isDark = () => body.classList.contains("dark");
 
@@ -46,18 +50,30 @@ const displayList = () => {
 
 btnHamburger.addEventListener("click", displayList);
 
-const btnScrollContainer = document.querySelector(".scroll-top");
-const btnScrollTop = document.querySelector(".scroll-top-btn");
-
-const scrollUp = () => {
-  if (window.scrollY > 500) {
-    btnScrollContainer.style.display = "block";
-  } else {
-    btnScrollContainer.style.display = "none";
+window.addEventListener("scroll", () => {
+  const btnScrollTop = document.querySelector(".scroll-top");
+  if (btnScrollTop) {
+    if (window.scrollY > 500) {
+      btnScrollTop.style.display = "block";
+    } else {
+      btnScrollTop.style.display = "none";
+    }
   }
-};
-window.addEventListener("scroll", scrollUp);
+});
 
-btnScrollTop.addEventListener("click", () =>
-  window.scrollTo({ top: 0, behavior: "smooth" })
-);
+Promise.all([
+  fetch("/assets/footer.html").then((response) => response.text()),
+  fetch("/assets/scroll.html").then((response) => response.text()),
+])
+  .then(([footerData, scrollData]) => {
+    document.querySelector(".footer").innerHTML = footerData;
+    document.querySelector(".scroll-arrow").innerHTML = scrollData;
+
+    const btnScrollTop = document.querySelector(".scroll-top-btn");
+    if (btnScrollTop) {
+      btnScrollTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+    }
+  })
+  .catch((error) => console.error("Error loading footer or scroll:", error));
