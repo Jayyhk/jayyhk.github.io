@@ -411,23 +411,7 @@ main {
   transition: color 0.2s ease;
   display: flex;
   align-items: center;
-  flex: 1;
-}
-
-.blog__list-item .link--nav::after {
-  content: "";
-  flex: 1;
-  margin-left: 0.5rem;
-  border-bottom: 1px dashed var(--clr-fg-alt);
-}
-
-.blog__list-item .link--nav::before {
-  display: none;
-}
-
-.blog__list-item .link--nav:hover,
-.blog__list-item .link--nav:focus {
-  color: var(--clr-primary);
+  position: relative;
 }
 
 .blog__list-item .link-text {
@@ -446,9 +430,21 @@ main {
   transition: width 0.2s ease-in;
 }
 
-.blog__list-item .link-text:hover::before,
-.blog__list-item .link-text:focus::before {
+.blog__list-item .link--nav:hover .link-text::before,
+.blog__list-item .link--nav:focus .link-text::before {
   width: 100%;
+}
+
+.blog__list-item .dotted-line {
+  flex: 1;
+  border-bottom: 1px dashed var(--clr-fg-alt);
+  margin: 0 0.5rem;
+}
+
+.blog__list-item .blog-date {
+  font-size: 0.9em;
+  color: var(--clr-fg-alt);
+  white-space: nowrap;
 }
 
 .quote-indent {

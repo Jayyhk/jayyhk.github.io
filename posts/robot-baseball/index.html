@@ -14,9 +14,9 @@
       src="https://kit.fontawesome.com/fa62c117c7.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../../styles.css" />
     <title>Robot Baseball - Jake Mallen</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
   </head>
   <body class="light" id="top">
     <header class="header center">
@@ -27,19 +27,19 @@
       <nav class="nav center">
         <ul class="nav__list center">
           <li class="nav__list-item">
-            <a class="link link--nav" href="../#projects">Projects</a>
+            <a class="link link--nav" href="../../#projects">Projects</a>
           </li>
           <li class="nav__list-item">
-            <a class="link link--nav" href="../#skills">Skills</a>
+            <a class="link link--nav" href="../../#skills">Skills</a>
           </li>
           <li class="nav__list-item">
-            <a class="link link--nav" href="../#blog">Blog</a>
+            <a class="link link--nav" href="../../#blog">Blog</a>
           </li>
           <li class="nav__list-item">
-            <a class="link link--nav" href="../#music">Music</a>
+            <a class="link link--nav" href="../../#music">Music</a>
           </li>
           <li class="nav__list-item">
-            <a class="link link--nav" href="../#contact">Contact</a>
+            <a class="link link--nav" href="../../#contact">Contact</a>
           </li>
         </ul>
 
@@ -164,11 +164,11 @@
           </div>
 
           <p style="margin-bottom: 1.5em">
-            Let's break down this recurrence.
-            At 4 balls, the batter earns 1 point for a walk, and at 3 strikes,
-            the batter earns 0 points for an out, and for other counts, the
-            values of \( P(b,s) \) can be computed backwards from \( P(4,3) \)
-            using the formula we just derived.
+            Let's break down this recurrence. At 4 balls, the batter earns 1
+            point for a walk, and at 3 strikes, the batter earns 0 points for an
+            out, and for other counts, the values of \( P(b,s) \) can be
+            computed backwards from \( P(4,3) \) using the formula we just
+            derived.
           </p>
 
           <p>
@@ -231,11 +231,12 @@
           </div>
 
           <p style="margin-bottom: 1.5em">
-            This recurrence is a bit simpler than the one for \( P(b,s) \).
-            If we get 4 balls or 3 strikes, the at-bat ends, so the probability
-            the pitcher now throws a ball is 0 in these cases. Otherwise, we can just use
-            our formula for \( A(b,s) \) and work backwards from \( A(4, 0 \ldots 2) \)
-            and \( A(0 \ldots 3, 3) \) to compute all values of \( A(b,s) \).
+            This recurrence is a bit simpler than the one for \( P(b,s) \). If
+            we get 4 balls or 3 strikes, the at-bat ends, so the probability the
+            pitcher now throws a ball is 0 in these cases. Otherwise, we can
+            just use our formula for \( A(b,s) \) and work backwards from \(
+            A(4, 0 \ldots 2) \) and \( A(0 \ldots 3, 3) \) to compute all values
+            of \( A(b,s) \).
           </p>
 
           <p>
@@ -315,8 +316,8 @@
           </p>
 
           <p>
-            Let \( F(b,s) \) be the probability, starting from the state with \( b \) 
-            balls and \( s \) strikes of reaching a full count (remember: 3
+            Let \( F(b,s) \) be the probability, starting from the state with \(
+            b \) balls and \( s \) strikes of reaching a full count (remember: 3
             balls and 2 strikes) before the at-bat ends. The letter \( F \)
             stands for "full count." The recurrence for \( F(b,s) \) is given by
           </p>
@@ -330,27 +331,27 @@
           </div>
 
           <p style="margin-bottom: 1.5em">
-            This is our final recurrence. It might look big and intimidating, but 
-            it's really not that bad. Let's break it down. 
-            If we get 4 balls or 3 strikes, the at-bat ends, so the probability
-            of reaching a full count is 0 in these cases. If we already have a
-            full count (3 balls and 2 strikes), then the probability of
-            reaching a full count is 1. Otherwise, we can use our table above to
-            compute \( F(b,s) \) in terms of \( F(b+1,s) \) and \( F(b,s+1) \). 
-            The first term in the core of our recurrence is 
-            \( (A(b, s))^2 F(b+1, s) \), which is multiplying the probability of 
-            the pitcher throwing a ball \( (A(b, s)) \), the batter waiting 
-            \( (A(b, s)) \), and the probability of reaching a full count from the new state
-            \( (b+1, s) \). The second term is the sum of the first two ways we can get 
-            to the state \( (b, s+1) \), which have the same probability given in the table. 
-            The third term is the case where the pitcher throws a strike and the 
-            batter swings and misses, so we multiply by the probability of missing, 
-            \( (1-p) \). Not so bad, right?
+            This is our final recurrence. It might look big and intimidating,
+            but it's really not that bad. Let's break it down. If we get 4 balls
+            or 3 strikes, the at-bat ends, so the probability of reaching a full
+            count is 0 in these cases. If we already have a full count (3 balls
+            and 2 strikes), then the probability of reaching a full count is 1.
+            Otherwise, we can use our table above to compute \( F(b,s) \) in
+            terms of \( F(b+1,s) \) and \( F(b,s+1) \). The first term in the
+            core of our recurrence is \( (A(b, s))^2 F(b+1, s) \), which is
+            multiplying the probability of the pitcher throwing a ball \( (A(b,
+            s)) \), the batter waiting \( (A(b, s)) \), and the probability of
+            reaching a full count from the new state \( (b+1, s) \). The second
+            term is the sum of the first two ways we can get to the state \( (b,
+            s+1) \), which have the same probability given in the table. The
+            third term is the case where the pitcher throws a strike and the
+            batter swings and misses, so we multiply by the probability of
+            missing, \( (1-p) \). Not so bad, right?
           </p>
 
           <p style="margin-bottom: 1.5em">
-            The last step is to find the value of \( p \) that maximizes \( F(0,0) \), 
-            the probability of reaching a full count when starting
+            The last step is to find the value of \( p \) that maximizes \(
+            F(0,0) \), the probability of reaching a full count when starting
             from 0 balls and 0 strikes. This maximum value is \( q \).
           </p>
 
@@ -362,12 +363,11 @@
               >golden-section search</a
             >, we can find the optimal \( p \) in the interval [0,1] that
             maximizes \( q \), assuming \( F(0,0) \) for each \( p \) is
-            unimodal. The function we choose for the search will
-            ultimately be a function of \( p \) because given \( p \), we can
-            compute all values of \( P(b,s) \), \( A(b,s) \), and then \( F(b,s)
-            \). Each of these tables can be computed with dynamic programming by
-            working backwards from the boundary cases and following the
-            recurrences defined above.
+            unimodal. The function we choose for the search will ultimately be a
+            function of \( p \) because given \( p \), we can compute all values
+            of \( P(b,s) \), \( A(b,s) \), and then \( F(b,s) \). Each of these
+            tables can be computed with dynamic programming by working backwards
+            from the boundary cases and following the recurrences defined above.
           </p>
 
           <p style="margin-bottom: 1.5em">
@@ -395,16 +395,17 @@
           />
 
           <p style="margin-bottom: 1.5em">
-            \( F(0,0) \) appears to be a unimodal function of \( p \), which is 
+            \( F(0,0) \) appears to be a unimodal function of \( p \), which is
             good since golden-section search is designed for unimodal functions.
           </p>
 
           <p>
-            I think this was a really fun puzzle that combined concepts from game 
-            theory, probability, and dynamic programming. Although I had to look up some
-            game theory concepts, I was able to piece everything together and
-            solve the problem. I would like to make a post like this for each Jane Street 
-            puzzle every month going forward, so stay tuned for more write-ups!
+            I think this was a really fun puzzle that combined concepts from
+            game theory, probability, and dynamic programming. Although I had to
+            look up some game theory concepts, I was able to piece everything
+            together and solve the problem. I would like to make a post like
+            this for each Jane Street puzzle every month going forward, so stay
+            tuned for more write-ups!
           </p>
         </div>
       </section>
@@ -412,7 +413,7 @@
 
     <footer class="footer"></footer>
     <div class="scroll-arrow"></div>
-    <script src="../script.js"></script>
+    <script src="../../script.js"></script>
     <script>
       MathJax = {
         tex: {
