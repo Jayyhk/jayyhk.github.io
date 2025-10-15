@@ -155,7 +155,7 @@ button {
 
 .link--icon {
   color: var(--clr-fg);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .btn {
@@ -317,7 +317,7 @@ main {
 }
 
 .project {
-  padding: 2em;
+  padding: 2em 2em 1.2em 2em;
   margin: 0 auto;
   text-align: center;
   box-shadow: var(--shadow);
