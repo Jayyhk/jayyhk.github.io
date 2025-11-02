@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Blog Post" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/fa62c117c7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../styles.css" />
+    <title>Shut the Box</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+  </head>
+  <body class="light" id="top">
+    <header class="header center">
+      <h3>
+        <a href="https://jayyhk.github.io" class="link">JM.</a>
+      </h3>
+
+      <nav class="nav center">
+        <ul class="nav__list center">
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#projects">Projects</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#blog">Blog</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#music">Music</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#contact">Contact</a>
+          </li>
+        </ul>
+
+        <button type="button" aria-label="toggle theme" class="btn btn--icon">
+          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
+        </button>
+
+        <button
+          type="button"
+          aria-label="toggle navigation"
+          class="btn btn--icon nav__hamburger"
+        >
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Blog Post -->
+      <section class="section blog-post">
+        <h1>Shut the Box</h1>
+        <h3
+          style="font-size: 1.2em; margin-bottom: 2em; color: var(--clr-fg-alt)"
+        >
+          November 2, 2025
+        </h3>
+        <div class="post-content">
+          <p class="blog-paragraph">
+            I was ready to solve the November 2025 Jane Street puzzle when it
+            dropped. I also wanted to solve it in less than 1 day. This problem
+            was a grid problem called
+            <a
+              href="https://www.janestreet.com/puzzles/shut-the-box-index/"
+              class="link"
+              >Shut the Box</a
+            >. The problem statement is as follows:
+          </p>
+
+          <div class="quote-indent blog-paragraph">
+            <img
+              src="./images/shut-the-box.png"
+              alt="Shut the Box puzzle grid"
+              style="
+                max-width: 50%;
+                height: auto;
+                display: block;
+                margin: 2em auto;
+              "
+            />
+
+            <p style="margin-bottom: 1em">
+              Use scissors to cut away one or more groups of orthogonally
+              connected cells (squares) from the grid above. Any group you cut
+              away must have at least one cell along the boundary of the grid.
+              The remaining cells must be orthogonally connected and not have
+              any holes.
+            </p>
+
+            <p style="margin-bottom: 1em">
+              It must be possible to fold along some of the grid lines so that
+              the remaining cells form the six walls of a rectangular solid (the
+              "box"). There may not be any overlapping cells in the box.
+            </p>
+
+            <p style="margin-bottom: 1em">
+              Some cells have been labeled with arrows. These cells are not part
+              of the box, but instead point in the direction(s) of the nearest
+              box cells (looking in that square's row and column).
+            </p>
+
+            <p style="margin-bottom: 1em">
+              Some cells have been labeled with numbers. These cells are part of
+              the box. A number indicates how many cells within one king's move
+              of that cell are a part of the box. (Including the numbered cell.)
+            </p>
+
+            <p style="margin-bottom: 1em">
+              When the box is assembled, each grey circle should be directly
+              opposite another grey circle. That is, the line segment connecting
+              "opposite" circles should be orthogonal to the faces containing
+              them. Each gray square should be orthogonally adjacent to (and on
+              the same face as) another gray square.
+            </p>
+
+            <p style="margin-bottom: 1em">
+              Once you have assembled the box, compute, on each face, the sum of
+              the numbered cells. The answer to this puzzle is the product of
+              these six sums.
+            </p>
+
+            <p>
+              An example grid can be seen
+              <a
+                href="https://www.janestreet.com/static/pdfs/puzzles/nov-2025-box-example.pdf"
+                class="link"
+                >here</a
+              >. Pictures of the solved region and assembled box for the example
+              grid can be seen
+              <a
+                href="https://www.janestreet.com/static/pdfs/puzzles/nov-2025-box-example-solved.pdf"
+                class="link"
+                >here</a
+              >.
+            </p>
+          </div>
+
+          <p class="blog-paragraph">
+            So essentially we are solving for the net that we will fold into a
+            rectangular prism!
+          </p>
+
+          <p class="blog-paragraph">
+            I first wanted to determine what the cells of the net would even be
+            before we start thinking about performing folds and cutting things
+            out. Using the rules provided and pure logic, I was able to narrow
+            down the cells that could be part of the net to the following:
+          </p>
+
+          <img
+            src="./images/first-net.png"
+            alt="first net"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+            "
+          />
+
+          <p class="blog-paragraph">
+            Here, I put red slashes in cells that may or may not be part of the
+            net. The red "THIS OR THIS" text indicates that only ONE of the two
+            cells with that writing must be part of the net (the nearby cell
+            with the 4 constrains us).
+          </p>
+
+          <p class="blog-paragraph">
+            Since I could not narrow down the candidate cells any further, I now
+            needed to print and cut out the net with the candidates that I had.
+            However, I had accidentally printed an older version of my net with
+            2 candidates in it. If the top left is cell (0, 0), then my printed
+            copy had incorrect candidates in cells (8, 7) and (8, 19). These two
+            cells will unfortunately be marked in red in the images to come.
+          </p>
+
+          <img
+            src="./images/printed-net.jpg"
+            alt="printed net"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            Above is the cut-out net (albeit with the two incorrect candidates
+            in it). It took me roughly 30 minutes to cut it out and my neck hurt
+            so much as a result of looking down for so long.
+          </p>
+
+          <p class="blog-paragraph">
+            The first thing I noticed with the net was that the bottommost
+            plus-shaped and T-shaped parts of the net fit perfectly into the
+            negative space of the top of the net! I flipped the net upside-down
+            and folded the bottom of the net over the top of the net, putting
+            the pieces together as shown below. Ignore the blister on my finger,
+            I had just gone bouldering the day before.
+          </p>
+
+          <img
+            src="./images/folded-net-1.jpg"
+            alt="folded net 1"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            The orthogonal grey square rule is satisfied, as we have a grey
+            square 5 next to a grey square 4. Additionally, the opposite grey
+            circle rule is satisfied, as there was a grey circle 4 on the
+            opposite face of the grey circle 5.
+          </p>
+
+          <p class="blog-paragraph">
+            The next observation I made was huge: the rightmost "peninsula" of
+            the printed net fit perfectly into the negative space of the middle
+            of the net when rotated 180 degrees.
+          </p>
+
+          <img
+            src="./images/folded-net-2.jpg"
+            alt="folded net 2"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            After getting the peninsula to fit, I realized the final box would
+            have a width of 2, as it was the only way the peninsula could fit.
+            It also seemed like we would need the candidate cells in a group of
+            two after all for this to work. I also verified one grey circle rule
+            with the grey circle 4, and it was satisfied.
+          </p>
+
+          <p class="blog-paragraph">
+            This move involved extending below the height of the "THIS OR THIS"
+            cells. Since we could only have one of those cells, one of them had
+            to go. We MUST have the top cell in this group, as it was now
+            completely surrounded and no other cell could be folded onto it
+            without covering other cells. This means that the bottom cell must
+            be removed. Luckily, the long strip hanging down when folded upwards
+            just so happened to cover the candidate bottom cell perfectly.
+          </p>
+
+          <img
+            src="./images/folded-net-3.jpg"
+            alt="folded net 3"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            This move also gave us our box height of 6. At this point I believe
+            it was relatively easy to count the sums of the numbered cells on
+            each face of the box. Three faces were not taped together, but each
+            flap that was hanging was pretty close to its respective face.
+            However, I wanted to construct the box and verify the answers before
+            submitting. I moved on to patching near the bottom of the box.
+          </p>
+
+          <img
+            src="./images/folded-net-4.jpg"
+            alt="folded net 4"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            I am now holding the box upside down. The flap at the top of the
+            image fit right into the front face of the box in the image. I cut
+            out the incorrect candidate cell that would cover the cell
+            guaranteed to be part of the net. You can also spot the other
+            incorrect candidate cell in the image (this one is a part of the box
+            in fact). Here is the result:
+          </p>
+
+          <img
+            src="./images/folded-net-5.jpg"
+            alt="folded net 5"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            The grey square rule is satisfied once again, with the grey squares
+            3 and 7 being orthogonally adjacent to each other. I went to piece
+            together the last two faces of the box.
+          </p>
+
+          <img
+            src="./images/folded-net-6.jpg"
+            alt="folded net 6"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            An L-shaped flap fit right into a large face of the box and the grey
+            square rule checks out again. Only one face remained.
+          </p>
+
+          <img
+            src="./images/folded-net-7.jpg"
+            alt="folded net 7"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            Observe how two of the candidate cells fold onto two guaranteed
+            cells on a corner of the box. This means they have to go.
+          </p>
+
+          <img
+            src="./images/folded-net-8.jpg"
+            alt="folded net 8"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            All that was left to do was fold the final piece onto the box.
+          </p>
+
+          <img
+            src="./images/folded-net-9.jpg"
+            alt="folded net 9"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+              border: 1px solid #000;
+            "
+          />
+
+          <p class="blog-paragraph">
+            The grey circle 7 is opposite a grey circle 5 on the opposite face
+            of the box, so the rule is satisfied and we have shut the box! I'll
+            present the final box, but first we must establish a reference
+            frame. I will use the following labeling for the faces of the box.
+          </p>
+
+          <img
+            src="./images/box-labeling.jpg"
+            alt="box labeling"
+            style="
+              max-width: 50%;
+              height: auto;
+              display: block;
+              margin: 2em auto;
+            "
+          />
+
+          <p class="blog-paragraph">
+            The head-on views of the final faces of the box are shown below.
+          </p>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 1em;
+              margin: 2em auto;
+              max-width: 90%;
+            "
+          >
+            <figure style="margin: 0">
+              <img
+                src="./images/face-1.JPG"
+                alt="face 1"
+                style="width: 100%; height: auto; border: 1px solid #000"
+              />
+              <figcaption
+                style="text-align: center; margin-top: 0.5em; font-weight: bold"
+              >
+                Face 1
+              </figcaption>
+            </figure>
+            <figure style="margin: 0">
+              <img
+                src="./images/face-2.JPG"
+                alt="face 2"
+                style="width: 100%; height: auto; border: 1px solid #000"
+              />
+              <figcaption
+                style="text-align: center; margin-top: 0.5em; font-weight: bold"
+              >
+                Face 2
+              </figcaption>
+            </figure>
+            <figure style="margin: 0">
+              <img
+                src="./images/face-3.JPG"
+                alt="face 3"
+                style="width: 100%; height: auto; border: 1px solid #000"
+              />
+              <figcaption
+                style="text-align: center; margin-top: 0.5em; font-weight: bold"
+              >
+                Face 3
+              </figcaption>
+            </figure>
+            <figure style="margin: 0">
+              <img
+                src="./images/face-4.JPG"
+                alt="face 4"
+                style="width: 100%; height: auto; border: 1px solid #000"
+              />
+              <figcaption
+                style="text-align: center; margin-top: 0.5em; font-weight: bold"
+              >
+                Face 4
+              </figcaption>
+            </figure>
+            <figure style="margin: 0">
+              <img
+                src="./images/face-5.JPG"
+                alt="face 5"
+                style="width: 100%; height: auto; border: 1px solid #000"
+              />
+              <figcaption
+                style="text-align: center; margin-top: 0.5em; font-weight: bold"
+              >
+                Face 5
+              </figcaption>
+            </figure>
+            <figure style="margin: 0">
+              <img
+                src="./images/face-6.JPG"
+                alt="face 6"
+                style="width: 100%; height: auto; border: 1px solid #000"
+              />
+              <figcaption
+                style="text-align: center; margin-top: 0.5em; font-weight: bold"
+              >
+                Face 6
+              </figcaption>
+            </figure>
+          </div>
+
+          <p class="blog-paragraph">
+            Summing up the numbers on each face of the box and multiplying them
+            together gives us the following:
+          </p>
+
+          <div style="text-align: center; margin: 2em 0">
+            \[ \begin{array}{|c|l|c|} \hline \textbf{Face} & \textbf{Numbers} &
+            \textbf{Total} \\ \hline 1 & 4, 5, 5, 5, 4, 7, 4, 4, 7, 3, 6 & 54 \\
+            \hline 2 & 5 & 5 \\ \hline 3 & 5, 5, 7 & 17 \\ \hline 4 & 6, 5 & 11
+            \\ \hline 5 & 7, 4 & 11 \\ \hline 6 & 4, 2, 6, 4, 5, 7 & 28 \\
+            \hline \end{array} \]
+          </div>
+
+          <p class="blog-paragraph">
+            Multiplying the totals gives us a product of 15550920.
+          </p>
+
+          <p class="blog-paragraph">
+            This puzzle was a lot of fun to solve and way more approachable than
+            last month's. Anyone could really do this puzzle. Even starting late
+            into the afternoon, I was able to submit my answer before midnight.
+            I'm still really surprised that a net like that managed to fold into
+            a box. I wonder if there's an algorithm where given a net, determine
+            if it can be folded into a box. Or better yet, given a net, can we
+            determine the box that it can be folded into? If so, this type of
+            geometric assembly puzzle would probably have an astronomical
+            complexity. The two problems are probably in NP and FNP
+            respectively.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"></footer>
+    <div class="scroll-arrow"></div>
+    <script src="../../script.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+  </body>
+</html>

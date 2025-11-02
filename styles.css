@@ -434,11 +434,15 @@ main {
   white-space: nowrap;
 }
 
+.blog-paragraph {
+  margin-bottom: 1.5em;
+}
+
 .quote-indent {
   border-left: 4px solid var(--clr-primary);
   padding-left: 1em;
   margin: 1em 0;
-  background-color: var(--clr-bg-alt);
+  background-color: var(--clr-bg);
   font-style: italic;
 }
 

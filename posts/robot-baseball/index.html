@@ -15,7 +15,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../../styles.css" />
-    <title>Robot Baseball - Jake Mallen</title>
+    <title>Robot Baseball</title>
     <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
   </head>
   <body class="light" id="top">
@@ -64,7 +64,7 @@
           October 4, 2025
         </h3>
         <div class="post-content">
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             Lately I've been wanting to get back into solving the monthly Jane
             Street puzzles. Back in the Summer of 2024 I solved a few of them,
             but I've been busy with other things since then. With a little more
@@ -74,30 +74,92 @@
               href="https://www.janestreet.com/puzzles/robot-baseball-index/"
               class="link"
               >Robot Baseball</a
-            >. A summary of the problem is as follows:
+            >. The problem statement is as follows:
           </p>
 
-          <p class="quote-indent" style="margin-bottom: 1.5em">
-            A pitcher and a batter are engaged in an at-bat. The pitcher can
-            throw either a ball or a strike, while the batter can either wait or
-            swing. If the pitcher throws a ball and the batter waits, the count
-            goes up by one ball. If the pitcher throws a ball and the batter
-            swings, the count goes up by one strike. If the pitcher throws a
-            strike and the batter waits, the count goes up by one strike. If the
-            pitcher throws a strike and the batter swings, then with probability
-            \( p \) the batter hits a home run (and the at-bat ends), and with
-            probability \( 1-p \) the count goes up by one strike. The at-bat
-            ends when the batter gets 4 balls (a walk), 3 strikes (an out), or
-            hits a home run. The batter earns 1 point for a walk, 0 points for
-            an out, and 4 points for a home run. Both players choose their
-            strategies simultaneously at each pitch, and both players know the
-            current count of balls and strikes. The goal is to find the value of
-            \( p \) that maximizes \( q \), where \( q \) is the probability
-            that the at-bat reaches a full count (3 balls and 2 strikes) before
-            ending, assuming both players play with optimal mixed strategies.
-          </p>
+          <div class="quote-indent blog-paragraph">
+            <p style="margin-bottom: 1em">
+              The Artificial Automaton Athletics Association (Quad-A) is at it
+              again, to compete with postseason baseball they are developing a
+              Robot Baseball competition. Games are composed of a series of
+              independent at-bats in which the batter is trying to maximize
+              expected score and the pitcher is trying to minimize expected
+              score.
+            </p>
 
-          <p style="margin-bottom: 1.5em">
+            <p style="margin-bottom: 1em">
+              An at-bat is a series of pitches with a running count of balls and
+              strikes, both starting at zero. For each pitch, the pitcher
+              decides whether to throw a ball or strike, and the batter decides
+              whether to wait or swing; these decisions are made secretly and
+              simultaneously. The results of these choices are as follows.
+            </p>
+
+            <ul
+              style="
+                margin-bottom: 1em;
+                margin-left: 2em;
+                list-style-type: disc;
+              "
+            >
+              <li style="margin-bottom: 0.5em">
+                If the pitcher throws a ball and the batter waits, the count of
+                balls is incremented by 1.
+              </li>
+              <li style="margin-bottom: 0.5em">
+                If the pitcher throws a strike and the batter waits, the count
+                of strikes is incremented by 1.
+              </li>
+              <li style="margin-bottom: 0.5em">
+                If the pitcher throws a ball and the batter swings, the count of
+                strikes is incremented by 1.
+              </li>
+              <li style="margin-bottom: 0.5em">
+                If the pitcher throws a strike and the batter swings, with
+                probability \( p \) the batter hits a home run and with
+                probability \( 1-p \) and the count of strikes is incremented by
+                1.
+              </li>
+            </ul>
+
+            <p style="margin-bottom: 1em">An at-bat ends when either:</p>
+
+            <ul
+              style="
+                margin-bottom: 1em;
+                margin-left: 2em;
+                list-style-type: disc;
+              "
+            >
+              <li style="margin-bottom: 0.5em">
+                The count of balls reaches 4, in which case the batter receives
+                1 point.
+              </li>
+              <li style="margin-bottom: 0.5em">
+                The count of strikes reaches 3, in which case the batter
+                receives 0 points.
+              </li>
+              <li style="margin-bottom: 0.5em">
+                The batter hits a home run, in which case the batter receives 4
+                points.
+              </li>
+            </ul>
+
+            <p>
+              By varying the size of the strike zone, Quad-A can adjust the
+              value \( p \), the probability a pitched strike that is swung at
+              results in a home run. They have found that viewers are most
+              excited by at-bats that reach a full count, that is, the at-bats
+              that reach the state of three balls and two strikes. Let \( q \)
+              be the probability of at-bats reaching full count; \( q \) is
+              dependent on \( p \). Assume the batter and pitcher are both using
+              optimal mixed strategies and Quad-A has chosen the \( p \) that
+              maximizes \( q \). Find this \( q \), the maximal probability
+              at-bats reach full count, to ten decimal places.
+            </p>
+          </div>
+
+          <p class="blog-paragraph">
             At first glance, this problem appeared slightly different from other
             problems I was accustomed to, like filling in a grid, finding some
             probability geometrically, or solving some cryptic riddle. This is
@@ -115,7 +177,7 @@
 
           <div style="text-align: center; margin: 2em 0">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
-            \\ \hline \text{Pitcher Throws Ball} & P(b+1,s) & P(b,s+1) \\
+            \\\hline \text{Pitcher Throws Ball} & P(b+1,s) & P(b,s+1) \\
             \text{Pitcher Throws Strike} & P(b,s+1) & 4p + (1-p) \cdot P(b,s+1)
             \\ \end{array} \]
           </div>
@@ -160,7 +222,7 @@
             \in [0,2] \\ \end{cases}\right\} \]
           </div>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             Let's break down this recurrence. At 4 balls, the batter earns 1
             point for a walk, and at 3 strikes, the batter earns 0 points for an
             out, and for other counts, the values of \( P(b,s) \) can be
@@ -182,7 +244,7 @@
             \end{align*}
           </div>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             Let us call this probability \( A(b,s) \), the pitcher's probability
             of throwing a ball after \( b \) balls and \( s \) strikes. I chose
             the letter \( A \) since I thought of "Event \( A \)" being the
@@ -204,7 +266,7 @@
             A(b,s) \]
           </p>
 
-          <p style="margin-bottom: 1.5em">since \( b = c = P(b,s+1) \).</p>
+          <p class="blog-paragraph">since \( b = c = P(b,s+1) \).</p>
 
           <p>
             The optimal probability for the column player to play Column 2
@@ -227,7 +289,7 @@
             and } s \in [0,2] \end{cases}\right\} \]
           </div>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             This recurrence is a bit simpler than the one for \( P(b,s) \). If
             we get 4 balls or 3 strikes, the at-bat ends, so the probability the
             pitcher now throws a ball is 0 in these cases. Otherwise, we can
@@ -305,7 +367,7 @@
             </tr>
           </table>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             Note that the case where the pitcher throws a strike and the batter
             swings and hits a home run (with total probability \( (1-A)^2 p \))
             is excluded since the at-bat ends. If we hit a home run early, we'll
@@ -327,7 +389,7 @@
             \end{cases}\right\} \]
           </div>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             This is our final recurrence. It might look big and intimidating,
             but it's really not that bad. Let's break it down. If we get 4 balls
             or 3 strikes, the at-bat ends, so the probability of reaching a full
@@ -346,13 +408,13 @@
             missing, \( (1-p) \). Not so bad, right?
           </p>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             The last step is to find the value of \( p \) that maximizes \(
             F(0,0) \), the probability of reaching a full count when starting
             from 0 balls and 0 strikes. This maximum value is \( q \).
           </p>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             Using
             <a
               href="https://en.wikipedia.org/wiki/Golden-section_search"
@@ -367,12 +429,12 @@
             from the boundary cases and following the recurrences defined above.
           </p>
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             Using
             <a href="./robot-baseball.py" class="link"> this Python code </a>,
             we obtain the following results to 10 decimal places:
           </p>
-          <ul style="margin-bottom: 1.5em; text-align: center">
+          <ul class="blog-paragraph" style="text-align: center">
             <li>Optimal \( p \): \(~0.2269732360 \)</li>
             <li>Optimal \( q \): \(~0.2959679934 \)</li>
           </ul>
@@ -391,7 +453,7 @@
             "
           />
 
-          <p style="margin-bottom: 1.5em">
+          <p class="blog-paragraph">
             \( F(0,0) \) appears to be a unimodal function of \( p \), which is
             good since golden-section search is designed for unimodal functions.
           </p>
