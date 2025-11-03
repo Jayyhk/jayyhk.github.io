@@ -37,20 +37,28 @@ btnTheme.addEventListener("click", toggleTheme);
 const displayList = () => {
   const navUl = document.querySelector(".nav__list");
 
-  if (btnHamburger.classList.contains("fa-bars")) {
-    btnHamburger.classList.remove("fa-bars");
-    btnHamburger.classList.add("fa-times");
-    navUl.classList.add("display-nav-list");
-    body.classList.add("menu-open");
-  } else {
-    btnHamburger.classList.remove("fa-times");
-    btnHamburger.classList.add("fa-bars");
+  if (navUl.classList.contains("display-nav-list")) {
     navUl.classList.remove("display-nav-list");
     body.classList.remove("menu-open");
+  } else {
+    navUl.classList.add("display-nav-list");
+    body.classList.add("menu-open");
   }
 };
 
 btnHamburger.addEventListener("click", displayList);
+
+// Close menu when clicking on a nav item
+const navLinks = document.querySelectorAll(".nav__list-item a");
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    const navUl = document.querySelector(".nav__list");
+    if (navUl.classList.contains("display-nav-list")) {
+      navUl.classList.remove("display-nav-list");
+      body.classList.remove("menu-open");
+    }
+  });
+});
 
 window.addEventListener("scroll", () => {
   const btnScrollTop = document.querySelector(".scroll-top");
