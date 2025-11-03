@@ -448,13 +448,19 @@ main {
 
 @media (max-width: 600px) {
   .header {
-    height: 6em;
+    height: 4.5em;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     background-color: var(--clr-bg);
     z-index: 100;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    padding-top: 1em;
+    margin: 0;
   }
 
   .section {
@@ -462,7 +468,7 @@ main {
   }
 
   body {
-    padding-top: 6em;
+    padding-top: 4.5em;
     transition: padding-top 0.3s ease-in-out 0.1s;
   }
 
@@ -476,7 +482,7 @@ main {
     width: 100%;
     position: fixed;
     left: 0;
-    top: 6em;
+    top: 4.5em;
     background-color: var(--clr-bg);
     max-height: 0;
     overflow: hidden;
