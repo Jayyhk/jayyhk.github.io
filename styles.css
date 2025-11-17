@@ -45,7 +45,7 @@ body {
 }
 
 .light {
-  --clr-bg: #fcfcfc;
+  --clr-bg: #fff;
   --clr-bg-alt: #fff;
   --clr-fg: #555;
   --clr-fg-alt: #444;
@@ -436,6 +436,11 @@ main {
 
 .blog-paragraph {
   margin-bottom: 1.5em;
+}
+
+.blog-math-line {
+  text-align: center;
+  margin: 2em 0;
 }
 
 .quote-indent {

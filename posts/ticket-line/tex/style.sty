@@ -1,0 +1,90 @@
+\NeedsTeXFormat{LaTeX2e} % Specify that this package requires LaTeX2e format
+\ProvidesPackage{style} % Declare this package name and version
+
+%%------------------------------
+%% Setup & Typography
+%%------------------------------
+\usepackage[left=0.5in, right=0.5in, bottom=1.0in, top=1.0in, footskip=30pt]{geometry} % Set page margins and layout
+\usepackage[T1]{fontenc} % Use T1 font encoding for better character support
+\usepackage{enumitem} % Enhanced list formatting and customization
+\usepackage{palatino} % Use Palatino font family
+\usepackage{microtype} % Micro-typographic enhancements for better text appearance
+\usepackage{moresize} % Additional font size commands (\HUGE, \ssmall, etc.)
+\usepackage{parskip} % Replace paragraph indentation with vertical spacing
+\usepackage{xcolor} % Color support for text and graphics
+
+%%------------------------------
+%% Page Layout
+%%------------------------------
+% \usepackage{fancyhdr} % Custom headers and footers
+% \pagestyle{fancy} % Apply fancy page style
+\hbadness=10000 % Suppress hbox badness warnings
+\setlength{\headheight}{15pt} % Set header height to accommodate content
+\usepackage{multicol} % Multi-column layout support
+\usepackage{changepage} % Change page layout mid-document
+
+%%------------------------------
+%% Graphics, Plots, and Diagrams
+%%------------------------------
+\usepackage{float} % Enhanced float positioning control
+\usepackage{graphicx} % Graphics inclusion and manipulation
+\graphicspath{{./images/}} % Set default path for image files
+\usepackage{import} % Import external LaTeX files
+\usepackage[framemethod=TikZ]{mdframed} % Framed boxes using TikZ for better appearance
+\usepackage[many]{tcolorbox} % Colored and framed boxes with many options
+\usepackage{pgfplots} % High-quality function plots and data visualization
+\pgfplotsset{compat=1.18} % Set pgfplots compatibility level
+\usepackage{tikz} % Vector graphics and diagrams
+\usepackage{tikz-3dplot} % 3D plotting capabilities for TikZ
+\usetikzlibrary{
+  3d, arrows.meta, automata, backgrounds, calc, graphs, patterns, positioning, quotes,
+  shadings, angles, decorations.pathmorphing, decorations.pathreplacing, 
+  fadings, perspective, intersections, decorations.markings, bending
+} % Load various TikZ libraries for advanced graphics features
+\usepgfplotslibrary{groupplots, external, colormaps, patchplots, fillbetween} % Load additional pgfplots libraries
+\usepackage{diagbox} % Diagonal lines in tables
+\usepackage{caption} % Customize captions for figures and tables
+
+%%------------------------------
+%% Mathematics
+%%------------------------------
+\usepackage{amsmath} % Advanced mathematical typesetting
+\usepackage{amssymb} % Extended symbol collection for mathematics
+\usepackage{amsthm} % Theorem-like environments
+\usepackage{empheq} % Enhanced equation environments with boxes
+\usepackage{cancel} % Cancel terms in equations with diagonal lines
+\usepackage[scr]{rsfso} % Script-style mathematical fonts
+\DeclareMathOperator{\csch}{csch} % Define hyperbolic cosecant operator
+\DeclareMathOperator{\sech}{sech} % Define hyperbolic secant operator
+\DeclareMathOperator{\arccsc}{arccsc} % Define arccosecant operator
+\DeclareMathOperator{\arcsec}{arcsec} % Define arcsecant operator
+\DeclareMathOperator{\arccot}{arccot} % Define arccotangent operator
+\DeclareMathOperator{\arccosh}{arccosh} % Define inverse hyperbolic cosine operator
+\DeclareMathOperator{\arcsinh}{arcsinh} % Define inverse hyperbolic sine operator
+\DeclareMathOperator{\arctanh}{arctanh} % Define inverse hyperbolic tangent operator
+\DeclareMathOperator{\arcsech}{arcsech} % Define inverse hyperbolic secant operator
+\DeclareMathOperator{\arccsch}{arccsch} % Define inverse hyperbolic cosecant operator
+\DeclareMathOperator{\arccoth}{arccoth} % Define inverse hyperbolic cotangent operator
+\newcommand{\dd}{\mathrm{d}} % Define upright differential operator
+\newcommand*\widefbox[1]{\fbox{\hspace{1em}#1\hspace{1em}}} % Define wide framed box command
+
+%%------------------------------
+%% Computer Science
+%%------------------------------
+\usepackage[linesnumbered, ruled, vlined, nofillcomment, noend]{algorithm2e} % Algorithm typesetting with line numbers and rules
+\usepackage{listings} % Code listing environments with syntax highlighting
+\DontPrintSemicolon % Don't print semicolons in algorithms
+\SetAlgoNoEnd % Remove "end" statements from algorithms
+\SetAlgoHangIndent{0pt} % Set hanging indent for algorithm lines
+\SetNlSty{textbf}{}{.} % Style for line numbers in algorithms
+\SetArgSty{textnormal} % Style for algorithm arguments
+\newcommand\mycommfont[1]{\textcolor{blue}{{#1}}} % Define blue comment font for algorithms
+\SetCommentSty{mycommfont} % Apply blue comment style to algorithms
+\let\oldnl\nl % Save original \nl command
+\newcommand{\nonl}{\renewcommand{\nl}{\let\nl\oldnl}} % Define command to suppress a line number in algorithms
+
+%%------------------------------
+%% Packages to be loaded LAST
+%%------------------------------
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref} % Hyperlink support with colored links
+\usepackage{bookmark} % Enhanced PDF bookmarks (must be loaded after hyperref)

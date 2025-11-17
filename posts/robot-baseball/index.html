@@ -175,7 +175,7 @@
             it stands for "points".
           </p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
             \\\hline \text{Pitcher Throws Ball} & P(b+1,s) & P(b,s+1) \\
             \text{Pitcher Throws Strike} & P(b,s+1) & 4p + (1-p) \cdot P(b,s+1)
@@ -184,7 +184,7 @@
 
           <p>Let's replace these values with variables for simplicity:</p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
             \\ \hline \text{Pitcher Throws Ball} & a & b \\ \text{Pitcher Throws
             Strike} & c & d \\ \end{array} \]
@@ -201,7 +201,7 @@
             players play optimally) is given by
           </p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \[ \nu = \frac{ad - bc}{a - b - c + d} = \frac{P(b+1,s) \cdot (4p +
             (1-p) \cdot P(b,s+1)) - P(b,s+1) \cdot P(b,s+1)}{P(b+1,s) - P(b,s+1)
             - P(b,s+1) + 4p + (1-p) \cdot P(b,s+1)} \]
@@ -214,7 +214,7 @@
             each count \( (b,s) \) under optimal play by both sides.
           </p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \[ P(b, s) = \left.\begin{cases} 1, & \text{if } b = 4 \\ 0, &
             \text{if } s = 3 \\ \displaystyle\frac{P(b+1,s) \cdot \left[4p +
             (1-p) \cdot P(b,s+1)\right] - P(b,s+1)^2}{P(b+1,s) - 2P(b,s+1) + 4p
@@ -235,7 +235,7 @@
             player to play Row 1 (pitcher throws a ball) is given by
           </p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \begin{align*} \mathrm{Pr[Ball]} = \frac{d-c}{a-b-c+d} &= \frac{4p +
             (1-p) \cdot P(b,s+1) - P(b,s+1)}{P(b+1,s) - P(b,s+1) - P(b,s+1) + 4p
             + (1-p) \cdot P(b,s+1)} \\ &= \frac{p \cdot (4 - P(b,s+1))}{P(b+1,s)
@@ -282,7 +282,7 @@
             recurrence is summarized as follows:
           </p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \[ A(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ \displaystyle\frac{p \cdot (4 - P(b,s+1))}{P(b+1,s) -
             P(b,s+1) + p \cdot (4 - P(b,s+1))}, & \text{if } b \in [0,3] \text{
@@ -381,7 +381,7 @@
             stands for "full count." The recurrence for \( F(b,s) \) is given by
           </p>
 
-          <div style="text-align: center; margin: 2em 0">
+          <div class="blog-math-line">
             \[ F(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2
             F(b+1, s) + 2A(b, s)(1-A(b, s)) F(b, s+1) + (1-A(b, s))^2 (1-p) F(b,

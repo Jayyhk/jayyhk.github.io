@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Blog Post" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/fa62c117c7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../styles.css" />
+    <title>Ticket Line</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+  </head>
+  <body class="light" id="top">
+    <header class="header center">
+      <h3>
+        <a href="https://jayyhk.github.io" class="link">JM.</a>
+      </h3>
+
+      <nav class="nav center">
+        <ul class="nav__list center">
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#projects">Projects</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#blog">Blog</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#music">Music</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#contact">Contact</a>
+          </li>
+        </ul>
+
+        <button type="button" aria-label="toggle theme" class="btn btn--icon">
+          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
+        </button>
+
+        <button
+          type="button"
+          aria-label="toggle navigation"
+          class="btn btn--icon nav__hamburger"
+        >
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Blog Post -->
+      <section class="section blog-post">
+        <h1>Ticket Line</h1>
+        <h3
+          style="font-size: 1.2em; margin-bottom: 2em; color: var(--clr-fg-alt)"
+        >
+          November 17, 2025
+        </h3>
+        <div class="post-content">
+          <p class="blog-paragraph">My friend gave me the following puzzle:</p>
+
+          <div class="quote-indent blog-paragraph">
+            <p>
+              At a theater ticket office, $2n$ people are waiting to buy
+              tickets. People have only \$5 bills or \$10 bills. The ticket
+              seller has no change to start with. If each person buys one \$5
+              ticket, what is the probability that all people will be able to
+              buy their tickets without having to change positions?
+            </p>
+          </div>
+
+          <p class="blog-paragraph">
+            This problem is given in the quantitative finance
+            <a
+              href="https://asset.quant-wiki.com/pdf/%E9%87%8F%E5%8C%96%E7%BB%BF%E7%9A%AE%E4%B9%A6.pdf"
+              class="link"
+              >"green book"</a
+            >
+            as "Ticket Line" but $n$ people have \$5 bills and the other $n$
+            people have \$10 bills. My friend did not recall this fact, which
+            actually makes our modifiedproblem slightly harder.
+          </p>
+
+          <p class="blog-paragraph">
+            One observation to make is that at any point in line from the front,
+            the number of people with \$10 bills cannot exceed the number of
+            people with \$5 bills; otherwise, the ticket seller would not be
+            able to provide change.
+          </p>
+
+          <p class="blog-paragraph">
+            We can use a graph to represent this. Let each \$5 bill represent a
+            step right and each \$10 bill represent a step up. We can make steps
+            as long as we do not go above the line $y = x$. This is equivalent
+            to saying we cannot hit the line $y = x + 1$. We also want to find
+            the number of paths using only right and up steps from $(0,0)$ to
+            $(n,n)$, $(0,0)$ to $(n+1,n-1)$, $~\ldots~$, $(0,0)$ to $(2n,0)$, as
+            we can have anywhere from $0$ to $n$ people with \$10 bills.
+          </p>
+
+          <img
+            src="images/graph1.png"
+            alt="Diagram of the ticket line problem"
+            style="width: 50%; height: auto; display: block; margin: 2em auto"
+          />
+
+          <p class="blog-paragraph">
+            In the above diagram, the red line $y = x + 1$ represents the
+            boundary we cannot touch. The block dots are the end points we want
+            to reach from $(0,0)$, and we want to count the total number of
+            paths from $(0,0)$ to each of these points without crossing the red
+            line.
+          </p>
+
+          <p class="blog-paragraph">
+            Consider the first black dot at $(n,n)$. Let a <em>good</em> path be
+            one that does not cross the red line, and a <em>bad</em> path be one
+            that does. Then the number of good paths to $(n,n)$ is equal to the
+            total number of paths to $(n,n)$ minus the number of bad paths to
+            $(n,n)$.
+          </p>
+
+          <p class="blog-paragraph">
+            The total number of paths to $(n,n)$ is simply the number of ways to
+            arrange $n$ right steps and $n$ up steps, so we have
+          </p>
+
+          <div class="blog-math-line">
+            \[ \text{Total paths to $(n,n)$} = \binom{2n}{n} \]
+          </div>
+
+          <p class="blog-paragraph">
+            To count the number of bad paths to $(n,n)$, we can use the
+            reflection principle. For each bad path to $(n,n)$, reflect the
+            remaining part of the path across the line $y = x + 1$ at the first
+            point it crosses this line. Since each bad path must hit the red
+            line at least once, and the reflection maps it to a path that goes
+            to $(n-1,n+1)$, this gives us a one-to-one correspondence between
+            bad paths to $(n,n)$ and all paths to $(n-1,n+1)$. This is
+            illustrated in the diagram below, where the bad path is shown in
+            dark blue and the reflected portion after hitting the red line is
+            shown in light blue.
+          </p>
+
+          <img
+            src="images/graph2.png"
+            alt="Reflection principle illustration"
+            style="width: 25%; height: auto; display: block; margin: 2em auto"
+          />
+
+          <p class="blog-paragraph">
+            Therefore, the number of bad paths to $(n,n)$ is equal to the total
+            number of paths to $(n-1,n+1)$. Using the same reasoning as before,
+            we have
+          </p>
+
+          <div class="blog-math-line">
+            \[ \text{Bad paths to $(n,n)$} = \binom{2n}{n+1} \]
+          </div>
+
+          <p class="blog-paragraph">
+            Thus, the number of good paths to $(n,n)$ is
+          </p>
+
+          <div class="blog-math-line">
+            \[ \text{Good paths to $(n,n)$} = \text{Total paths to $(n,n)$} -
+            \text{Bad paths to $(n,n)$} = \binom{2n}{n} - \binom{2n}{n+1} =
+            \frac{1}{n+1} \binom{2n}{n} \]
+          </div>
+
+          <p class="blog-paragraph">
+            This value is actually the $n$th Catalan number, which is the
+            solution for the original problem. We can apply the same logic to
+            find the number of good paths to each of the other block dots.
+          </p>
+
+          <div class="blog-math-line">
+            \[ \text{Good paths to $(n+k,n-k)$} = \binom{2n}{n+k} -
+            \binom{2n}{n+k+1} \]
+          </div>
+
+          <p class="blog-paragraph">
+            For all $k = 0, 1, ~\ldots~, n$, summing these values gives us the
+            total number of good paths from $(0,0)$ to all block dots:
+          </p>
+
+          <div class="blog-math-line">
+            \begin{align*} \text{Total good paths} &= \sum_{k=0}^{n}
+            \left[\binom{2n}{n+k} - \binom{2n}{n+k+1} \right] \\ &=
+            \binom{2n}{n} - \binom{2n}{n+1} + \binom{2n}{n+1} - \binom{2n}{n+2}
+            + \ldots + \binom{2n}{2n - 1} - \binom{2n}{2n} + \binom{2n}{2n} -
+            \binom{2n}{2n+1} \\ &= \binom{2n}{n} - \binom{2n}{2n+1} \\ &=
+            \binom{2n}{n} - 0 \\ &= \binom{2n}{n} \end{align*}
+          </div>
+
+          <p class="blog-paragraph">
+            Therefore, the probability that all $2n$ people can buy their
+            tickets without having to change positions is
+          </p>
+
+          <div class="blog-math-line">
+            \[ \text{Probability of a valid line} = \frac{\text{Total good paths}}{\text{Total paths}} = \frac{\binom{2n}{n}}{2^{2n}}\]
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"></footer>
+    <div class="scroll-arrow"></div>
+    <script src="../../script.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+  </body>
+</html>
