@@ -441,6 +441,8 @@ main {
 .blog-math-line {
   text-align: center;
   margin: 2em 0;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .quote-indent {
