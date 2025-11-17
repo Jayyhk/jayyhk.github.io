@@ -568,4 +568,9 @@ main {
     overflow-x: auto;
     padding: 0.5em;
   }
+
+  .blog-math-line {
+    overflow-x: auto;
+    max-width: 100%;
+  }
 }
