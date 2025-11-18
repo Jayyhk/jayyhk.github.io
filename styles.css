@@ -441,6 +441,9 @@ main {
 .blog-math-line {
   text-align: center;
   margin: 2em 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 
 .quote-indent {
@@ -565,5 +568,10 @@ main {
   .post-content div[style*="text-align: center"] {
     overflow-x: auto;
     padding: 0.5em;
+  }
+
+  .post-content img {
+    width: 100% !important;
+    height: auto !important;
   }
 }
