@@ -311,9 +311,10 @@ main {
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+  grid-template-columns: repeat(3, minmax(18em, 1fr));
   gap: 2.5em;
   margin-bottom: 2.5em;
+  justify-items: center;
 }
 
 .project {
