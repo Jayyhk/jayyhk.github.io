@@ -1,10 +1,12 @@
 const body = document.body;
 
-const btnTheme = document.querySelector(".fa-moon");
+const btnTheme = document.getElementById("btn-theme");
 const btnHamburger = document.querySelector(".fa-bars");
 
 const addThemeClass = (bodyClass, btnClass) => {
+  body.classList.remove("light", "dark");
   body.classList.add(bodyClass);
+  btnTheme.classList.remove("fa-moon", "fa-sun");
   btnTheme.classList.add(btnClass);
 };
 
