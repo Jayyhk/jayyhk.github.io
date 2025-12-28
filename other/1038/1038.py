@@ -212,8 +212,13 @@ def solve_dual_measure_mixed(output_file='measure.txt'):
         ax1.vlines(dx, 0, y_top, color='green', linewidth=2)
         ax1.plot(dx, y_top, '^', color='green', markersize=8, label='Dirac')
 
-    ax1.axvspan(-1.808, 0.026, color='red', alpha=0.2, label='Support 1')
-    ax1.axvspan(a, 1.0, color='red', alpha=0.2, label='Support 2')
+    # Use the actual epsilon variable to define the visual bounds
+    # Support 1: Starts at -1.808 + eps, ends at 0.026
+    ax1.axvspan(-1.808 + epsilon, 0.026, color='red', alpha=0.2, label='Support 1')
+    
+    # Support 2: Starts at a (or a+eps per your discrete setup), ends STRICTLY at 1 - eps
+    # This will make the red bar stop at 0.9, leaving the "forbidden" tip white.
+    ax1.axvspan(a, 1.0 - epsilon, color='red', alpha=0.2, label='Support 2')
 
     ax1.set_title("Measure $\\lambda$ (Blue=Continuous, Green=Dirac)")
     ax1.set_ylabel("Density / Mass")
