@@ -14,6 +14,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <title>Jake Mallen</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
@@ -61,30 +65,6 @@
         <div>
           <h1>Hi, I am <span class="about__name">Jake Mallen.</span></h1>
         </div>
-        <div class="about__contact about_icon_center">
-          <a
-            href="https://github.com/jayyhk"
-            target="_blank"
-            aria-label="github"
-            class="link link--icon"
-          >
-            <i aria-hidden="true" class="fab fa-github"></i>
-          </a>
-          <a
-            href="https://drive.google.com/file/d/1F9q72_ZdoBen5nbq7gprs8peHWZDIBV8/view?usp=sharing"
-            target="_blank"
-          >
-            <span class="btn btn--outline">Résumé</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/jake-mallen-51826129b/"
-            target="_blank"
-            aria-label="linkedin"
-            class="link link--icon"
-          >
-            <i aria-hidden="true" class="fab fa-linkedin"></i>
-          </a>
-        </div>
       </div>
 
       <!-- Projects -->
@@ -105,6 +85,83 @@
 
             <a
               href="https://github.com/Jayyhk/uscc"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
+            <h3>LCS</h3>
+            <p class="project__description">
+              Benchmarking cache aware, oblivious, and adaptive longest common
+              subsequence algos.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">C</li>
+              <li class="project__stack-item">cgroups</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/lcs"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
+            <h3>No FC Tracker</h3>
+            <p class="project__description">
+              A Google Apps Script that tracks all osu!standard beatmaps without
+              FCs.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">Javascript</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/no-fc-tracker"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
+            <h3>CSES Code Golf</h3>
+            <p class="project__description">
+              Accepted code golf solutions to the CSES Problem Set written in
+              Python 3.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">Python</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/cses-code-golf"
+              target="_blank"
+              aria-label="source code"
+              class="link link--icon"
+            >
+              <i aria-hidden="true" class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="project">
+            <h3>Doodle Digger</h3>
+            <p class="project__description">
+              A tool to extract default Google profile pictures (doodles) with
+              automated browser navigation.
+            </p>
+            <ul class="project__stack">
+              <li class="project__stack-item">TypeScript</li>
+            </ul>
+
+            <a
+              href="https://github.com/Jayyhk/doodle-digger"
               target="_blank"
               aria-label="source code"
               class="link link--icon"
@@ -135,48 +192,9 @@
             </a>
           </div>
           <div class="project">
-            <h3>LCS</h3>
-            <p class="project__description">
-              Benchmarking cache aware, oblivious, and adaptive longest common
-              subsequence algos.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">C</li>
-              <li class="project__stack-item">cgroups</li>
-            </ul>
-
-            <a
-              href="https://github.com/Jayyhk/lcs"
-              target="_blank"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-          </div>
-          <div class="project">
-            <h3>CSES Code Golf</h3>
-            <p class="project__description">
-              Accepted code golf solutions to the CSES Problem Set written in
-              Python 3.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">Python</li>
-            </ul>
-
-            <a
-              href="https://github.com/Jayyhk/cses-code-golf"
-              target="_blank"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-          </div>
-          <div class="project">
             <h3>Coursphere</h3>
             <p class="project__description">
-              A full stack application that generates courseware and provides
+              A full-stack application that generates courseware and provides
               related videos for users.
             </p>
             <ul class="project__stack">
@@ -188,52 +206,6 @@
 
             <a
               href="https://github.com/Jayyhk/coursphere"
-              target="_blank"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <!-- <a
-              href="https://coursphere.net"
-              target="_blank"
-              aria-label="live preview"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a> -->
-          </div>
-          <div class="project">
-            <h3>Doodle Digger</h3>
-            <p class="project__description">
-              A tool to extract default Google profile pictures (doodles) with
-              automated browser navigation.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">TypeScript</li>
-            </ul>
-
-            <a
-              href="https://github.com/Jayyhk/doodle-digger"
-              target="_blank"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-          </div>
-          <div class="project">
-            <h3>No FC Tracker</h3>
-            <p class="project__description">
-              A Google Apps Script that tracks all osu!standard beatmaps without
-              FCs.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">Javascript</li>
-            </ul>
-
-            <a
-              href="https://github.com/Jayyhk/no-fc-tracker"
               target="_blank"
               aria-label="source code"
               class="link link--icon"
@@ -340,7 +312,7 @@
             aria-label="source code"
             class="link link--icon"
           >
-            <i aria-hidden="true" class="fas fa-music fa-3x"></i>
+            <i class="material-icons" style="font-size: 3em">piano</i>
           </a>
         </div>
       </section>
@@ -348,12 +320,7 @@
       <!-- Contact -->
       <section class="section contact center" id="contact">
         <h2 class="section__title">Contact</h2>
-        <a href="mailto:jemallen10@gmail.com">
-          <span class="btn btn--outline">
-            <i aria-hidden="true" class="fas fa-envelope"></i>
-            Email Me
-          </span>
-        </a>
+        <p>Email:&nbsp; jemallen10 at gmail dot com</p>
       </section>
     </main>
 
