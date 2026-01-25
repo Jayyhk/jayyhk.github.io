@@ -89,3 +89,38 @@ Promise.all([
     }
   })
   .catch((error) => console.error("Error loading footer or scroll:", error));
+
+// Load blog dates and titles from posts and populate them
+const blogLinks = document.querySelectorAll('.blog__list-item a[href^="posts/"]');
+
+blogLinks.forEach(link => {
+  const href = link.getAttribute('href');
+  const slug = href.split('/')[1]; // Extract slug from href like "posts/slug/"
+  fetch(`posts/${slug}/index.html`)
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      
+      // Get title
+      const h1 = doc.querySelector('h1.title');
+      if (h1) {
+        const title = h1.textContent.trim();
+        const titleElement = link.querySelector('.link-text');
+        if (titleElement) {
+          titleElement.textContent = title;
+        }
+      }
+      
+      // Get date
+      const h3 = doc.querySelector('h3.date');
+      if (h3) {
+        const date = h3.textContent.trim();
+        const dateElement = link.querySelector('.blog-date');
+        if (dateElement) {
+          dateElement.textContent = date;
+        }
+      }
+    })
+    .catch(error => console.error(`Error loading data for ${slug}:`, error));
+});

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -57,12 +57,8 @@
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
-        <h1>Shut the Box</h1>
-        <h3
-          style="font-size: 1.2em; margin-bottom: 2em; color: var(--clr-fg-alt)"
-        >
-          November 2, 2025
-        </h3>
+        <h1 class="title">Shut the Box</h1>
+        <h3 class="date">November 2, 2025</h3>
         <div class="post-content">
           <p class="blog-paragraph">
             Unlike October's puzzle, I wanted to solve the November 2025 Jane
@@ -87,7 +83,7 @@
               "
             />
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               Use scissors to cut away one or more groups of orthogonally
               connected cells (squares) from the grid above. Any group you cut
               away must have at least one cell along the boundary of the grid.
@@ -95,25 +91,25 @@
               any holes.
             </p>
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               It must be possible to fold along some of the grid lines so that
               the remaining cells form the six walls of a rectangular solid (the
               "box"). There may not be any overlapping cells in the box.
             </p>
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               Some cells have been labeled with arrows. These cells are not part
               of the box, but instead point in the direction(s) of the nearest
               box cells (looking in that square's row and column).
             </p>
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               Some cells have been labeled with numbers. These cells are part of
               the box. A number indicates how many cells within one king's move
               of that cell are a part of the box. (Including the numbered cell.)
             </p>
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               When the box is assembled, each grey circle should be directly
               opposite another grey circle. That is, the line segment connecting
               "opposite" circles should be orthogonal to the faces containing
@@ -121,13 +117,13 @@
               the same face as) another gray square.
             </p>
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               Once you have assembled the box, compute, on each face, the sum of
               the numbered cells. The answer to this puzzle is the product of
               these six sums.
             </p>
 
-            <p>
+            <p class="blog-paragraph">
               An example grid can be seen
               <a
                 href="https://www.janestreet.com/static/pdfs/puzzles/nov-2025-box-example.pdf"
@@ -496,7 +492,7 @@
             together gives us the following:
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \begin{array}{|c|l|c|} \hline \textbf{Face} & \textbf{Numbers} &
             \textbf{Total} \\ \hline 1 & 4, 5, 5, 5, 4, 7, 4, 4, 7, 3, 9 & 57 \\
             \hline 2 & 5 & 5 \\ \hline 3 & 5, 5, 7 & 17 \\ \hline 4 & 6, 5 & 11

@@ -61,8 +61,8 @@ body {
   --clr-fg-alt: #cdcdff;
   --clr-primary: #90a0d9;
   --clr-scroll: #2a2f4c;
-  --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  --shadow:
+    rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 ::-moz-selection {
@@ -437,12 +437,22 @@ main {
 }
 
 .blog-paragraph {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
-.blog-math-line {
+.blog-table {
+  margin: 1.5em auto;
+  border-collapse: collapse;
+}
+
+.blog-table-cell {
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+.blog-math {
   text-align: center;
-  margin: 2em 0;
+  margin: 1em 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
@@ -453,7 +463,18 @@ main {
   padding-left: 1em;
   margin: 1em 0;
   background-color: var(--clr-bg);
-  font-style: italic;
+}
+
+.title {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: var(--clr-fg);
+}
+
+.date {
+  font-size: 1.2em;
+  margin-bottom: 2em;
+  color: var(--clr-fg);
 }
 
 @media (max-width: 600px) {

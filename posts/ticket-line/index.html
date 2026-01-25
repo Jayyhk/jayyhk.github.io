@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -57,17 +57,13 @@
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
-        <h1>Ticket Line</h1>
-        <h3
-          style="font-size: 1.2em; margin-bottom: 2em; color: var(--clr-fg-alt)"
-        >
-          November 17, 2025
-        </h3>
+        <h1 class="title">Ticket Line</h1>
+        <h3 class="date">November 17, 2025</h3>
         <div class="post-content">
           <p class="blog-paragraph">My friend gave me the following puzzle:</p>
 
           <div class="quote-indent blog-paragraph">
-            <p>
+            <p class="blog-paragraph">
               At a theater ticket office, $2n$ people are waiting to buy
               tickets. People have only \$5 bills or \$10 bills. The ticket
               seller has no change to start with. If each person buys one \$5
@@ -132,7 +128,7 @@
             arrange $n$ right steps and $n$ up steps, so we have
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \text{Total paths to $(n,n)$} = \binom{2n}{n} \]
           </div>
 
@@ -161,7 +157,7 @@
             we have
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \text{Bad paths to $(n,n)$} = \binom{2n}{n+1} \]
           </div>
 
@@ -169,7 +165,7 @@
             Thus, the number of good paths to $(n,n)$ is
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \text{Good paths to $(n,n)$} = \text{Total paths to $(n,n)$} -
             \text{Bad paths to $(n,n)$} = \binom{2n}{n} - \binom{2n}{n+1} =
             \frac{1}{n+1} \binom{2n}{n} \]
@@ -181,7 +177,7 @@
             find the number of good paths to each of the other block dots.
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \text{Good paths to $(n+k,n-k)$} = \binom{2n}{n+k} -
             \binom{2n}{n+k+1} \]
           </div>
@@ -191,7 +187,7 @@
             total number of good paths from $(0,0)$ to all block dots:
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \begin{align*} \text{Total good paths} &= \sum_{k=0}^{n}
             \left[\binom{2n}{n+k} - \binom{2n}{n+k+1} \right] \\ &=
             \binom{2n}{n} - \binom{2n}{n+1} + \binom{2n}{n+1} - \binom{2n}{n+2}
@@ -205,7 +201,7 @@
             tickets without having to change positions is the following:
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \text{Probability of a valid line} = \frac{\text{Total good paths}}{\text{Total lines}} = \frac{\binom{2n}{n}}{2^{2n}}\]
           </div>
         </div>

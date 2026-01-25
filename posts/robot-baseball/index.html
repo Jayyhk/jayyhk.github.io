@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -57,12 +57,8 @@
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
-        <h1>Robot Baseball</h1>
-        <h3
-          style="font-size: 1.2em; margin-bottom: 2em; color: var(--clr-fg-alt)"
-        >
-          October 4, 2025
-        </h3>
+        <h1 class="title">Robot Baseball</h1>
+        <h3 class="date">October 4, 2025</h3>
         <div class="post-content">
           <p class="blog-paragraph">
             Lately I've been wanting to get back into solving the monthly Jane
@@ -78,7 +74,7 @@
           </p>
 
           <div class="quote-indent blog-paragraph">
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               The Artificial Automaton Athletics Association (Quad-A) is at it
               again, to compete with postseason baseball they are developing a
               Robot Baseball competition. Games are composed of a series of
@@ -87,7 +83,7 @@
               score.
             </p>
 
-            <p style="margin-bottom: 1em">
+            <p class="blog-paragraph">
               An at-bat is a series of pitches with a running count of balls and
               strikes, both starting at zero. For each pitch, the pitcher
               decides whether to throw a ball or strike, and the batter decides
@@ -122,7 +118,7 @@
               </li>
             </ul>
 
-            <p style="margin-bottom: 1em">An at-bat ends when either:</p>
+            <p class="blog-paragraph">An at-bat ends when either:</p>
 
             <ul
               style="
@@ -145,7 +141,7 @@
               </li>
             </ul>
 
-            <p>
+            <p class="blog-paragraph">
               By varying the size of the strike zone, Quad-A can adjust the
               value \( p \), the probability a pitched strike that is swung at
               results in a home run. They have found that viewers are most
@@ -169,28 +165,29 @@
             I knew was that making a 2x2 payoff matrix would probably be useful.
           </p>
 
-          <p>
+          <p class="blog-paragraph">
             Let \( P(b,s) \) be the expected points for the batter after \( b \)
             balls and \( s \) strikes. I'm calling this function \( P \) because
             it stands for "points".
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
             \\\hline \text{Pitcher Throws Ball} & P(b+1,s) & P(b,s+1) \\
             \text{Pitcher Throws Strike} & P(b,s+1) & 4p + (1-p) \cdot P(b,s+1)
             \\ \end{array} \]
           </div>
 
-          <p>Let's replace these values with variables for simplicity:</p>
+          <p class="blog-paragraph">
+            Let's replace these values with variables for simplicity:
+          </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
-            \\ \hline \text{Pitcher Throws Ball} & a & b \\ \text{Pitcher Throws
-            Strike} & c & d \\ \end{array} \]
+            \\ \hline \text{Pitcher Throws Ball} & a & b \\ \text{Pitcher Throws Strike} & c & d \\ \end{array} \]
           </div>
 
-          <p>
+          <p class="blog-paragraph">
             At this point I did not know how to continue, and I had to read up
             on some game theory notes. According to
             <a
@@ -201,20 +198,20 @@
             players play optimally) is given by
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ \nu = \frac{ad - bc}{a - b - c + d} = \frac{P(b+1,s) \cdot (4p +
             (1-p) \cdot P(b,s+1)) - P(b,s+1) \cdot P(b,s+1)}{P(b+1,s) - P(b,s+1)
             - P(b,s+1) + 4p + (1-p) \cdot P(b,s+1)} \]
           </div>
 
-          <p>
+          <p class="blog-paragraph">
             Ok great, we have some more information. Since our payoff matrix
             entries are the batter's expected points, we can construct a
             recurrence that gives the batter's expected value \( P(b,s) \) at
             each count \( (b,s) \) under optimal play by both sides.
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ P(b, s) = \left.\begin{cases} 1, & \text{if } b = 4 \\ 0, &
             \text{if } s = 3 \\ \displaystyle\frac{P(b+1,s) \cdot \left[4p +
             (1-p) \cdot P(b,s+1)\right] - P(b,s+1)^2}{P(b+1,s) - 2P(b,s+1) + 4p
@@ -230,12 +227,12 @@
             derived.
           </p>
 
-          <p>
+          <p class="blog-paragraph">
             From the same lecture notes, the optimal probability for the row
             player to play Row 1 (pitcher throws a ball) is given by
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \begin{align*} \mathrm{Pr[Ball]} = \frac{d-c}{a-b-c+d} &= \frac{4p +
             (1-p) \cdot P(b,s+1) - P(b,s+1)}{P(b+1,s) - P(b,s+1) - P(b,s+1) + 4p
             + (1-p) \cdot P(b,s+1)} \\ &= \frac{p \cdot (4 - P(b,s+1))}{P(b+1,s)
@@ -251,13 +248,13 @@
             event that the pitcher throws a ball.
           </p>
 
-          <p>
+          <p class="blog-paragraph">
             The optimal probability for the row player to play Row 2 (pitcher
             throws a strike) is given by
           </p>
           <p>\[ \mathrm{Pr[Strike]} = 1 - A(b,s) \]</p>
 
-          <p>
+          <p class="blog-paragraph">
             The optimal probability for the column player to play Column 1
             (batter waits) is given by
           </p>
@@ -268,13 +265,13 @@
 
           <p class="blog-paragraph">since \( b = c = P(b,s+1) \).</p>
 
-          <p>
+          <p class="blog-paragraph">
             The optimal probability for the column player to play Column 2
             (batter swings) is given by
           </p>
           <p>\[ \mathrm{Pr[Swing]} = 1 - A(b,s) \]</p>
 
-          <p>
+          <p class="blog-paragraph">
             Therefore, \( \mathrm{Pr}[\text{Ball}] = \mathrm{Pr}[\text{Wait}] =
             A(b,s) \) and \( \mathrm{Pr}[\text{Strike}] =
             \mathrm{Pr}[\text{Swing}] = 1 - A(b,s) \). All of these
@@ -282,7 +279,7 @@
             recurrence is summarized as follows:
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ A(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ \displaystyle\frac{p \cdot (4 - P(b,s+1))}{P(b+1,s) -
             P(b,s+1) + p \cdot (4 - P(b,s+1))}, & \text{if } b \in [0,3] \text{
@@ -298,72 +295,44 @@
             of \( A(b,s) \).
           </p>
 
-          <p>
+          <p class="blog-paragraph">
             Now we have enough information to compute the probability of
             reaching any state in the game with \( b \) balls and \( s \)
             strikes! We can summarize it cleanly in the following table:
           </p>
 
-          <table style="margin: 2em auto; border-collapse: collapse">
+          <table class="blog-table">
             <tr>
-              <th style="border: 1px solid #000; padding: 8px">
-                Pitcher (probability)
-              </th>
-              <th style="border: 1px solid #000; padding: 8px">
-                Batter (probability)
-              </th>
-              <th style="border: 1px solid #000; padding: 8px">New State</th>
-              <th style="border: 1px solid #000; padding: 8px">Probability</th>
+              <th class="blog-table-cell">Pitcher (probability)</th>
+              <th class="blog-table-cell">Batter (probability)</th>
+              <th class="blog-table-cell">New State</th>
+              <th class="blog-table-cell">Probability</th>
             </tr>
             <tr>
-              <td style="border: 1px solid #000; padding: 8px">
-                Ball (\( A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                Wait (\( A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                \( (b+1, s) \)
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">\( A^2 \)</td>
+              <td class="blog-table-cell">Ball (\( A \))</td>
+              <td class="blog-table-cell">Wait (\( A \))</td>
+              <td class="blog-table-cell">\( (b+1, s) \)</td>
+              <td class="blog-table-cell">\( A^2 \)</td>
             </tr>
             <tr>
-              <td style="border: 1px solid #000; padding: 8px">
-                Ball (\( A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                Swing (\( 1-A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                \( (b, s+1) \)
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">\( A(1-A) \)</td>
+              <td class="blog-table-cell">Ball (\( A \))</td>
+              <td class="blog-table-cell">Swing (\( 1-A \))</td>
+              <td class="blog-table-cell">\( (b, s+1) \)</td>
+              <td class="blog-table-cell">\( A(1-A) \)</td>
             </tr>
             <tr>
-              <td style="border: 1px solid #000; padding: 8px">
-                Strike (\( 1-A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                Wait (\( A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                \( (b, s+1) \)
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">\( (1-A)A \)</td>
+              <td class="blog-table-cell">Strike (\( 1-A \))</td>
+              <td class="blog-table-cell">Wait (\( A \))</td>
+              <td class="blog-table-cell">\( (b, s+1) \)</td>
+              <td class="blog-table-cell">\( (1-A)A \)</td>
             </tr>
             <tr>
-              <td style="border: 1px solid #000; padding: 8px">
-                Strike (\( 1-A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                Swing (\( 1-A \))
-              </td>
-              <td style="border: 1px solid #000; padding: 8px">
+              <td class="blog-table-cell">Strike (\( 1-A \))</td>
+              <td class="blog-table-cell">Swing (\( 1-A \))</td>
+              <td class="blog-table-cell">
                 \( (b, s+1) \) with probability \( (1-p) \)
               </td>
-              <td style="border: 1px solid #000; padding: 8px">
-                \( (1-A)^2 (1-p) \)
-              </td>
+              <td class="blog-table-cell">\( (1-A)^2 (1-p) \)</td>
             </tr>
           </table>
 
@@ -374,14 +343,14 @@
             never reach a full count!
           </p>
 
-          <p>
+          <p class="blog-paragraph">
             Let \( F(b,s) \) be the probability, starting from the state with \(
             b \) balls and \( s \) strikes of reaching a full count (remember: 3
             balls and 2 strikes) before the at-bat ends. The letter \( F \)
             stands for "full count." The recurrence for \( F(b,s) \) is given by
           </p>
 
-          <div class="blog-math-line">
+          <div class="blog-math">
             \[ F(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2
             F(b+1, s) + 2A(b, s)(1-A(b, s)) F(b, s+1) + (1-A(b, s))^2 (1-p) F(b,
@@ -390,7 +359,7 @@
           </div>
 
           <p class="blog-paragraph">
-            This is our final recurrence. It might look big and intimidating,
+            This is our final recurrence. It might look intimidating,
             but it's really not that bad. Let's break it down. If we get 4 balls
             or 3 strikes, the at-bat ends, so the probability of reaching a full
             count is 0 in these cases. If we already have a full count (3 balls
@@ -405,7 +374,7 @@
             s+1) \), which have the same probability given in the table. The
             third term is the case where the pitcher throws a strike and the
             batter swings and misses, so we multiply by the probability of
-            missing, \( (1-p) \). Not so bad, right?
+            missing, \( (1-p) \).
           </p>
 
           <p class="blog-paragraph">
@@ -431,15 +400,15 @@
 
           <p class="blog-paragraph">
             Using
-            <a href="./robot-baseball.py" class="link"> this Python code </a>,
-            we obtain the following results to 10 decimal places:
+            <a href="./robot-baseball.py" class="link"> this Python code</a>, we
+            obtain the following results to 10 decimal places:
           </p>
           <ul class="blog-paragraph" style="text-align: center">
             <li>Optimal \( p \): \(~0.2269732360 \)</li>
             <li>Optimal \( q \): \(~0.2959679934 \)</li>
           </ul>
 
-          <p>
+          <p class="blog-paragraph">
             A plot of \( p \) versus \( q \) is shown in the following figure.
           </p>
           <img
@@ -458,7 +427,7 @@
             good since golden-section search is designed for unimodal functions.
           </p>
 
-          <p>
+          <p class="blog-paragraph">
             I think this was a really fun puzzle that combined concepts from
             game theory, probability, and dynamic programming. Although I had to
             look up some game theory concepts, I was able to piece everything
