@@ -128,46 +128,46 @@
             second throw at the threshold $k$. So we have
           </p>
           <div class="blog-math">
-            \[ \text{Pr[Win } | \text{ Keep}] = \text{Pr[Win } | \text{ Throw Again}] \]
+            \[ \text{Pr[We Win } | \text{ We Keep}] = \text{Pr[We Win } | \text{ We Throw Again}] \]
           </div>
           <p class="blog-paragraph">
-            If we keep a score of exactly $k$, then we only win if Spears Robot
-            scores lower than $k$. For Spears Robot to score lower than $k$,
-            their first throw must be less than $k$ (probability $k$), and then
-            their second throw must also be less than $k$ (probability $k$).
-            Thus,
+            If we keep a score of exactly $k$, then we only win if Spears scores
+            lower than $k$. For Spears to score lower than $k$, their first
+            throw must be less than $k$ (probability $k$), and then their second
+            throw must also be less than $k$ (probability $k$). Thus,
           </p>
           <div class="blog-math">
-            \[ \text{Pr[Win } | \text{ Keep}] = k \cdot k = k^2 \]
+            \[ \text{Pr[We Win } | \text{ We Keep}] = k \cdot k = k^2 \]
           </div>
           <p class="blog-paragraph">
             If we go for a second throw, we win if our second throw is greater
-            than Spears Robot's final throw. There are two scenarios: either
-            they keep their first throw or go for a second throw.
+            than Spears' final throw. There are two scenarios: either they keep
+            their first throw or go for a second throw.
           </p>
           <ol class="case-list">
             <li>
               <p class="blog-paragraph">
-                If Spears Robot keeps their first throw, they must have rolled
-                higher than $k$ (probability $1-k$). The probability that our
-                second throw in $[0, 1]$ is greater than their first throw in
-                $[k, 1]$ is $\frac{1 - k}{2}$. Therefore, the probability of us
-                winning in this case is
+                If Spears keeps their first throw, they must have rolled higher
+                than $k$ (probability $1-k$). The probability that our second
+                throw in $[0, 1]$ is greater than their first throw in $[k, 1]$
+                is $\frac{1 - k}{2}$. Therefore, the probability of us winning
+                in this case is
               </p>
               <div class="blog-math">
-                \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears Keeps})] = (1-k) \cdot \frac{1-k}{2} = \frac{(1-k)^2}{2} \]
+                \[ \text{Pr[We Win } |~(\text{We Throw Again } \cap \text{ Spears Keeps})] = (1-k) \cdot \frac{1-k}{2} = \frac{(1-k)^2}{2}
+                \]
               </div>
             </li>
             <li>
               <p class="blog-paragraph">
-                If Spears Robot goes for a second throw, they must have thrown
-                less than $k$ (probability $k$). The probability that our second
+                If Spears goes for a second throw, they must have thrown less
+                than $k$ (probability $k$). The probability that our second
                 throw in $[0, 1]$ is greater than their second throw in $[0, 1]$
                 is $\frac{1}{2}$. Therefore, the probability of us winning in
                 this case is
               </p>
               <div class="blog-math">
-                \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears Throws Again})] = k \cdot \frac{1}{2} = \frac{k}{2} \]
+                \[ \text{Pr[We Win } |~(\text{We Throw Again } \cap \text{ Spears Throws Again})] = k \cdot \frac{1}{2} = \frac{k}{2} \]
               </div>
             </li>
           </ol>
@@ -176,16 +176,16 @@
             going for a second throw:
           </p>
           <div class="blog-math">
-            \[ \text{Pr[Win | Throw Again]} = \frac{(1-k)^2}{2} + \frac{k}{2} =
-            \frac{k^2 - 2k + 1 + k}{2} = \frac{k^2 - k + 1}{2} \]
+            \[ \text{Pr[We Win | We Throw Again]} = \frac{(1-k)^2}{2} +
+            \frac{k}{2} = \frac{k^2 - 2k + 1 + k}{2} = \frac{k^2 - k + 1}{2} \]
           </div>
           <p class="blog-paragraph">
             Setting the two probabilities equal to each other, we have
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Pr[Win | Keep}] &amp;= \text{Pr[Win | Throw Again]} \\ k^2 &amp;= \frac{k^2 - k + 1}{2} \\ 2k^2 &amp;= k^2 - k +
-            1 \\ k^2 + k - 1 &amp;= 0 \\ k &amp;= \frac{-1 \pm \sqrt{1 + 4}}{2}
-            = \frac{-1 \pm \sqrt{5}}{2} \end{align*}
+            \begin{align*} \text{Pr[We Win | We Keep}] &amp;= \text{Pr[We Win | We Throw Again]} \\ k^2 &amp;= \frac{k^2 - k + 1}{2} \\ 2k^2 &amp;=
+            k^2 - k + 1 \\ k^2 + k - 1 &amp;= 0 \\ k &amp;= \frac{-1 \pm \sqrt{1
+            + 4}}{2} = \frac{-1 \pm \sqrt{5}}{2} \approx 0.618 \end{align*}
           </div>
           <p class="blog-paragraph">
             We take the positive root since $k$ must be in $[0, 1]$, so
@@ -195,69 +195,102 @@
             $\varphi^{-1}$.
           </p>
           <p class="blog-paragraph">
-            Now let's consider the modified game where Spears Robot can receive
-            a bit of information if our first throw is below or above a certain
-            threshold $d$. To maximize their chances of winning, Spears Robot
-            should choose a threshold of $d = k = \varphi^{-1}$. This is because
-            if our first throw is below $\varphi^{-1}$, they know we will go for
-            a second throw, and if our first throw is above $\varphi^{-1}$, they
+            Now let's consider the modified game where Spears can receive a bit
+            of information if our first throw is below or above a certain
+            threshold $d$. To maximize their chances of winning, Spears should
+            choose a threshold of $d = k = \varphi^{-1}$. This is because if our
+            first throw is below $\varphi^{-1}$, they know we will go for a
+            second throw, and if our first throw is above $\varphi^{-1}$, they
             know we will keep our first throw. This choice of $d$ maximizes the
-            information gained for Spears Robot.
+            information gained for Spears.
           </p>
           <p class="blog-paragraph">
-            Spears Robot can adjust their strategy accordingly. If Spears Robot
-            receives a bit indicating our first throw is below $\varphi^{-1}$,
-            they believe we will go for a second throw that will be uniformly
-            distributed in $[0, 1]$. In this case, Spears Robot should make
-            their threshold for a second throw $\frac{1}{2}$ to maximize their
+            Spears can adjust their strategy accordingly by changing their
+            original threshold of $\varphi^{-1}$ to a new threshold $t$ based on
+            the bit they receive. If Spears receives a bit indicating our first
+            throw is below $\varphi^{-1}$, they believe we will go for a second
+            throw that will be uniformly distributed in $[0, 1]$. In this case,
+            Spears should make $t$ equal to $\frac{1}{2}$ to maximize their
             probability of winning, as it is the median of the uniform
             distribution.
           </p>
           <p class="blog-paragraph">
-            If Spears Robot receives a bit indicating our first throw is above
+            If Spears receives a bit indicating our first throw is above
             $\varphi^{-1}$, they know we have thrown a value in $[\varphi^{-1},
-            1]$ and believe we will keep it. Spears Robot can now do one of two
+            1]$ and believe we will keep it. Spears can now do one of two
             things:
           </p>
           <ol class="case-list">
             <li>
               <p class="blog-paragraph">
-                Spears Robot can re-throw if their first throw is below some new
-                threshold $t$. Regardless of $t$, they will win with probability
-                $\frac{1 - \varphi^{-1}}{2}$, as the probability that their
-                second throw in $[0, 1]$ is greater than our first throw in $[
-                \varphi^{-1}, 1]$ is $\frac{1 - \varphi^{-1}}{2}$.
+                Spears can re-throw if their first throw is below $t$.
+                Regardless of $t$, they will win with probability $\frac{1 -
+                \varphi^{-1}}{2}$, as the probability that their second throw in
+                $[0, 1]$ is greater than our first throw in $[ \varphi^{-1}, 1]$
+                is $\frac{1 - \varphi^{-1}}{2}$.
               </p>
             </li>
             <li>
               <p class="blog-paragraph">
-                Spears Robot can keep their first throw as long as it's above
-                $t$. Since Spears Robot will win if our first throw is between
-                $\varphi^{-1}$ and $t$, the probability that Spears Robots wins
-                by keeping their first throw is $\frac{t - \varphi^{-1}}{1 -
+                Spears can keep their first throw as long as it's above $t$. If
+                Spears keeps a score of exactly $t$, they win only if our throw
+                is lower than $t$. Since our throw is uniformly distributed in
+                $[\varphi^{-1}, 1]$, the probability that Spears wins by keeping
+                their first throw is $\frac{t - \varphi^{-1}}{1 -
                 \varphi^{-1}}$.
               </p>
             </li>
           </ol>
           <p class="blog-paragraph">
-            Like before, to find Spears Robot's new threshold $t$, the
-            probability of them winning by keeping their first throw must equal
-            the probability of them winning by going for a second throw at the
-            threshold $t$. Thus, we have
+            Like before, to find Spears' new threshold $t$, the probability of
+            them winning by keeping their first throw must equal the probability
+            of them winning by going for a second throw at the threshold $t$.
+            Thus, we have
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Pr[Win } | \text{ Keep}] &= \text{Pr[Win } |
-            \text{ Throw Again}] \\ \frac{t - \varphi^{-1}}{1 - \varphi^{-1}} &=
-            \frac{1 - \varphi^{-1}}{2} \\ t - \varphi^{-1} &= \frac{(1 -
-            \varphi^{-1})^2}{2} \\ t &= \frac{1 - 2\varphi^{-1} +
-            (\varphi^{-1})^2}{2} + \varphi^{-1} \\ t &= \frac{1 +
-            (\varphi^{-1})^2}{2} \\ t &= \frac{1 + 1 - \varphi^{-1}}{2} \\ t &=
-            1 - \frac{\varphi^{-1}}{2} \end{align*}
+            \begin{align*} \text{Pr[Spears Wins } | \text{ Spears Keeps}] &=
+            \text{Pr[Spears Wins } | \text{ Spears Throws Again}] \\ \frac{t -
+            \varphi^{-1}}{1 - \varphi^{-1}} &= \frac{1 - \varphi^{-1}}{2} \\ t -
+            \varphi^{-1} &= \frac{(1 - \varphi^{-1})^2}{2} \\ t &= \frac{1 -
+            2\varphi^{-1} + (\varphi^{-1})^2}{2} + \varphi^{-1} \\ t &= \frac{1
+            + (\varphi^{-1})^2}{2} \\ t &= \frac{1 + 1 - \varphi^{-1}}{2} \\ t
+            &= 1 - \frac{\varphi^{-1}}{2} \end{align*}
           </div>
           <p class="blog-paragraph">
             which was simplified using the identity $(\varphi^{-1})^2 = 1 -
-            \varphi^{-1}$. Therefore, Spears Robot's new threshold is $t = 1 -
+            \varphi^{-1}$. Therefore, Spears' new threshold is $t = 1 -
             \frac{\varphi^{-1}}{2}$.
+          </p>
+          <p class="blog-paragraph">
+            So to recap, Spears' new strategy is to use the following
+            conditional threshold:
+          </p>
+          <div class="blog-math">
+            ${ t = \begin{cases} \frac{1}{2}, & \text{if our first throw } <
+            \varphi^{-1} \\ 1 - \frac{\varphi^{-1}}{2}, & \text{if our first throw } \geq \varphi^{-1} \end{cases} }$
+          </div>
+          <p class="blog-paragraph">
+            Now we can calculate our updated probability of winning against
+            Spears using their new strategy. There are two cases to consider
+            based on our first throw:
+          </p>
+          <p class="blog-paragraph">
+            If our first throw is above $\varphi^{-1}$ (probability
+            $1-\varphi^{-1}$), we will keep our first throw. If we re-throw,
+            then we reset to a random throw in $[0, 1]$, which has an average
+            value of $\frac{1}{2}$. This is worse than keeping our first throw,
+            so we will keep it.
+          </p>
+          <p class="blog-paragraph">
+            If our first throw is below $\varphi^{-1}$ (probability
+            $\varphi^{-1}$), something interesting happens. Spears assumes that
+            if our throw is below $\varphi^{-1}$, we will always re-throw. They
+            then lower their threshold to $\frac{1}{2}$, which creates an
+            opening. In the standard game, a throw of $0.60$ is considered "bad"
+            (because it's below $\varphi^{-1}$). But against an opponent who is
+            willing to keep a $0.51$, a throw of $0.60$ is actually quite
+            strong! Therefore, we should calculate a new threshold $j$ for
+            ourselves to decide whether to go for a second throw.
           </p>
         </div>
       </section>
