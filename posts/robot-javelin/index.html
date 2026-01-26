@@ -1,28 +1,26 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Blog Post" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Blog Post" name="description" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../styles.css" />
+    <link href="../../styles.css" rel="stylesheet" />
     <title>Robot Javelin</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+    <link href="../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body class="light" id="top">
     <header class="header center">
-      <h3>
-        <a href="https://jayyhk.github.io" class="link">JM.</a>
-      </h3>
+      <h3><a class="link" href="https://jayyhk.github.io">JM.</a></h3>
       <nav class="nav center">
         <ul class="nav__list center">
           <li class="nav__list-item">
@@ -38,13 +36,12 @@
             <a class="link link--nav" href="../../#contact">Contact</a>
           </li>
         </ul>
-        <button type="button" aria-label="toggle theme" class="btn btn--icon">
-          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
-        </button>
-        <button
-          type="button"
+        <button aria-label="toggle theme" class="btn btn--icon" type="button">
+          <i aria-hidden="true" class="fas fa-moon" id="btn-theme"></i></button
+        ><button
           aria-label="toggle navigation"
           class="btn btn--icon nav__hamburger"
+          type="button"
         >
           <i aria-hidden="true" class="fas fa-bars"></i>
         </button>
@@ -63,10 +60,12 @@
             very last day of the year. Anyway, here is Jane Street's December
             2025 puzzle,
             <a
-              href="https://www.janestreet.com/puzzles/robot-javelin-index/"
               class="link"
-              >Robot Javelin</a
-            >:
+              href="https://www.janestreet.com/puzzles/robot-javelin-index/"
+            >
+              Robot Javelin
+            </a>
+            :
           </p>
           <div class="quote-indent blog-paragraph">
             <p class="blog-paragraph">
@@ -129,7 +128,8 @@
             throw at the threshold $k$. So we have
           </p>
           <div class="blog-math">
-            \[ \text{Pr[Win } | \text{ Keep}] = \text{Pr[Win } | \text{ Throw Again}] \]
+            \[ \text{Pr[Win } | \text{ Keep}] = \text{Pr[Win } | \text{ Throw
+            Again}] \]
           </div>
           <p class="blog-paragraph">
             If we keep a score of exactly $k$, then we only win if Spears Robot
@@ -146,48 +146,81 @@
             than Spears Robot's final throw. There are two scenarios: either
             they keep their first throw or go for a second throw.
           </p>
-          <p class="blog-paragraph">
-            If Spears Robot keep their first throw, they must have rolled higher
-            than $k$ (probability $1-k$). The probability that our second throw
-            in $[0, 1]$ is greater than their first throw in $[k, 1]$ is
-            $\frac{1 - k}{2}$. Therefore, the probability of us winning in this
-            case is
-          </p>
-          <div class="blog-math">
-            \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears Keeps})] = (1-k) \cdot \frac{1-k}{2} = \frac{(1-k)^2}{2} \]
-          </div>
-          <p class="blog-paragraph">
-            If Spears Robot goes for a second throw, they must have throw less
-            than $k$ (probability $k$). The probability that our second throw in
-            $[0, 1]$ is greater than their second throw in $[0, 1]$ is
-            $\frac{1}{2}$. Therefore, the probability of us winning in this case
-            is
-          </p>
-          <div class="blog-math">
-            \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears Throws Again})] = k \cdot \frac{1}{2} = \frac{k}{2} \]
-          </div>
+          <ol class="case-list">
+            <li>
+              <p class="blog-paragraph">
+                If Spears Robot keeps their first throw, they must have rolled
+                higher than $k$ (probability $1-k$). The probability that our
+                second throw in $[0, 1]$ is greater than their first throw in
+                $[k, 1]$ is $\frac{1 - k}{2}$. Therefore, the probability of us
+                winning in this case is
+              </p>
+              <div class="blog-math">
+                \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears
+                Keeps})] = (1-k) \cdot \frac{1-k}{2} = \frac{(1-k)^2}{2} \]
+              </div>
+            </li>
+            <li>
+              <p class="blog-paragraph">
+                If Spears Robot goes for a second throw, they must have thrown
+                less than $k$ (probability $k$). The probability that our second
+                throw in $[0, 1]$ is greater than their second throw in $[0, 1]$
+                is $\frac{1}{2}$. Therefore, the probability of us winning in
+                this case is
+              </p>
+              <div class="blog-math">
+                \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears
+                Throws Again})] = k \cdot \frac{1}{2} = \frac{k}{2} \]
+              </div>
+            </li>
+          </ol>
           <p class="blog-paragraph">
             Summing these two cases gives us the total probability of winning by
             going for a second throw:
           </p>
           <div class="blog-math">
-            \[ \text{Pr[Win | Throw Again]} = \frac{(1-k)^2}{2} +
-            \frac{k}{2} = \frac{k^2 - 2k + 1 + k}{2} = \frac{k^2 - k + 1}{2} \]
+            \[ \text{Pr[Win | Throw Again]} = \frac{(1-k)^2}{2} + \frac{k}{2} =
+            \frac{k^2 - 2k + 1 + k}{2} = \frac{k^2 - k + 1}{2} \]
           </div>
           <p class="blog-paragraph">
             Setting the two probabilities equal to each other, we have
           </p>
           <div class="blog-math">
-            \begin{align*}
-            \text{Pr[Win | Keep}] &= \text{Pr[Win | Throw Again]} \\
-            k^2 &= \frac{k^2 - k + 1}{2} \\ 2k^2 &= k^2 - k + 1 \\ k^2 + k
-            - 1 &= 0 \\ k &= \frac{-1 \pm \sqrt{1 + 4}}{2} = \frac{-1 \pm
-            \sqrt{5}}{2}
-            \end{align*}
+            \begin{align*} \text{Pr[Win | Keep}] &amp;= \text{Pr[Win | Throw
+            Again]} \\ k^2 &amp;= \frac{k^2 - k + 1}{2} \\ 2k^2 &amp;= k^2 - k +
+            1 \\ k^2 + k - 1 &amp;= 0 \\ k &amp;= \frac{-1 \pm \sqrt{1 + 4}}{2}
+            = \frac{-1 \pm \sqrt{5}}{2} \end{align*}
           </div>
           <p class="blog-paragraph">
             We take the positive root since $k$ must be in $[0, 1]$, so
-            $k=\frac{\sqrt{5} - 1}{2} = \varphi^{-1}$, where $\varphi$ is the golden ratio!
+            $k=\frac{\sqrt{5} - 1}{2} = \varphi^{-1}$, where $\varphi$ is the
+            golden ratio! So in a standard game of Robot Javelin, the robots
+            will go for a second throw if their first throw is less than
+            $\varphi^{-1}$.
+          </p>
+          <p class="blog-paragraph">
+            Now let's consider the modified game where Spears Robot can receive
+            a bit of information if our first throw is below or above a certain
+            threshold $d$. To maximize their chances of winning, Spears Robot
+            should choose a threshold of $d = k = \varphi^{-1}$. This is because
+            if our first throw is below $\varphi^{-1}$, they know we will go for
+            a second throw, and if our first throw is above $\varphi^{-1}$, they
+            know we will keep our first throw. This choice of $d$ maximizes the
+            information gained for Spears Robot.
+          </p>
+          <p class="blog-paragraph">
+            Spears Robot can adjust their strategy accordingly. If Spears Robot
+            receives a bit indicating our first throw is below $\varphi^{-1}$,
+            they believe we will go for a second throw that will be uniformly
+            distributed in $[0, 1]$. In this case, Spears Robot should make
+            their threshold for a second throw $1/2$ to maximize their
+            probability of winning, as it is the median of the uniform
+            distribution.
+          </p>
+          <p class="blog-paragraph">
+            If Spears Robot receive a bit indicating our first throw is above
+            $\varphi^{-1}$, they know we have thrown a value in $[\varphi^{-1},
+            1]$ and believe we will keep it.
           </p>
         </div>
       </section>
@@ -209,8 +242,8 @@
       };
     </script>
     <script
+      async=""
       id="MathJax-script"
-      async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
     ></script>
   </body>

@@ -458,6 +458,20 @@ main {
   max-width: 100%;
 }
 
+.case-list {
+  margin: 1.5em 0;
+  padding-left: 1.5em;
+}
+
+.case-list li {
+  margin-bottom: 1.5em;
+  padding-left: 0.5em;
+}
+
+.case-list li:last-child {
+  margin-bottom: 0;
+}
+
 .quote-indent {
   border-left: 4px solid var(--clr-primary);
   padding-left: 1em;
