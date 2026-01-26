@@ -23,7 +23,6 @@
       <h3>
         <a href="https://jayyhk.github.io" class="link">JM.</a>
       </h3>
-
       <nav class="nav center">
         <ul class="nav__list center">
           <li class="nav__list-item">
@@ -39,11 +38,9 @@
             <a class="link link--nav" href="../../#contact">Contact</a>
           </li>
         </ul>
-
         <button type="button" aria-label="toggle theme" class="btn btn--icon">
           <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
         </button>
-
         <button
           type="button"
           aria-label="toggle navigation"
@@ -53,7 +50,6 @@
         </button>
       </nav>
     </header>
-
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
@@ -72,7 +68,6 @@
               >Robot Baseball</a
             >. The problem statement is as follows:
           </p>
-
           <div class="quote-indent blog-paragraph">
             <p class="blog-paragraph">
               The Artificial Automaton Athletics Association (Quad-A) is at it
@@ -82,7 +77,6 @@
               expected score and the pitcher is trying to minimize expected
               score.
             </p>
-
             <p class="blog-paragraph">
               An at-bat is a series of pitches with a running count of balls and
               strikes, both starting at zero. For each pitch, the pitcher
@@ -90,7 +84,6 @@
               whether to wait or swing; these decisions are made secretly and
               simultaneously. The results of these choices are as follows.
             </p>
-
             <ul
               style="
                 margin-bottom: 1em;
@@ -117,9 +110,7 @@
                 1.
               </li>
             </ul>
-
             <p class="blog-paragraph">An at-bat ends when either:</p>
-
             <ul
               style="
                 margin-bottom: 1em;
@@ -140,7 +131,6 @@
                 points.
               </li>
             </ul>
-
             <p class="blog-paragraph">
               By varying the size of the strike zone, Quad-A can adjust the
               value \( p \), the probability a pitched strike that is swung at
@@ -154,7 +144,6 @@
               at-bats reach full count, to ten decimal places.
             </p>
           </div>
-
           <p class="blog-paragraph">
             At first glance, this problem appeared slightly different from other
             problems I was accustomed to, like filling in a grid, finding some
@@ -164,29 +153,24 @@
             school, but that information has long left my brain. The only thing
             I knew was that making a 2x2 payoff matrix would probably be useful.
           </p>
-
           <p class="blog-paragraph">
             Let \( P(b,s) \) be the expected points for the batter after \( b \)
             balls and \( s \) strikes. I'm calling this function \( P \) because
             it stands for "points".
           </p>
-
           <div class="blog-math">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
             \\\hline \text{Pitcher Throws Ball} & P(b+1,s) & P(b,s+1) \\
             \text{Pitcher Throws Strike} & P(b,s+1) & 4p + (1-p) \cdot P(b,s+1)
             \\ \end{array} \]
           </div>
-
           <p class="blog-paragraph">
             Let's replace these values with variables for simplicity:
           </p>
-
           <div class="blog-math">
             \[ \begin{array}{c|cc} & \text{Batter Waits} & \text{Batter Swings}
             \\ \hline \text{Pitcher Throws Ball} & a & b \\ \text{Pitcher Throws Strike} & c & d \\ \end{array} \]
           </div>
-
           <p class="blog-paragraph">
             At this point I did not know how to continue, and I had to read up
             on some game theory notes. According to
@@ -197,20 +181,17 @@
             >, the value of the game (expected payoff for the row player if both
             players play optimally) is given by
           </p>
-
           <div class="blog-math">
             \[ \nu = \frac{ad - bc}{a - b - c + d} = \frac{P(b+1,s) \cdot (4p +
             (1-p) \cdot P(b,s+1)) - P(b,s+1) \cdot P(b,s+1)}{P(b+1,s) - P(b,s+1)
             - P(b,s+1) + 4p + (1-p) \cdot P(b,s+1)} \]
           </div>
-
           <p class="blog-paragraph">
             Ok great, we have some more information. Since our payoff matrix
             entries are the batter's expected points, we can construct a
             recurrence that gives the batter's expected value \( P(b,s) \) at
             each count \( (b,s) \) under optimal play by both sides.
           </p>
-
           <div class="blog-math">
             \[ P(b, s) = \left.\begin{cases} 1, & \text{if } b = 4 \\ 0, &
             \text{if } s = 3 \\ \displaystyle\frac{P(b+1,s) \cdot \left[4p +
@@ -218,7 +199,6 @@
             + (1-p) \cdot P(b,s+1)}, & \text{if } b \in [0,3] \text { and } s
             \in [0,2] \\ \end{cases}\right\} \]
           </div>
-
           <p class="blog-paragraph">
             Let's break down this recurrence. At 4 balls, the batter earns 1
             point for a walk, and at 3 strikes, the batter earns 0 points for an
@@ -226,12 +206,10 @@
             computed backwards from \( P(4,3) \) using the formula we just
             derived.
           </p>
-
           <p class="blog-paragraph">
             From the same lecture notes, the optimal probability for the row
             player to play Row 1 (pitcher throws a ball) is given by
           </p>
-
           <div class="blog-math">
             \begin{align*} \mathrm{Pr[Ball]} = \frac{d-c}{a-b-c+d} &= \frac{4p +
             (1-p) \cdot P(b,s+1) - P(b,s+1)}{P(b+1,s) - P(b,s+1) - P(b,s+1) + 4p
@@ -240,20 +218,17 @@
             (4 - P(b,s+1))}{P(b+1,s) - P(b,s+1) + p \cdot (4 - P(b,s+1))}
             \end{align*}
           </div>
-
           <p class="blog-paragraph">
             Let us call this probability \( A(b,s) \), the pitcher's probability
             of throwing a ball after \( b \) balls and \( s \) strikes. I chose
             the letter \( A \) since I thought of "Event \( A \)" being the
             event that the pitcher throws a ball.
           </p>
-
           <p class="blog-paragraph">
             The optimal probability for the row player to play Row 2 (pitcher
             throws a strike) is given by
           </p>
           <p>\[ \mathrm{Pr[Strike]} = 1 - A(b,s) \]</p>
-
           <p class="blog-paragraph">
             The optimal probability for the column player to play Column 1
             (batter waits) is given by
@@ -262,15 +237,12 @@
             \[ \mathrm{Pr[Wait]} = \frac{d-b}{a-b-c+d} = \frac{d-c}{a-b-c+d} =
             A(b,s) \]
           </p>
-
           <p class="blog-paragraph">since \( b = c = P(b,s+1) \).</p>
-
           <p class="blog-paragraph">
             The optimal probability for the column player to play Column 2
             (batter swings) is given by
           </p>
           <p>\[ \mathrm{Pr[Swing]} = 1 - A(b,s) \]</p>
-
           <p class="blog-paragraph">
             Therefore, \( \mathrm{Pr}[\text{Ball}] = \mathrm{Pr}[\text{Wait}] =
             A(b,s) \) and \( \mathrm{Pr}[\text{Strike}] =
@@ -278,14 +250,12 @@
             probabilities can be written in terms of \( A(b,s) \), whose
             recurrence is summarized as follows:
           </p>
-
           <div class="blog-math">
             \[ A(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ \displaystyle\frac{p \cdot (4 - P(b,s+1))}{P(b+1,s) -
             P(b,s+1) + p \cdot (4 - P(b,s+1))}, & \text{if } b \in [0,3] \text{
             and } s \in [0,2] \end{cases}\right\} \]
           </div>
-
           <p class="blog-paragraph">
             This recurrence is a bit simpler than the one for \( P(b,s) \). If
             we get 4 balls or 3 strikes, the at-bat ends, so the probability the
@@ -294,13 +264,11 @@
             A(4, 0 \ldots 2) \) and \( A(0 \ldots 3, 3) \) to compute all values
             of \( A(b,s) \).
           </p>
-
           <p class="blog-paragraph">
             Now we have enough information to compute the probability of
             reaching any state in the game with \( b \) balls and \( s \)
             strikes! We can summarize it cleanly in the following table:
           </p>
-
           <table class="blog-table">
             <tr>
               <th class="blog-table-cell">Pitcher (probability)</th>
@@ -335,21 +303,18 @@
               <td class="blog-table-cell">\( (1-A)^2 (1-p) \)</td>
             </tr>
           </table>
-
           <p class="blog-paragraph">
             Note that the case where the pitcher throws a strike and the batter
             swings and hits a home run (with total probability \( (1-A)^2 p \))
             is excluded since the at-bat ends. If we hit a home run early, we'll
             never reach a full count!
           </p>
-
           <p class="blog-paragraph">
             Let \( F(b,s) \) be the probability, starting from the state with \(
             b \) balls and \( s \) strikes of reaching a full count (remember: 3
             balls and 2 strikes) before the at-bat ends. The letter \( F \)
             stands for "full count." The recurrence for \( F(b,s) \) is given by
           </p>
-
           <div class="blog-math">
             \[ F(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2
@@ -357,7 +322,6 @@
             s+1), & \text{if } b \in [0,3] \text{ and } s \in [0,2]
             \end{cases}\right\} \]
           </div>
-
           <p class="blog-paragraph">
             This is our final recurrence. It might look intimidating,
             but it's really not that bad. Let's break it down. If we get 4 balls
@@ -376,20 +340,18 @@
             batter swings and misses, so we multiply by the probability of
             missing, \( (1-p) \).
           </p>
-
           <p class="blog-paragraph">
             The last step is to find the value of \( p \) that maximizes \(
             F(0,0) \), the probability of reaching a full count when starting
             from 0 balls and 0 strikes. This maximum value is \( q \).
           </p>
-
           <p class="blog-paragraph">
             Using
             <a
               href="https://en.wikipedia.org/wiki/Golden-section_search"
               class="link"
               >golden-section search</a
-            >, we can find the optimal \( p \) in the interval [0,1] that
+            >, we can find the optimal \( p \) in the interval $[0,1]$ that
             maximizes \( q \), assuming \( F(0,0) \) for each \( p \) is
             unimodal. The function we choose for the search will ultimately be a
             function of \( p \) because given \( p \), we can compute all values
@@ -397,7 +359,6 @@
             tables can be computed with dynamic programming by working backwards
             from the boundary cases and following the recurrences defined above.
           </p>
-
           <p class="blog-paragraph">
             Using
             <a href="./robot-baseball.py" class="link"> this Python code</a>, we
@@ -407,7 +368,6 @@
             <li>Optimal \( p \): \(~0.2269732360 \)</li>
             <li>Optimal \( q \): \(~0.2959679934 \)</li>
           </ul>
-
           <p class="blog-paragraph">
             A plot of \( p \) versus \( q \) is shown in the following figure.
           </p>
@@ -421,12 +381,10 @@
               margin: 2em auto;
             "
           />
-
           <p class="blog-paragraph">
             \( F(0,0) \) appears to be a unimodal function of \( p \), which is
             good since golden-section search is designed for unimodal functions.
           </p>
-
           <p class="blog-paragraph">
             I think this was a really fun puzzle that combined concepts from
             game theory, probability, and dynamic programming. Although I had to
@@ -438,7 +396,6 @@
         </div>
       </section>
     </main>
-
     <footer class="footer"></footer>
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>

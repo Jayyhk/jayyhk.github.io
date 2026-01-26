@@ -23,7 +23,6 @@
       <h3>
         <a href="https://jayyhk.github.io" class="link">JM.</a>
       </h3>
-
       <nav class="nav center">
         <ul class="nav__list center">
           <li class="nav__list-item">
@@ -39,11 +38,9 @@
             <a class="link link--nav" href="../../#contact">Contact</a>
           </li>
         </ul>
-
         <button type="button" aria-label="toggle theme" class="btn btn--icon">
           <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
         </button>
-
         <button
           type="button"
           aria-label="toggle navigation"
@@ -53,7 +50,6 @@
         </button>
       </nav>
     </header>
-
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
@@ -61,7 +57,6 @@
         <h3 class="date">November 17, 2025</h3>
         <div class="post-content">
           <p class="blog-paragraph">My friend gave me the following puzzle:</p>
-
           <div class="quote-indent blog-paragraph">
             <p class="blog-paragraph">
               At a theater ticket office, $2n$ people are waiting to buy
@@ -71,7 +66,6 @@
               buy their tickets without having to change positions?
             </p>
           </div>
-
           <p class="blog-paragraph">
             This problem is given in the quantitative finance
             <a
@@ -83,14 +77,12 @@
             people have \$10 bills. My friend did not recall this fact, which
             actually makes our modified problem slightly harder.
           </p>
-
           <p class="blog-paragraph">
             One observation to make is that at any point in line from the front,
             the number of people with \$10 bills cannot exceed the number of
             people with \$5 bills; otherwise, the ticket seller would not be
             able to provide change.
           </p>
-
           <p class="blog-paragraph">
             We can use a graph to represent this. Let each \$5 bill represent a
             step right and each \$10 bill represent a step up. We can make steps
@@ -100,13 +92,11 @@
             $(n,n)$, $(0,0)$ to $(n+1,n-1)$, $~\ldots~$, $(0,0)$ to $(2n,0)$, as
             we can have anywhere from $0$ to $n$ people with \$10 bills.
           </p>
-
           <img
             src="images/graph1.png"
             alt="Diagram of the ticket line problem"
             style="width: 50%; height: auto; display: block; margin: 2em auto"
           />
-
           <p class="blog-paragraph">
             In the above diagram, the red line $y = x + 1$ represents the
             boundary we cannot touch. The block dots are the end points we want
@@ -114,7 +104,6 @@
             paths from $(0,0)$ to each of these points without crossing the red
             line.
           </p>
-
           <p class="blog-paragraph">
             Consider the first black dot at $(n,n)$. Let a <em>good</em> path be
             one that does not cross the red line, and a <em>bad</em> path be one
@@ -122,16 +111,13 @@
             total number of paths to $(n,n)$ minus the number of bad paths to
             $(n,n)$.
           </p>
-
           <p class="blog-paragraph">
             The total number of paths to $(n,n)$ is simply the number of ways to
             arrange $n$ right steps and $n$ up steps, so we have
           </p>
-
           <div class="blog-math">
             \[ \text{Total paths to $(n,n)$} = \binom{2n}{n} \]
           </div>
-
           <p class="blog-paragraph">
             To count the number of bad paths to $(n,n)$, we can use the
             reflection principle. For each bad path to $(n,n)$, reflect the
@@ -144,49 +130,40 @@
             dark blue and the reflected portion after hitting the red line is
             shown in light blue.
           </p>
-
           <img
             src="images/graph2.png"
             alt="Reflection principle illustration"
             style="width: 25%; height: auto; display: block; margin: 2em auto"
           />
-
           <p class="blog-paragraph">
             Therefore, the number of bad paths to $(n,n)$ is equal to the total
             number of paths to $(n-1,n+1)$. Using the same reasoning as before,
             we have
           </p>
-
           <div class="blog-math">
             \[ \text{Bad paths to $(n,n)$} = \binom{2n}{n+1} \]
           </div>
-
           <p class="blog-paragraph">
             Thus, the number of good paths to $(n,n)$ is
           </p>
-
           <div class="blog-math">
             \[ \text{Good paths to $(n,n)$} = \text{Total paths to $(n,n)$} -
             \text{Bad paths to $(n,n)$} = \binom{2n}{n} - \binom{2n}{n+1} =
             \frac{1}{n+1} \binom{2n}{n} \]
           </div>
-
           <p class="blog-paragraph">
             This value is actually the $n$th Catalan number, which is the
             solution for the original problem. We can apply the same logic to
             find the number of good paths to each of the other block dots.
           </p>
-
           <div class="blog-math">
             \[ \text{Good paths to $(n+k,n-k)$} = \binom{2n}{n+k} -
             \binom{2n}{n+k+1} \]
           </div>
-
           <p class="blog-paragraph">
             For all $k = 0, 1, ~\ldots~, n$, summing these values gives us the
             total number of good paths from $(0,0)$ to all block dots:
           </p>
-
           <div class="blog-math">
             \begin{align*} \text{Total good paths} &= \sum_{k=0}^{n}
             \left[\binom{2n}{n+k} - \binom{2n}{n+k+1} \right] \\ &=
@@ -195,19 +172,16 @@
             \binom{2n}{2n+1} \\ &= \binom{2n}{n} - \binom{2n}{2n+1} \\ &=
             \binom{2n}{n} - 0 \\ &= \binom{2n}{n} \end{align*}
           </div>
-
           <p class="blog-paragraph">
             Therefore, the probability that all $2n$ people can buy their
             tickets without having to change positions is the following:
           </p>
-
           <div class="blog-math">
             \[ \text{Probability of a valid line} = \frac{\text{Total good paths}}{\text{Total lines}} = \frac{\binom{2n}{n}}{2^{2n}}\]
           </div>
         </div>
       </section>
     </main>
-
     <footer class="footer"></footer>
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>

@@ -23,7 +23,6 @@
       <h3>
         <a href="https://jayyhk.github.io" class="link">JM.</a>
       </h3>
-
       <nav class="nav center">
         <ul class="nav__list center">
           <li class="nav__list-item">
@@ -39,11 +38,9 @@
             <a class="link link--nav" href="../../#contact">Contact</a>
           </li>
         </ul>
-
         <button type="button" aria-label="toggle theme" class="btn btn--icon">
           <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
         </button>
-
         <button
           type="button"
           aria-label="toggle navigation"
@@ -53,7 +50,6 @@
         </button>
       </nav>
     </header>
-
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
@@ -70,7 +66,6 @@
               >Shut the Box</a
             >. The problem statement is as follows:
           </p>
-
           <div class="quote-indent blog-paragraph">
             <img
               src="./images/shut-the-box.png"
@@ -82,7 +77,6 @@
                 margin: 2em auto;
               "
             />
-
             <p class="blog-paragraph">
               Use scissors to cut away one or more groups of orthogonally
               connected cells (squares) from the grid above. Any group you cut
@@ -90,25 +84,21 @@
               The remaining cells must be orthogonally connected and not have
               any holes.
             </p>
-
             <p class="blog-paragraph">
               It must be possible to fold along some of the grid lines so that
               the remaining cells form the six walls of a rectangular solid (the
               "box"). There may not be any overlapping cells in the box.
             </p>
-
             <p class="blog-paragraph">
               Some cells have been labeled with arrows. These cells are not part
               of the box, but instead point in the direction(s) of the nearest
               box cells (looking in that square's row and column).
             </p>
-
             <p class="blog-paragraph">
               Some cells have been labeled with numbers. These cells are part of
               the box. A number indicates how many cells within one king's move
               of that cell are a part of the box. (Including the numbered cell.)
             </p>
-
             <p class="blog-paragraph">
               When the box is assembled, each grey circle should be directly
               opposite another grey circle. That is, the line segment connecting
@@ -116,13 +106,11 @@
               them. Each gray square should be orthogonally adjacent to (and on
               the same face as) another gray square.
             </p>
-
             <p class="blog-paragraph">
               Once you have assembled the box, compute, on each face, the sum of
               the numbered cells. The answer to this puzzle is the product of
               these six sums.
             </p>
-
             <p class="blog-paragraph">
               An example grid can be seen
               <a
@@ -138,19 +126,16 @@
               >.
             </p>
           </div>
-
           <p class="blog-paragraph">
             So essentially we are solving for the net that we will fold into a
             rectangular prism!
           </p>
-
           <p class="blog-paragraph">
             I first wanted to determine what the cells of the net would even be
             before we start thinking about performing folds and cutting things
             out. Using the rules provided and pure logic, I was able to narrow
             down the cells that could be part of the net to the following:
           </p>
-
           <img
             src="./images/first-net.PNG"
             alt="first net"
@@ -161,14 +146,12 @@
               margin: 2em auto;
             "
           />
-
           <p class="blog-paragraph">
             Here, I put red slashes in cells that may or may not be part of the
             net. The red "THIS OR THIS" text indicates that only ONE of the two
             cells with that writing must be part of the net (the nearby cell
             with the 4 constrains us).
           </p>
-
           <p class="blog-paragraph">
             Since I could not narrow down the candidate cells any further, I now
             needed to print and cut out the net with the candidates that I had.
@@ -177,7 +160,6 @@
             copy had incorrect candidates in cells (8, 7) and (8, 19). These two
             cells will unfortunately be marked in red in the images to come.
           </p>
-
           <img
             src="./images/printed-net.jpg"
             alt="printed net"
@@ -189,13 +171,11 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             Above is the cut-out net (albeit with the two incorrect candidates
             in it). It took me roughly 30 minutes to cut it out and my neck hurt
             so much as a result of looking down for so long.
           </p>
-
           <p class="blog-paragraph">
             The first thing I noticed with the net was that the bottommost
             plus-shaped and T-shaped parts of the net fit perfectly into the
@@ -204,7 +184,6 @@
             the pieces together as shown below. Ignore the blister on my finger,
             I had just gone bouldering the day before.
           </p>
-
           <img
             src="./images/folded-net-1.JPG"
             alt="folded net 1"
@@ -216,20 +195,17 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             The orthogonal grey square rule is satisfied, as we have a grey
             square 5 next to a grey square 4. Additionally, the opposite grey
             circle rule is satisfied, as there was a grey circle 4 on the
             opposite face of the grey circle 5.
           </p>
-
           <p class="blog-paragraph">
             The next observation I made was huge: the rightmost "peninsula" of
             the printed net fit perfectly into the negative space of the middle
             of the net when rotated 180 degrees.
           </p>
-
           <img
             src="./images/folded-net-2.JPG"
             alt="folded net 2"
@@ -241,7 +217,6 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             After getting the peninsula to fit, I realized the final box would
             have a width of 2, as it was the only way the peninsula could fit.
@@ -249,7 +224,6 @@
             two after all for this to work. I also verified one grey circle rule
             with the grey circle 4, and it was satisfied.
           </p>
-
           <p class="blog-paragraph">
             This move involved extending below the height of the "THIS OR THIS"
             cells. Since we could only have one of those cells, one of them had
@@ -259,7 +233,6 @@
             be removed. Luckily, the long strip hanging down when folded upwards
             just so happened to cover the candidate bottom cell perfectly.
           </p>
-
           <img
             src="./images/folded-net-3.JPG"
             alt="folded net 3"
@@ -271,7 +244,6 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             This move also gave us our box height of 6. At this point I believe
             it was relatively easy to count the sums of the numbered cells on
@@ -280,7 +252,6 @@
             However, I wanted to construct the box and verify the answers before
             submitting. I moved on to patching near the bottom of the box.
           </p>
-
           <img
             src="./images/folded-net-4.JPG"
             alt="folded net 4"
@@ -292,7 +263,6 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             I am now holding the box upside down. The flap at the top of the
             image fit right into the front face of the box in the image. I cut
@@ -301,7 +271,6 @@
             incorrect candidate cell in the image (this one is a part of the box
             in fact). Here is the result:
           </p>
-
           <img
             src="./images/folded-net-5.JPG"
             alt="folded net 5"
@@ -313,13 +282,11 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             The grey square rule is satisfied once again, with the grey squares
             3 and 7 being orthogonally adjacent to each other. I went to piece
             together the last two faces of the box.
           </p>
-
           <img
             src="./images/folded-net-6.JPG"
             alt="folded net 6"
@@ -331,12 +298,10 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             An L-shaped flap fit right into a large face of the box and the grey
             square rule checks out again. Only one face remained.
           </p>
-
           <img
             src="./images/folded-net-7.JPG"
             alt="folded net 7"
@@ -348,12 +313,10 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             Observe how two of the candidate cells fold onto two guaranteed
             cells on a corner of the box. This means they have to go.
           </p>
-
           <img
             src="./images/folded-net-8.JPG"
             alt="folded net 8"
@@ -365,11 +328,9 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             All that was left to do was fold the final piece onto the box.
           </p>
-
           <img
             src="./images/folded-net-9.JPG"
             alt="folded net 9"
@@ -381,14 +342,12 @@
               border: 1px solid #000;
             "
           />
-
           <p class="blog-paragraph">
             The grey circle 7 is opposite a grey circle 5 on the opposite face
             of the box, so the rule is satisfied and we have shut the box! I'll
             present the final box, but first we must establish a reference
             frame. I will use the following labeling for the faces of the box.
           </p>
-
           <img
             src="./images/box-labeling.jpg"
             alt="box labeling"
@@ -399,11 +358,9 @@
               margin: 2em auto;
             "
           />
-
           <p class="blog-paragraph">
             The head-on views of the final faces of the box are shown below.
           </p>
-
           <div
             style="
               display: grid;
@@ -486,12 +443,10 @@
               </figcaption>
             </figure>
           </div>
-
           <p class="blog-paragraph">
             Summing up the numbers on each face of the box and multiplying them
             together gives us the following:
           </p>
-
           <div class="blog-math">
             \[ \begin{array}{|c|l|c|} \hline \textbf{Face} & \textbf{Numbers} &
             \textbf{Total} \\ \hline 1 & 4, 5, 5, 5, 4, 7, 4, 4, 7, 3, 9 & 57 \\
@@ -499,11 +454,9 @@
             \\ \hline 5 & 7, 4 & 11 \\ \hline 6 & 4, 2, 6, 4, 5, 7 & 28 \\
             \hline \end{array} \]
           </div>
-
           <p class="blog-paragraph">
             Multiplying the totals gives us a product of 16414860.
           </p>
-
           <p class="blog-paragraph">
             This puzzle was a lot of fun to solve and way more approachable than
             last month's. Anyone could really do this puzzle. Even starting late
@@ -519,7 +472,6 @@
         </div>
       </section>
     </main>
-
     <footer class="footer"></footer>
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>

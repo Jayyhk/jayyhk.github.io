@@ -23,7 +23,6 @@
       <h3>
         <a href="https://jayyhk.github.io" class="link">JM.</a>
       </h3>
-
       <nav class="nav center">
         <ul class="nav__list center">
           <li class="nav__list-item">
@@ -39,11 +38,9 @@
             <a class="link link--nav" href="../../#contact">Contact</a>
           </li>
         </ul>
-
         <button type="button" aria-label="toggle theme" class="btn btn--icon">
           <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
         </button>
-
         <button
           type="button"
           aria-label="toggle navigation"
@@ -53,7 +50,6 @@
         </button>
       </nav>
     </header>
-
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
@@ -72,14 +68,12 @@
               >Robot Javelin</a
             >:
           </p>
-
           <div class="quote-indent blog-paragraph">
             <p class="blog-paragraph">
               It's coming to the end of the year, which can only mean one thing:
               time for this year's Robot Javelin finals! Whoa wait, you've never
               heard of Robot Javelin? Well then! Allow me to explain the rules:
             </p>
-
             <ul
               style="
                 margin-bottom: 1em;
@@ -101,7 +95,6 @@
                 The robot with the larger final distance wins.
               </li>
             </ul>
-
             <p class="blog-paragraph">
               This year's finals pits your robot, Java-lin, against the
               challenger, Spears Robot. Now, robots have been competing
@@ -114,7 +107,6 @@
               a second throw. Spears has presumably chosen $d$ to maximize their
               chance of winning — no wonder they made it to the finals!
             </p>
-
             <p class="blog-paragraph">
               Spears Robot isn't aware that you've learned this fact; they are
               assuming Java-lin is using the Nash equilibrium. If you were to
@@ -124,18 +116,82 @@
               10 places.
             </p>
           </div>
-
           <p class="blog-paragraph">
             Before we attempt to exploit the "leak" in the game, let's first
-            figure out how the fair version of the game works. We know the robots have settled into 
-            Nash equilibrium, so we should figure out the threshold for going for a second throw.
-            Let's call this threshold $k$.
+            figure out how the fair version of the game works. We know the
+            robots have settled into Nash equilibrium, so we should figure out
+            the threshold for going for a second throw. Let's call this
+            threshold $k$.
           </p>
-
+          <p class="blog-paragraph">
+            To find the optimal $k$, the probability of winning by keeping a
+            throw must equal the probability of winning by going for a second
+            throw at the threshold $k$. So we have
+          </p>
+          <div class="blog-math">
+            \[ \text{Pr[Win } | \text{ Keep}] = \text{Pr[Win } | \text{ Throw Again}] \]
+          </div>
+          <p class="blog-paragraph">
+            If we keep a score of exactly $k$, then we only win if Spears Robot
+            scores lower than $k$. For Spears Robot to score lower than $k$,
+            their first throw must be less than $k$ (probability $k$), and then
+            their second throw must also be less than $k$ (probability $k$).
+            Thus,
+          </p>
+          <div class="blog-math">
+            \[ \text{Pr[Win } | \text{ Keep}] = k \cdot k = k^2 \]
+          </div>
+          <p class="blog-paragraph">
+            If we go for a second throw, we win if our second throw is greater
+            than Spears Robot's final throw. There are two scenarios: either
+            they keep their first throw or go for a second throw.
+          </p>
+          <p class="blog-paragraph">
+            If Spears Robot keep their first throw, they must have rolled higher
+            than $k$ (probability $1-k$). The probability that our second throw
+            in $[0, 1]$ is greater than their first throw in $[k, 1]$ is
+            $\frac{1 - k}{2}$. Therefore, the probability of us winning in this
+            case is
+          </p>
+          <div class="blog-math">
+            \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears Keeps})] = (1-k) \cdot \frac{1-k}{2} = \frac{(1-k)^2}{2} \]
+          </div>
+          <p class="blog-paragraph">
+            If Spears Robot goes for a second throw, they must have throw less
+            than $k$ (probability $k$). The probability that our second throw in
+            $[0, 1]$ is greater than their second throw in $[0, 1]$ is
+            $\frac{1}{2}$. Therefore, the probability of us winning in this case
+            is
+          </p>
+          <div class="blog-math">
+            \[ \text{Pr[Win } |~(\text{Throw Again } \cap \text{ Spears Throws Again})] = k \cdot \frac{1}{2} = \frac{k}{2} \]
+          </div>
+          <p class="blog-paragraph">
+            Summing these two cases gives us the total probability of winning by
+            going for a second throw:
+          </p>
+          <div class="blog-math">
+            \[ \text{Pr[Win | Throw Again]} = \frac{(1-k)^2}{2} +
+            \frac{k}{2} = \frac{k^2 - 2k + 1 + k}{2} = \frac{k^2 - k + 1}{2} \]
+          </div>
+          <p class="blog-paragraph">
+            Setting the two probabilities equal to each other, we have
+          </p>
+          <div class="blog-math">
+            \begin{align*}
+            \text{Pr[Win | Keep}] &= \text{Pr[Win | Throw Again]} \\
+            k^2 &= \frac{k^2 - k + 1}{2} \\ 2k^2 &= k^2 - k + 1 \\ k^2 + k
+            - 1 &= 0 \\ k &= \frac{-1 \pm \sqrt{1 + 4}}{2} = \frac{-1 \pm
+            \sqrt{5}}{2}
+            \end{align*}
+          </div>
+          <p class="blog-paragraph">
+            We take the positive root since $k$ must be in $[0, 1]$, so
+            $k=\frac{\sqrt{5} - 1}{2} = \varphi^{-1}$, where $\varphi$ is the golden ratio!
+          </p>
         </div>
       </section>
     </main>
-
     <footer class="footer"></footer>
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>

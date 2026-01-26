@@ -1,0 +1,12 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "[html]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications"
+  },
+  "html.format.wrapLineLength": 0,
+  "html.format.unformattedContentDelimiter": "",
+  "html.format.contentUnformatted": "div"
+}
