@@ -63,9 +63,8 @@
               class="link"
               href="https://www.janestreet.com/puzzles/robot-javelin-index/"
             >
-              Robot Javelin
-            </a>
-            :
+              Robot Javelin </a
+            >:
           </p>
           <div class="quote-indent blog-paragraph">
             <p class="blog-paragraph">
@@ -128,13 +127,14 @@
             second throw at the threshold $k$. So we have
           </p>
           <div class="blog-math">
-            \[ \text{Pr[We Win } | \text{ We Keep}] = \text{Pr[We Win } | \text{ We Throw Again}] \]
+            \[ \text{Pr[We Win } | \text{ We Keep}] = \text{Pr[We Win } | \text{
+            We Throw Again}] \]
           </div>
           <p class="blog-paragraph">
-            If we keep a score of exactly $k$, then we only win if Spears scores
-            lower than $k$. For Spears to score lower than $k$, their first
-            throw must be less than $k$ (probability $k$), and then their second
-            throw must also be less than $k$ (probability $k$). Thus,
+            If we keep a throw $\geq k$, then we only win if Spears throws lower
+            than $k$. For Spears to throw lower than $k$, their first throw must
+            be less than $k$ (probability $k$), and then their second throw must
+            also be less than $k$ (probability $k$). Thus,
           </p>
           <div class="blog-math">
             \[ \text{Pr[We Win } | \text{ We Keep}] = k \cdot k = k^2 \]
@@ -185,14 +185,14 @@
           <div class="blog-math">
             \begin{align*} \text{Pr[We Win | We Keep}] &amp;= \text{Pr[We Win | We Throw Again]} \\ k^2 &amp;= \frac{k^2 - k + 1}{2} \\ 2k^2 &amp;=
             k^2 - k + 1 \\ k^2 + k - 1 &amp;= 0 \\ k &amp;= \frac{-1 \pm \sqrt{1
-            + 4}}{2} = \frac{-1 \pm \sqrt{5}}{2} \approx 0.618 \end{align*}
+            + 4}}{2} = \frac{-1 \pm \sqrt{5}}{2} \end{align*}
           </div>
           <p class="blog-paragraph">
             We take the positive root since $k$ must be in $[0, 1]$, so
             $k=\frac{\sqrt{5} - 1}{2} = \varphi^{-1}$, where $\varphi$ is the
             golden ratio! So in a standard game of Robot Javelin, the robots
             will go for a second throw if their first throw is less than
-            $\varphi^{-1}$.
+            $\varphi^{-1}$. Note that this value is approximately $0.618$.
           </p>
           <p class="blog-paragraph">
             Now let's consider the modified game where Spears can receive a bit
@@ -223,8 +223,8 @@
           <ol class="case-list">
             <li>
               <p class="blog-paragraph">
-                Spears can re-throw if their first throw is below $t$.
-                Regardless of $t$, they will win with probability $\frac{1 -
+                Spears can rethrow if their first throw is below $t$. Regardless
+                of $t$, they will win with probability $\frac{1 -
                 \varphi^{-1}}{2}$, as the probability that their second throw in
                 $[0, 1]$ is greater than our first throw in $[ \varphi^{-1}, 1]$
                 is $\frac{1 - \varphi^{-1}}{2}$.
@@ -233,8 +233,8 @@
             <li>
               <p class="blog-paragraph">
                 Spears can keep their first throw as long as it's above $t$. If
-                Spears keeps a score of exactly $t$, they win only if our throw
-                is lower than $t$. Since our throw is uniformly distributed in
+                Spears keeps a throw $\geq t$, they win only if our throw is
+                lower than $t$. Since our throw is uniformly distributed in
                 $[\varphi^{-1}, 1]$, the probability that Spears wins by keeping
                 their first throw is $\frac{t - \varphi^{-1}}{1 -
                 \varphi^{-1}}$.
@@ -266,7 +266,8 @@
             conditional threshold:
           </p>
           <div class="blog-math">
-            ${ t = \begin{cases} \frac{1}{2}, & \text{if our first throw is } < \varphi^{-1} \\ 1 - \frac{\varphi^{-1}}{2}, & \text{if our first throw is } \geq \varphi^{-1} \end{cases} }$
+            ${ t = \begin{cases} \frac{1}{2}, & \text{if our first throw is } <
+            \varphi^{-1} \\ 1 - \frac{\varphi^{-1}}{2}, & \text{if our first throw is } \geq \varphi^{-1} \end{cases} }$
           </div>
           <p class="blog-paragraph">
             Now we can calculate our updated probability of winning against
@@ -275,15 +276,15 @@
           </p>
           <p class="blog-paragraph">
             If our first throw is above $\varphi^{-1}$ (probability
-            $1-\varphi^{-1}$), we will keep our first throw. If we re-throw,
-            then we reset to a random throw in $[0, 1]$, which has an average
-            value of $\frac{1}{2}$. This is worse than keeping our first throw,
-            so we will keep it.
+            $1-\varphi^{-1}$), we will keep our first throw. If we rethrow, then
+            we reset to a random throw in $[0, 1]$, which has an average value
+            of $\frac{1}{2}$. This is worse than keeping our first throw, so we
+            will keep it.
           </p>
           <p class="blog-paragraph">
             If our first throw is below $\varphi^{-1}$ (probability
             $\varphi^{-1}$), something interesting happens. Spears assumes that
-            if our throw is below $\varphi^{-1}$, we will always re-throw. They
+            if our throw is below $\varphi^{-1}$, we will always rethrow. They
             then lower their threshold to $\frac{1}{2}$, which creates an
             opening. In the standard game, a throw of $0.60$ is considered "bad"
             (because it's below $\varphi^{-1}$). But against an opponent who is
@@ -291,6 +292,31 @@
             strong! Therefore, we should calculate a new threshold $j$ for
             ourselves to decide whether to go for a second throw.
           </p>
+          <ol class="case-list">
+            <li>
+              <p class="blog-paragraph">
+                If we rethrow, we get a random value in $[0, 1]$. With a
+                threshold of $t = \frac{1}{2}$, Spears has a $50\%$ chance of
+                throwing below $t$, in which case they will rethrow. We have a
+                $50\%$ chance of beating their second throw in $[0, 1]$. So
+                there is a $\frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}$ chance
+                of us winning by rethrowing if Spears rethrows. If Spears keeps
+                their first throw, they must have thrown above $t$, which occurs
+                with probability $\frac{1}{2}$. The probability that our random
+                throw in $[0, 1]$ then beats their first throw in $[\frac{1}{2},
+                1]$ is $\frac{1 - 1/2}{2} = \frac{1}{4}$. Thus, there is a
+                $\frac{1}{2} \cdot \frac{1}{4} = \frac{1}{8}$ chance of us
+                winning by rethrowing if Spears keeps. So in total, we have
+              </p>
+              <div class="blog-math">
+                \[ \text{Pr[We Win } | \text{ We Throw Again}] = \frac{1}{4} +
+                \frac{1}{8} = \frac{3}{8} \]
+              </div>
+            </li>
+            <li>
+              <p class="blog-paragraph"></p>
+            </li>
+          </ol>
         </div>
       </section>
     </main>
