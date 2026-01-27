@@ -565,7 +565,7 @@ main {
   }
 
   .about {
-    align-items: flex-start;
+    align-items: center;
     margin-top: 2em;
   }
 
@@ -610,5 +610,35 @@ main {
   .post-content img {
     width: 100% !important;
     height: auto !important;
+  }
+
+  .projects__grid {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5em;
+    padding: 0 1em;
+    padding-left: max(1em, calc(50vw - 9em));
+    padding-right: max(1em, calc(50vw - 9em));
+    max-width: none;
+    margin: 0 0 2.5em 0;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+
+  .project {
+    flex: 0 0 18em;
+    min-width: 18em;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    padding: 1.5em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 1em 0;
+  }
+
+  .scroll-top {
+    right: 1em;
+    bottom: 1em;
   }
 }
