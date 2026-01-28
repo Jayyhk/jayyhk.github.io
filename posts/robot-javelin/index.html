@@ -251,7 +251,7 @@
             \begin{align*} \text{Pr[Spears Wins } | \text{ Spears Keeps}] &=
             \text{Pr[Spears Wins } | \text{ Spears Throws Again}] \\ \frac{t -
             \varphi^{-1}}{1 - \varphi^{-1}} &= \frac{1 - \varphi^{-1}}{2} \\ t -
-            \varphi^{-1} &= \frac{(1 - \varphi^{-1})^2}{2} \\ t &= \frac{1 -
+            \varphi^{-1} &= \frac{(1 - \varphi^{-1})^2}{2} \\ t &= \frac{1 - 
             2\varphi^{-1} + (\varphi^{-1})^2}{2} + \varphi^{-1} \\ t &= \frac{1
             + (\varphi^{-1})^2}{2} \\ t &= \frac{1 + 1 - \varphi^{-1}}{2} \\ t
             &= 1 - \frac{\varphi^{-1}}{2} \end{align*}
@@ -259,7 +259,7 @@
           <p class="blog-paragraph">
             which was simplified using the identity $(\varphi^{-1})^2 = 1 -
             \varphi^{-1}$. Therefore, Spears' new threshold is $t = 1 -
-            \frac{\varphi^{-1}}{2}$.
+            \frac{\varphi^{-1}}{2} \approx 0.691$.
           </p>
           <p class="blog-paragraph">
             So to recap, Spears' new strategy is to use the following
@@ -288,8 +288,8 @@
             then lower their threshold to $\frac{1}{2}$, which creates an
             opening. In the standard game, a throw of $0.60$ is considered "bad"
             (because it's below $\varphi^{-1}$). But against an opponent who is
-            willing to keep a $0.51$, a throw of $0.60$ is actually quite
-            strong! Therefore, we should calculate a new threshold $j$ for
+            willing to keep a throw of $0.51$, a throw of $0.60$ is actually
+            quite strong! Therefore, we should calculate a new threshold $j$ for
             ourselves to decide whether to go for a second throw.
           </p>
           <ol class="case-list">
@@ -348,11 +348,109 @@
           <p class="blog-paragraph">
             So our new threshold is $j = \frac{7}{12} \approx 0.583$.
             Intuitively, this makes sense. We can relax our threshold below our
-            original $\varphi^{-1} \approx 0.618$ because Spears has lowered 
+            original $\varphi^{-1} \approx 0.618$ because Spears has lowered
             their guard to $0.5$, meaning "mediocre" throws like $0.6$ for us
-            that used to lose are now strong enough for us to win. However, we must
-            stay significantly above $0.5$ to ensure we have a buffer to beat
-            the range of values Spears might keep.
+            that used to lose are now strong enough for us to win. However, we
+            must stay significantly above $0.5$ to ensure we have a buffer to
+            beat the range of values Spears might keep.
+          </p>
+          <p class="blog-paragraph">
+            We can now calculate our overall probability of winning against
+            Spears with their new strategy and our new strategy. We can split
+            the game into cases based on our first throw. Let's call it $x$.
+          </p>
+          <ol class="case-list">
+            <li>
+              The first case is $0 \leq x < \frac{7}{12}$. In this case, we
+              rethrow and Spears will either keep or rethrow with their
+              threshold of $t=\frac{1}{2}$. We have a $\frac{3}{8}$ chance of
+              winning as calculated before.
+            </li>
+            <li>
+              The second case is $\frac{7}{12} \leq x < \varphi^{-1}$. In this
+              case, we keep our first throw and Spears will either keep or
+              rethrow with their threshold of $t=\frac{1}{2}$. We have a
+              $\frac{3x}{2} - \frac{1}{2}$ chance of winning as calculated
+              before.
+            </li>
+            <li>
+              The third case is $\varphi^{-1} \leq x \leq 1$. In this case, we
+              keep our first throw and Spears will either keep or rethrow with
+              their threshold of $t = 1 - \frac{\varphi^{-1}}{2}$. Observe that
+              $t \approx 0.691$ is between $\varphi^{-1} \approx 0.618$ and $1$.
+              This means we have to split into two sub-cases: if $x < t$, we
+              only win if Spears rethrows (probability $t$) and loses
+              (probability $x$), giving a win chance of $tx$. If $x \geq t$, we
+              win if Spears rethrows and loses (probability $tx$) OR if Spears
+              keeps and loses (probability $x-t$). Overall, for $x \in
+              [\varphi^{-1}, 1-\frac{\varphi^{-1}}{2}]$ we win with probability
+              $tx = (1 - \frac{\varphi^{-1}}{2})x$, and for $x \in
+              [1-\frac{\varphi^{-1}}{2}, 1]$ we win with probability $tx + x - t
+              = t(x - 1) + x = (1 - \frac{\varphi^{-1}}{2})(x - 1) + x$.
+            </li>
+          </ol>
+          <p class="blog-paragraph">
+            Finally, to find our overall probability of winning, we can
+            integrate over all possible values of $x$:
+          </p>
+          <ol class="case-list">
+            <li>For $0 \leq x < \frac{7}{12}$, we have</li>
+            <div class="blog-math">
+              \[ \int_0^{7/12} \frac{3}{8} \, \mathrm{d}x = \left. \frac{3x}{8}
+              \right|_0^{7/12} = \frac{7}{32} \]
+            </div>
+            <li>For $\frac{7}{12} \leq x < \varphi^{-1}$, we have</li>
+            <div class="blog-math">
+              \begin{align*} \int_{7/12}^{\varphi^{-1}} \left( \frac{3x}{2} -
+              \frac{1}{2} \right) \, \mathrm{d}x &= \left. \left( \frac{3x^2}{4}
+              - \frac{x}{2} \right) \right|_{7/12}^{\varphi^{-1}} \\ &=
+              \frac{3(\varphi^{-1})^2}{4} - \frac{\varphi^{-1}}{2} - \left(
+              \frac{3(7/12)^2}{4} - \frac{7/12}{2} \right) \\ &=
+              \frac{3(\varphi^{-1})^2}{4} - \frac{\varphi^{-1}}{2} +
+              \frac{7}{192} \end{align*}
+            </div>
+            <li>
+              For $\varphi^{-1} \leq x < 1 - \frac{\varphi^{-1}}{2}$, we have
+            </li>
+            <div class="blog-math">
+              \begin{align*} \int_{\varphi^{-1}}^{1 - \varphi^{-1}/2} \left( 1 -
+              \frac{\varphi^{-1}}{2} \right) x \, \mathrm{d}x &= \left. \left( 1
+              - \frac{\varphi^{-1}}{2} \right) \frac{x^2}{2}
+              \right|_{\varphi^{-1}}^{1 - \varphi^{-1}/2} \\ &= \left( 1 -
+              \frac{\varphi^{-1}}{2} \right) \left( \frac{(1 -
+              \varphi^{-1}/2)^2}{2} - \frac{(\varphi^{-1})^2}{2} \right) \\ &=
+              \frac{1}{2} \left( 1 - \frac{\varphi^{-1}}{2} \right) \left(
+              \left( 1 - \frac{\varphi^{-1}}{2} \right)^2 - (\varphi^{-1})^2
+              \right) \end{align*}
+            </div>
+            <li>For $1 - \frac{\varphi^{-1}}{2} \leq x \leq 1$, we have</li>
+            <div class="blog-math">
+              \begin{align*} \int_{1 - \varphi^{-1}/2}^1 \left( \left( 1 -
+              \frac{\varphi^{-1}}{2} \right) (x - 1) + x \right) \, \mathrm{d}x
+              &= \left. \left( \left( 1 - \frac{\varphi^{-1}}{2} \right)
+              \frac{(x-1)^2}{2} + \frac{x^2}{2} \right) \right|_{1 -
+              \varphi^{-1}/2}^1 \\ &= \frac{1}{2} - \left( \left( 1 -
+              \frac{\varphi^{-1}}{2} \right) \frac{(1 - \varphi^{-1}/2 -
+              1)^2}{2} + \frac{(1 - \varphi^{-1}/2)^2}{2} \right) \\ &=
+              \frac{1}{2} - \frac{1}{2} \left( 1 - \frac{\varphi^{-1}}{2}
+              \right) \left( \frac{\left(\varphi^{-1}\right)^2}{4} + \left(1 -
+              \frac{\varphi^{-1}}{2}\right) \right) \\ \end{align*}
+            </div>
+          </ol>
+          <p class="blog-paragraph">
+            After adding all these cases together and simplifying carefully, we
+            find our overall probability of winning against Spears is
+          </p>
+          <div class="blog-math">
+            \[ \frac{229 - 60\sqrt{5}}{192} \approx 0.4939370904 \]
+          </div>
+          <p class="blog-paragraph">
+            So we are <em>almost</em> able to get our odds to $50/50$ against
+            Spears, even with their advantage! This is quite impressive, as it
+            shows that by adapting our strategy to exploit their assumptions, we
+            can nearly neutralize their edge. Overall, this was a very
+            math-heavy problem that combined game theory, probability, and
+            calculus, and it was neat seeing the golden ratio show up.
           </p>
         </div>
       </section>
