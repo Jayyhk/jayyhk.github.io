@@ -65,6 +65,7 @@
             <a
               href="https://www.janestreet.com/puzzles/robot-baseball-index/"
               class="link"
+              target="_blank"
               >Robot Baseball</a
             >. The problem statement is as follows:
           </p>
@@ -177,6 +178,7 @@
             <a
               href="https://www3.nd.edu/~apilking/math10170/information/Lectures/16%20Optimal%20Mixed%20Strategy.pdf"
               class="link"
+              target="_blank"
               >these lecture notes</a
             >, the value of the game (expected payoff for the row player if both
             players play optimally) is given by
@@ -323,9 +325,9 @@
             \end{cases}\right\} \]
           </div>
           <p class="blog-paragraph">
-            This is our final recurrence. It might look intimidating,
-            but it's really not that bad. Let's break it down. If we get 4 balls
-            or 3 strikes, the at-bat ends, so the probability of reaching a full
+            This is our final recurrence. It might look intimidating, but it's
+            really not that bad. Let's break it down. If we get 4 balls or 3
+            strikes, the at-bat ends, so the probability of reaching a full
             count is 0 in these cases. If we already have a full count (3 balls
             and 2 strikes), then the probability of reaching a full count is 1.
             Otherwise, we can use our table above to compute \( F(b,s) \) in
@@ -350,6 +352,7 @@
             <a
               href="https://en.wikipedia.org/wiki/Golden-section_search"
               class="link"
+              target="_blank"
               >golden-section search</a
             >, we can find the optimal \( p \) in the interval $[0,1]$ that
             maximizes \( q \), assuming \( F(0,0) \) for each \( p \) is
@@ -361,8 +364,9 @@
           </p>
           <p class="blog-paragraph">
             Using
-            <a href="./robot-baseball.py" class="link"> this Python code</a>, we
-            obtain the following results to 10 decimal places:
+            <a href="./robot-baseball.py" class="link" target="_blank">
+              this Python code</a
+            >, we obtain the following results to 10 decimal places:
           </p>
           <ul class="blog-paragraph" style="text-align: center">
             <li>Optimal \( p \): \(~0.2269732360 \)</li>

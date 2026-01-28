@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Blog Post" name="description" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="../../styles.css" rel="stylesheet" />
+    <title>Timely Journey</title>
+    <link href="../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  </head>
+  <body class="light" id="top">
+    <header class="header center">
+      <h3><a class="link" href="https://jayyhk.github.io">JM.</a></h3>
+      <nav class="nav center">
+        <ul class="nav__list center">
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#projects">Projects</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#blog">Blog</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#music">Music</a>
+          </li>
+          <li class="nav__list-item">
+            <a class="link link--nav" href="../../#contact">Contact</a>
+          </li>
+        </ul>
+        <button aria-label="toggle theme" class="btn btn--icon" type="button">
+          <i aria-hidden="true" class="fas fa-moon" id="btn-theme"></i></button
+        ><button
+          aria-label="toggle navigation"
+          class="btn btn--icon nav__hamburger"
+          type="button"
+        >
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <!-- Blog Post -->
+      <section class="section blog-post">
+        <h1 class="title">Timely Journey</h1>
+        <h3 class="date">January 28, 2026</h3>
+        <div class="post-content">
+          <p class="blog-paragraph">
+            This may have been the hardest Jane Street puzzle I've ever
+            attempted. No problem statement. Just the image and linked PDF
+            below:
+          </p>
+          <div class="quote-indent blog-paragraph">
+            <p class="blog-paragraph">
+              <img
+                src="images/timely-journey.jpg"
+                alt="Timely Journey puzzle image"
+                style="
+                  width: 60%;
+                  height: auto;
+                  display: block;
+                  margin: 0 auto;
+                  border: 1px solid var(--clr-fg-alt);
+                "
+              />
+            </p>
+            <p class="blog-paragraph">
+              (A copy of the paper shown above can be seen
+              <a href="https://www.janestreet.com/static/pdfs/puzzles/jan-2026-timely-journey.pdf" class="link" target="_blank"
+                >here</a
+              >.)
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"></footer>
+    <div class="scroll-arrow"></div>
+    <script src="../../script.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      async=""
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+  </body>
+</html>
