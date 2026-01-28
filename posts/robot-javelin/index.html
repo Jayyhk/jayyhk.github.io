@@ -183,9 +183,9 @@
             Setting the two probabilities equal to each other, we have
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Pr[We Win | We Keep}] &amp;= \text{Pr[We Win | We Throw Again]} \\ k^2 &amp;= \frac{k^2 - k + 1}{2} \\ 2k^2 &amp;=
-            k^2 - k + 1 \\ k^2 + k - 1 &amp;= 0 \\ k &amp;= \frac{-1 \pm \sqrt{1
-            + 4}}{2} = \frac{-1 \pm \sqrt{5}}{2} \end{align*}
+            \begin{align*} \text{Pr[We Win | We Keep}] &= \text{Pr[We Win | We Throw Again]} \\ k^2 &= \frac{k^2 - k + 1}{2} \\ 2k^2 &= k^2 - k + 1
+            \\ k^2 + k - 1 &= 0 \\ k &= \frac{-1 \pm \sqrt{1 + 4}}{2} = \frac{-1
+            \pm \sqrt{5}}{2} \end{align*}
           </div>
           <p class="blog-paragraph">
             We take the positive root since $k$ must be in $[0, 1]$, so
@@ -314,9 +314,46 @@
               </div>
             </li>
             <li>
-              <p class="blog-paragraph"></p>
+              <p class="blog-paragraph">
+                If we keep our first throw at $j$, then $j$ must be above $t$.
+                Otherwise, if Spears keeps their throw (which means they have a
+                value in $[t, 1]$), we are guaranteed to lose. Spears has a
+                $50\%$ chance of throwing below $t$, in which case they will
+                rethrow. We win if their new throw in $[0, 1]$ is below $j$,
+                which occurs with probability $j$. Thus, there is a
+                $\frac{j}{2}$ chance of us winning by keeping if Spears
+                rethrows. If Spears keeps their first throw, they must have
+                thrown above $t$, which occurs with probability $\frac{1}{2}$.
+                The chance that our throw of $j$ beats their throw in
+                $[\frac{1}{2}, 1]$ is $\frac{j - 1/2}{1/2} = 2j - 1$. Thus,
+                there is a $\frac{1}{2} \cdot (2j - 1) = j - \frac{1}{2}$ chance
+                of us winning by keeping if Spears keeps. So in total, we have
+              </p>
+              <div class="blog-math">
+                \[ \text{Pr[We Win } | \text{ We Keep}] = \frac{j}{2} + j -
+                \frac{1}{2} = \frac{3j}{2} - \frac{1}{2} \]
+              </div>
             </li>
           </ol>
+          <p class="blog-paragraph">
+            Setting the two probabilities equal to each other for the third
+            time, we have
+          </p>
+          <div class="blog-math">
+            \begin{align*} \text{Pr[We Win } | \text{ We Throw Again}] &=
+            \text{Pr[We Win } | \text{ We Keep]} \\ \frac{3}{8} &= \frac{3j}{2}
+            - \frac{1}{2} \\ \frac{7}{8} &= \frac{3j}{2} \\ \frac{14}{8} &= 3j
+            \\ j &= \frac{7}{12} \end{align*}
+          </div>
+          <p class="blog-paragraph">
+            So our new threshold is $j = \frac{7}{12} \approx 0.583$.
+            Intuitively, this makes sense. We can relax our threshold below our
+            original $\varphi^{-1} \approx 0.618$ because Spears has lowered 
+            their guard to $0.5$, meaning "mediocre" throws like $0.6$ for us
+            that used to lose are now strong enough for us to win. However, we must
+            stay significantly above $0.5$ to ensure we have a buffer to beat
+            the range of values Spears might keep.
+          </p>
         </div>
       </section>
     </main>
