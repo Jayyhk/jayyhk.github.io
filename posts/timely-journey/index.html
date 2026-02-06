@@ -55,8 +55,8 @@
         <div class="post-content">
           <p class="blog-paragraph">
             This may have been the hardest Jane Street puzzle I've ever
-            attempted. No problem statement. Just the image and linked PDF
-            below:
+            attempted. There was no problem statement. Just the image and the
+            linked PDF below:
           </p>
           <div class="quote-indent blog-paragraph">
             <p class="blog-paragraph">
@@ -74,11 +74,458 @@
             </p>
             <p class="blog-paragraph">
               (A copy of the paper shown above can be seen
-              <a href="https://www.janestreet.com/static/pdfs/puzzles/jan-2026-timely-journey.pdf" class="link" target="_blank"
+              <a
+                href="https://www.janestreet.com/static/pdfs/puzzles/jan-2026-timely-journey.pdf"
+                class="link"
+                target="_blank"
                 >here</a
               >.)
             </p>
           </div>
+          <p class="blog-paragraph">
+            So where to even begin? On my first day attempting this puzzle, I
+            analyzed everything I could at face value. We had:
+          </p>
+          <ol class="case-list">
+            <li>
+              A
+              <a
+                href="https://www.amazon.co.uk/D48-Sided-Dice-disdyakis-dodecahedron/dp/B01MR88G76?th=1"
+                class="link"
+                target="_blank"
+                >d48</a
+              >
+              die and a
+              <a
+                href="https://www.amazon.com/Koplow-Games-Sixty-Sided-Large-Gaming/dp/B00YCXX87I"
+                class="link"
+                target="_blank"
+                >d60</a
+              >
+              die. The top faces together read 2026.
+            </li>
+            <li>
+              Some Scrabble pieces. Specifically, C$_3$, J$_8$, S$_1$, and
+              I$_1$.
+            </li>
+            <li>Some dominoes. Specifically, 2-0, 1-4, and 0-4.</li>
+            <li>Some suspiciously arranged red and blue pushpins.</li>
+            <li>A globe.</li>
+            <li>
+              A potted plant whose pot reads "Minnesota State High School
+              Mathematics League, 1998, Twin Cities Private Division"
+            </li>
+            <li>
+              The Z
+              <a
+                href="https://en.wikipedia.org/wiki/Pentomino"
+                class="link"
+                target="_blank"
+                >pentomino</a
+              >.
+            </li>
+            <li>
+              Eight different colored dice arranged with the number 1 facing up.
+            </li>
+            <li>Some wooden drawer that reads "Hello...."</li>
+            <li>A desktop keyboard.</li>
+            <li>
+              A paper with a crossword-like grid, along with some numbers. Some
+              of the numbers are colored red or blue, and some of the cells are
+              colored red or blue as well.
+            </li>
+          </ol>
+          <p class="blog-paragraph">
+            I figured the objects surrounding the paper had meaning, otherwise
+            the entire puzzle would just be the paper. The answer would most
+            likely lie in the grid on the paper I thought, so I focused on that
+            next.
+          </p>
+          <p class="blog-paragraph">
+            The first thing I tried to do was make sense of the numbers. It just
+            so happened that there were 12 rows of numbers in the bottom left of
+            the paper, and there were 12 columns of numbers in the top right of
+            the paper. It also looked like there was one red digit and one blue
+            digit for each of the rows and columns of numbers, but one column of
+            numbers had two blue digits, which was strange. Similarly, each row
+            and column of cells in the grid had exactly one red cell and one
+            blue cell. However, these numbers did not end up fitting into the
+            grid, as there were grid entries of length 4 and 13, yet all numbers
+            had length 5, 6, or 7.
+          </p>
+          <p class="blog-paragraph">
+            Looking at the numbers more closely, I realized that the last two
+            digits in each of the numbers were never $\geq$ 60. Likewise, the
+            3rd and 4th last digits were never $\geq$ 60 either. So maybe these
+            numbers were actually times! It would have been fitting with the
+            title of the puzzle "Timely Journey". With the "journey" theme and
+            the globe in the image, I figured these numbers were latitudes or
+            longitudes in DDD° MM' SS'' format, where the degrees had 1-3 digits
+            so every 5-7 digit number could be valid. A clue that supported this
+            was that all the degrees in the length 7 numbers were $\leq$ 180,
+            which was the maximum degree for longitudes. It was also suspicious
+            that all the length 7 numbers were vertical, so maybe ALL the
+            vertical numbers were longitudes, as longitudes run north-south.
+            Likewise, all the horizontal numbers had degrees $\leq$ 90, the
+            maximum degree for latitudes, so maybe the horizontal numbers were
+            latitudes.
+          </p>
+          <p class="blog-paragraph">
+            At this point I had settled on the idea that the horizontal numbers
+            were latitudes and the vertical numbers were longitudes. It was most
+            likely the case that the latitudes were clues for the horizontal
+            entries in the grid, and the longitudes were clues for the vertical
+            entries in the grid. But how to convert these DMS coordinates into
+            things that could fit in the grid? And how did the colored digits
+            come into play? Did they indicate which part of the DMS coordinate
+            to modify somehow?
+          </p>
+          <p class="blog-paragraph">
+            So I turned back to the objects in the image for more clues. I
+            realized that if I read them the right way, the Scrabble pieces
+            spelled out "C JS 20 16 - 04", which is "see Jane Street 2016-04".
+            Looking at the monthly puzzle of April 2016, there was a puzzle
+            called "Long. Journey" where its given numbers were also in DMS
+            format. So I had at least gotten the format of the numbers correct.
+            Another thing that seemed to be intentionally placed in the image
+            were the dice face up with 1s. With the Z pentomino to their left,
+            it read "Z 1s" or "Z ones". Maybe "Zones"? As in time zones? That
+            made sense with the name of the puzzle and the latitudes/longitudes.
+            Well, it turned out that the plant to the left of the Z pentomino
+            was actually a
+            <em>thyme</em> plant, so it definitely read "Thyme Zones" (time
+            zones)!
+          </p>
+          <p class="blog-paragraph">
+            So time zones were involved somehow. In total, we had 12 latitudes
+            and 12 longitudes, which is suspiciously the same as the number of
+            UTC offsets. Latitudes and longitudes don't directly correspond to a
+            specific time zone, as latitudes always cross over multiple time
+            zones and longitudes can cross over multiple time zones that are
+            offset by different amounts (e.g. China is all in UTC+8 despite
+            spanning multiple longitudes). However, each longitude does have a
+            unique UTC offset, so I decided to focus on the longitudes first.
+          </p>
+          <p class="blog-paragraph">
+            From left to right, the longitudes just so happened to fall in each
+            odd UTC offset (+1, +3, ..., +11, -11, ..., -3, -1) if the correct
+            cardinal direction (E or W) was assigned to each longitude. The
+            first six longitudes being East and the last six longitudes being
+            West. This was almost certainly not a coincidence. So if the
+            longitudes got the odd UTC offsets, then surely the latitudes would
+            get the even UTC offsets.
+          </p>
+          <p class="blog-paragraph">
+            Since the puzzle was called "Timely Journey", we most likely needed
+            to journey around the world through each of the 24 UTC offsets. Then
+            each UTC offset would have a latitude or longitude clue that would
+            reveal a location to visit, which we could then fit into the grid.
+            This seemed like a very reasonable guess at this point, but I had no
+            idea how to choose a location from a latitude or longitude. And if
+            the colored digits meant modifying the latitude/longitude in some
+            way, how would that work?
+          </p>
+          <p class="blog-paragraph">
+            In case the colored digits did mean modifying the coordinates, I
+            started by choosing a coordinate with the colored digits in the
+            rightmost position. This way, any modification would affect the
+            least significant part of the coordinate. The only coordinate with
+            colored digits in the seconds position was the latitude 21° 14' 08''
+            with a blue 0 and a red 8. Assuming the seconds would be modified,
+            the only thing interesting I found with latitude 21° 14' N or 21°
+            14' S were the Cook Islands. Specifically, the island of Rarotonga
+            at 21° 14' S. This seemed promising, as the Cook Islands are in
+            UTC-10, and 21° 14' 08'' lined up with UTC-10 in the latitude list
+            assuming the even UTC offset pattern mentioned before. Perhaps we
+            needed to travel to <em>islands</em> around the world? We also maybe
+            didn't need to modify the coordinates, as 21° 14' 08'' S still
+            landed on Rarotonga.
+          </p>
+          <p class="blog-paragraph">
+            The next island I found was on 169° 51' 01'' W, which was Niue. The
+            longitude 134° 59' 04'' W landed on the Gambier Islands. The
+            Galápagos were on 0° 42' 29'' S. The Azores were on 25° 37' 56''.
+            Fernando de Noronha was on 3° 50' 56'' S. Martinique was on 14° 39'
+            57'' N. Madeira was on 32° 45' 06'' N. Bougainville was on 155° 23'
+            32'' E. But these were the only islands that seemed like real hits.
+            I couldn't find suitable island for 113° 29' 38'' W, which passed
+            through the Americas. There was
+            <a
+              href="https://en.wikipedia.org/wiki/Isla_%C3%81ngel_de_la_Guarda"
+              class="link"
+              >some island</a
+            >
+            that was a part of Mexico, but it was uninhabited and there was no
+            airport on it. I mean, to get across the ocean, we needed islands.
+            But maybe our coordinates didn't need to land on only islands.
+          </p>
+          <p class="blog-paragraph">
+            Looking at major cities on 113° 29' 38'' W, I found Edmonton. That
+            seemed alright, as the longitude did run straight through the city.
+            Some other cities like Algiers on 03° 03' 19'' E and Nairobi on 36°
+            49' 27'' E also seemed to work out. For the length 13 grid entry,
+            30° 35' 28'' E passed through Yekaterinburg, which fit perfectly
+            with Baku (40° 27' 00'' E) for the intersecting length 4 entry. Baku
+            also had UTC+4 and Yekaterinburg had UTC+5, so the time zones might
+            also be connected in order in the grid as well!
+          </p>
+          <p class="blog-paragraph">
+            After a lot of searching and verifying, I finally had a full list of
+            locations to visit for each of the 24 UTC offsets that also fit into
+            the grid. Here is the full list of locations I ended up with:
+          </p>
+          <div style="margin-top: 2em; font-size: 0; text-align: center">
+            <div
+              style="
+                display: inline-block;
+                margin: 0 4em 0 0;
+                padding: 0;
+                vertical-align: top;
+                font-size: 16px;
+              "
+            >
+              <h4 style="text-align: center; margin-bottom: 1em">Latitudes</h4>
+              <table class="blog-table" style="margin: 0 0 1em 0">
+                <thead>
+                  <tr>
+                    <th class="blog-table-cell">Coordinate</th>
+                    <th class="blog-table-cell">Location</th>
+                    <th class="blog-table-cell">UTC Offset</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="blog-table-cell">32° 45' 06'' N</td>
+                    <td class="blog-table-cell">Madeira</td>
+                    <td class="blog-table-cell">UTC+0</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">30° 02' 40'' N</td>
+                    <td class="blog-table-cell">Cairo</td>
+                    <td class="blog-table-cell">UTC+2</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">40° 27' 00'' N</td>
+                    <td class="blog-table-cell">Baku</td>
+                    <td class="blog-table-cell">UTC+4</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">42° 52' 29'' N</td>
+                    <td class="blog-table-cell">Bishkek</td>
+                    <td class="blog-table-cell">UTC+6</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">31° 14' 09'' N</td>
+                    <td class="blog-table-cell">Shanghai</td>
+                    <td class="blog-table-cell">UTC+8</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">27° 26' 54'' S</td>
+                    <td class="blog-table-cell">Brisbane</td>
+                    <td class="blog-table-cell">UTC+10</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">36° 52' 01'' S</td>
+                    <td class="blog-table-cell">Auckland</td>
+                    <td class="blog-table-cell">UTC+12</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">21° 14' 08'' S</td>
+                    <td class="blog-table-cell">Rarotonga</td>
+                    <td class="blog-table-cell">UTC-10</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">32° 30' 47'' N</td>
+                    <td class="blog-table-cell">Tijuana</td>
+                    <td class="blog-table-cell">UTC-8</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">0° 42' 29'' S</td>
+                    <td class="blog-table-cell">Galapagos</td>
+                    <td class="blog-table-cell">UTC-6</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">14° 39' 57'' N</td>
+                    <td class="blog-table-cell">Martinique</td>
+                    <td class="blog-table-cell">UTC-4</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">3° 50' 56'' S</td>
+                    <td class="blog-table-cell">Noronha</td>
+                    <td class="blog-table-cell">UTC-2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              style="
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                vertical-align: top;
+                font-size: 16px;
+              "
+            >
+              <h4 style="text-align: center; margin-bottom: 1em">Longitudes</h4>
+              <table class="blog-table" style="margin: 0 0 1em 0">
+                <thead>
+                  <tr>
+                    <th class="blog-table-cell">Coordinate</th>
+                    <th class="blog-table-cell">Location</th>
+                    <th class="blog-table-cell">UTC Offset</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="blog-table-cell">3° 03' 19'' E</td>
+                    <td class="blog-table-cell">Algiers</td>
+                    <td class="blog-table-cell">UTC+1</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">36° 49' 27'' E</td>
+                    <td class="blog-table-cell">Nairobi</td>
+                    <td class="blog-table-cell">UTC+3</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">60° 35' 28'' E</td>
+                    <td class="blog-table-cell">Yekaterinburg</td>
+                    <td class="blog-table-cell">UTC+5</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">100° 29' 16'' E</td>
+                    <td class="blog-table-cell">Bangkok</td>
+                    <td class="blog-table-cell">UTC+7</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">140° 42' 54'' E</td>
+                    <td class="blog-table-cell">Jayapura</td>
+                    <td class="blog-table-cell">UTC+9</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">155° 23' 32'' E</td>
+                    <td class="blog-table-cell">Bougainville</td>
+                    <td class="blog-table-cell">UTC+11</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">169° 51' 01'' W</td>
+                    <td class="blog-table-cell">Niue</td>
+                    <td class="blog-table-cell">UTC-11</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">134° 59' 04'' W</td>
+                    <td class="blog-table-cell">Gambier</td>
+                    <td class="blog-table-cell">UTC-9</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">113° 29' 38'' W</td>
+                    <td class="blog-table-cell">Edmonton</td>
+                    <td class="blog-table-cell">UTC-7</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">79° 53' 01'' W</td>
+                    <td class="blog-table-cell">Guayaquil</td>
+                    <td class="blog-table-cell">UTC-5</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">56° 10' 07'' W</td>
+                    <td class="blog-table-cell">Montevideo</td>
+                    <td class="blog-table-cell">UTC-3</td>
+                  </tr>
+                  <tr>
+                    <td class="blog-table-cell">25° 37' 56'' W</td>
+                    <td class="blog-table-cell">Azores</td>
+                    <td class="blog-table-cell">UTC-1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="blog-paragraph">
+            Noronha had to be used in place of Fernando de Noronha to fit the
+            grid. All of these locations can be visualized by pasting
+            <a href="coordinates.json" class="link" target="_blank"
+              >this json</a
+            >
+            into
+            <a href="https://geojson.io/" class="link" target="_blank"
+              >geojson.io</a
+            >. The final filled-in grid can be found
+            <a href="jan-2026-timely-journey.pdf" class="link" target="_blank"
+              >here</a
+            >.
+          </p>
+          <p class="blog-paragraph">
+            Now the only thing left was to figure out what the red and blue
+            digits and cells meant. We had letters for each of the colored
+            cells, but how did they relate to the colored digits? There was one
+            thing in the image that I hadn't used yet: the pushpins. It was so
+            strange how they were red and blue, at the top of the pushpin pile,
+            and all facing the same direction. They were definitely
+            intentionally placed like this. Looking in the direction the pins
+            were facing, it seemed like they were pointing the "Shift" key on
+            the keyboard the paper was sitting on. Shifting the letters in the
+            colored cells by the colored digits for each latitude and longitude
+            seemed like an obvious thing to do. One of the simplest things you
+            can do with some letters and numbers is use a
+            <a
+              href="https://en.wikipedia.org/wiki/Caesar_cipher"
+              class="link"
+              target="_blank"
+              >Caesar cipher</a
+            >
+            after all.
+          </p>
+          <p class="blog-paragraph">
+            Starting from UTC+0 and going around in increasing UTC offsets until
+            eventually wrapping around to UTC-1, we get the following strings of
+            red and blue letters:
+          </p>
+          <div class="blog-math">
+            \begin{align*} \text{Red letters: }\ &
+            \text{ASCAAAEGHJIIKEGMNOSUMVRS}\\ \text{Blue letters: }\ &
+            \text{REARKYBKAPNBLIAIADGLRDNZ} \end{align*}
+          </div>
+          <p class="blog-paragraph">
+            Let's see what happens when we shift these letters by their
+            corresponding colored digits. The number of red digits matched the
+            number of red letters, but this wasn't the case for the blue ones,
+            as there were 24 blue letters and 25 blue digits. However, if we
+            treated the longitude with the two blue digits 1 and 0 as having a
+            shift of 10, then everything would line up perfectly. Below are the
+            shifts for each of the colors:
+          </p>
+          <div class="blog-math">
+            \begin{align*} \text{Red shifts: }\ &
+            \text{090345211023298333009166}\\ \text{Blue shifts: }\ &
+            \text{5302762144636[10]0949271507} \end{align*}
+          </div>
+          <p class="blog-paragraph">
+            Performing a right shift, we get the following decoded strings:
+          </p>
+          <div class="blog-math">
+            \begin{align*} \text{Decoded red letters: }\ &
+            \text{ABCDEFGHIJKLMNOPQRSUVWXY}\\ \text{Decoded blue letters: }\ &
+            \text{WHATREDLETTERSAREMISSING} \end{align*}
+          </div>
+          <p class="blog-paragraph">
+            The red letters were nicely decoded to almost the entire alphabet in
+            order, and the blue letters were decoded to the question "What red
+            letters are missing?" The only red letters missing were T and Z, so
+            the final answer to this puzzle was "TZ". This was kind of an
+            underwhelming answer for such a long puzzle. "TZ" could mean "Time
+            Zones" or "2026" (if you read the letters as numbers). These
+            interpretations of TZ were in the image from the very beginning, so
+            the answer was hidden in plain sight...
+          </p>
+          <p class="blog-paragraph">
+            I'm very proud of myself for getting this month's puzzle. I was 1 of
+            53 people to solve it and the 20th person to solve it overall, which
+            was my best rank on a puzzle so far! Having no problem statement and
+            using an image as the only clue probably made it extremely difficult
+            for AI to solve. This explains why this month's puzzle had the
+            lowest solve rate out of recent puzzles, which get roughly 50
+            correct submissions a day from what I've observed.
+          </p>
         </div>
       </section>
     </main>
