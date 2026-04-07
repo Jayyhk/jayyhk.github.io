@@ -1,66 +1,71 @@
 const body = document.body;
 
-const btnTheme = document.getElementById("btn-theme");
-const btnHamburger = document.querySelector(".fa-bars");
-
+// Apply saved theme immediately to avoid flash
 const addThemeClass = (bodyClass, btnClass) => {
   body.classList.remove("light", "dark");
   body.classList.add(bodyClass);
-  btnTheme.classList.remove("fa-moon", "fa-sun");
-  btnTheme.classList.add(btnClass);
+  const btn = document.getElementById("btn-theme");
+  if (btn) {
+    btn.classList.remove("fa-moon", "fa-sun");
+    btn.classList.add(btnClass);
+  }
 };
 
 const getBodyTheme = localStorage.getItem("portfolio-theme");
 const getBtnTheme = localStorage.getItem("portfolio-btn-theme");
+addThemeClass(getBodyTheme || "light", getBtnTheme || "fa-moon");
 
-if (getBodyTheme) {
-  addThemeClass(getBodyTheme, getBtnTheme);
-} else {
-  addThemeClass("light", "fa-moon");
-}
+// Inject header
+const headerEl = document.createElement("header");
+headerEl.className = "header center";
+document.body.prepend(headerEl);
 
-const isDark = () => body.classList.contains("dark");
+fetch("/assets/header.html")
+  .then((r) => r.text())
+  .then((html) => {
+    headerEl.innerHTML = html;
 
-const setTheme = (bodyClass, btnClass) => {
-  body.classList.remove(localStorage.getItem("portfolio-theme"));
-  btnTheme.classList.remove(localStorage.getItem("portfolio-btn-theme"));
+    const btnTheme = document.getElementById("btn-theme");
+    const btnHamburger = document.querySelector(".fa-bars");
 
-  addThemeClass(bodyClass, btnClass);
+    const isDark = () => body.classList.contains("dark");
 
-  localStorage.setItem("portfolio-theme", bodyClass);
-  localStorage.setItem("portfolio-btn-theme", btnClass);
-};
+    const setTheme = (bodyClass, btnClass) => {
+      body.classList.remove(localStorage.getItem("portfolio-theme"));
+      btnTheme.classList.remove(localStorage.getItem("portfolio-btn-theme"));
+      addThemeClass(bodyClass, btnClass);
+      localStorage.setItem("portfolio-theme", bodyClass);
+      localStorage.setItem("portfolio-btn-theme", btnClass);
+    };
 
-const toggleTheme = () =>
-  isDark() ? setTheme("light", "fa-moon") : setTheme("dark", "fa-sun");
+    btnTheme.addEventListener("click", () =>
+      isDark() ? setTheme("light", "fa-moon") : setTheme("dark", "fa-sun"),
+    );
 
-btnTheme.addEventListener("click", toggleTheme);
+    const displayList = () => {
+      const navUl = document.querySelector(".nav__list");
+      if (navUl.classList.contains("display-nav-list")) {
+        navUl.classList.remove("display-nav-list");
+        body.classList.remove("menu-open");
+      } else {
+        navUl.classList.add("display-nav-list");
+        body.classList.add("menu-open");
+      }
+    };
 
-const displayList = () => {
-  const navUl = document.querySelector(".nav__list");
+    btnHamburger.addEventListener("click", displayList);
 
-  if (navUl.classList.contains("display-nav-list")) {
-    navUl.classList.remove("display-nav-list");
-    body.classList.remove("menu-open");
-  } else {
-    navUl.classList.add("display-nav-list");
-    body.classList.add("menu-open");
-  }
-};
-
-btnHamburger.addEventListener("click", displayList);
-
-// Close menu when clicking on a nav item
-const navLinks = document.querySelectorAll(".nav__list-item a");
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    const navUl = document.querySelector(".nav__list");
-    if (navUl.classList.contains("display-nav-list")) {
-      navUl.classList.remove("display-nav-list");
-      body.classList.remove("menu-open");
-    }
-  });
-});
+    document.querySelectorAll(".nav__list-item a").forEach((link) => {
+      link.addEventListener("click", () => {
+        const navUl = document.querySelector(".nav__list");
+        if (navUl.classList.contains("display-nav-list")) {
+          navUl.classList.remove("display-nav-list");
+          body.classList.remove("menu-open");
+        }
+      });
+    });
+  })
+  .catch((error) => console.error("Error loading header:", error));
 
 window.addEventListener("scroll", () => {
   const btnScrollTop = document.querySelector(".scroll-top");
@@ -73,13 +78,21 @@ window.addEventListener("scroll", () => {
   }
 });
 
+const footer = document.createElement("footer");
+footer.className = "footer";
+document.body.appendChild(footer);
+
+const scrollArrow = document.createElement("div");
+scrollArrow.className = "scroll-arrow";
+document.body.appendChild(scrollArrow);
+
 Promise.all([
   fetch("/assets/footer.html").then((response) => response.text()),
   fetch("/assets/scroll.html").then((response) => response.text()),
 ])
   .then(([footerData, scrollData]) => {
-    document.querySelector(".footer").innerHTML = footerData;
-    document.querySelector(".scroll-arrow").innerHTML = scrollData;
+    footer.innerHTML = footerData;
+    scrollArrow.innerHTML = scrollData;
 
     const btnScrollTop = document.querySelector(".scroll-top-btn");
     if (btnScrollTop) {
@@ -89,6 +102,34 @@ Promise.all([
     }
   })
   .catch((error) => console.error("Error loading footer or scroll:", error));
+
+// Load KaTeX on pages that have math
+if (document.querySelector('.post-content')) {
+  const katexCSS = document.createElement('link');
+  katexCSS.rel = 'stylesheet';
+  katexCSS.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css';
+  document.head.appendChild(katexCSS);
+
+  const katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';
+  katexScript.onload = function () {
+    const autoRender = document.createElement('script');
+    autoRender.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js';
+    autoRender.onload = function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+        ],
+        throwOnError: false,
+      });
+    };
+    document.head.appendChild(autoRender);
+  };
+  document.head.appendChild(katexScript);
+}
 
 // Load blog dates and titles from posts and populate them
 const blogLinks = document.querySelectorAll(

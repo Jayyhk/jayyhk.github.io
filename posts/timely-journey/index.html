@@ -15,39 +15,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link href="../../styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
     <title>Timely Journey</title>
     <link href="../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body class="light" id="top">
-    <header class="header center">
-      <h3><a class="link" href="https://jayyhk.github.io">JM.</a></h3>
-      <nav class="nav center">
-        <ul class="nav__list center">
-          <li class="nav__list-item">
-            <a class="link link--nav" href="../../#projects">Projects</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="../../#blog">Blog</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="../../#music">Music</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="../../#contact">Contact</a>
-          </li>
-        </ul>
-        <button aria-label="toggle theme" class="btn btn--icon" type="button">
-          <i aria-hidden="true" class="fas fa-moon" id="btn-theme"></i></button
-        ><button
-          aria-label="toggle navigation"
-          class="btn btn--icon nav__hamburger"
-          type="button"
-        >
-          <i aria-hidden="true" class="fas fa-bars"></i>
-        </button>
-      </nav>
-    </header>
     <main>
       <!-- Blog Post -->
       <section class="section blog-post">
@@ -537,23 +508,6 @@
         </div>
       </section>
     </main>
-    <footer class="footer"></footer>
-    <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>
-    <script>
-      function renderKaTeX() {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "\\[", right: "\\]", display: true},
-            {left: "$", right: "$", display: false},
-            {left: "\\(", right: "\\)", display: false}
-          ],
-          throwOnError: false
-        });
-      }
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
   </body>
 </html>
