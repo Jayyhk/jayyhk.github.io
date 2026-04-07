@@ -414,11 +414,6 @@ main {
   color: var(--clr-fg);
 }
 @media (max-width: 600px) {
-  .blog-math .katex-display {
-    overflow-x: auto;
-    overflow-y: visible;
-    -webkit-overflow-scrolling: touch;
-  }
   .header {
     height: auto;
     position: fixed;
