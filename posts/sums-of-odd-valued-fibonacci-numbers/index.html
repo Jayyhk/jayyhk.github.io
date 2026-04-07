@@ -15,6 +15,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
     <title>Sums of Odd-Valued Fibonacci Numbers</title>
     <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
   </head>
@@ -97,32 +98,32 @@
             with odd values is given by:
           </p>
           <div class="blog-math">
-            \begin{equation*} \sum_{i=1}^{n} F_{\left\lfloor \frac{3i-1}{2}
+            \[ \begin{equation*} \sum_{i=1}^{n} F_{\left\lfloor \frac{3i-1}{2}
             \right\rfloor} = \frac{1}{2} \left( F_{3 \left\lfloor \frac{n+1}{2}
             \right\rfloor} + F_{3 \left\lfloor \frac{n}{2} \right\rfloor + 1} -
-            1 \right) \end{equation*}
+            1 \right) \end{equation*} \]
           </div>
           <p class="blog-paragraph">
             <strong>Proof:</strong> We apply induction on $n$. Let
           </p>
           <div class="blog-math">
-            \begin{eqnarray*} P(n) = \sum_{i=1}^{n} F_{\left\lfloor
+            \[ \begin{equation*} P(n) = \sum_{i=1}^{n} F_{\left\lfloor
             \frac{{3i-1}}{2} \right\rfloor} = \frac{1}{2} \left( F_{3 \cdot
             \left\lfloor {\frac{{n+1}}{2}} \right\rfloor} + F_{3 \cdot
             \left\lfloor \frac{n}{2} \right\rfloor + 1} - 1 \right)
-            \end{eqnarray*}
+            \end{equation*} \]
           </div>
           <p class="blog-paragraph">Base case:</p>
           <div class="blog-math">
-            \begin{eqnarray*} P(1) = \sum_{i=1}^{1} F_{\left\lfloor
-            \frac{{3i-1}}{2} \right\rfloor} &=& \frac{1}{2} \left( F_{3 \cdot
+            \[ \begin{align*} P(1) = \sum_{i=1}^{1} F_{\left\lfloor
+            \frac{{3i-1}}{2} \right\rfloor} &= \frac{1}{2} \left( F_{3 \cdot
             \left\lfloor {\frac{{1+1}}{2}} \right\rfloor} + F_{3 \cdot
             \left\lfloor \frac{1}{2} \right\rfloor + 1} - 1 \right)\\
-            F_{\left\lfloor \frac{{3(1)-1}}{2} \right\rfloor} &=& \frac{1}{2}
+            F_{\left\lfloor \frac{{3(1)-1}}{2} \right\rfloor} &= \frac{1}{2}
             \left( F_{3 \cdot {1}} + F_{3 \cdot 0 + 1} - 1 \right)\\
-            F_{\left\lfloor \frac{{2}}{2} \right\rfloor} &=& \frac{1}{2} \left(
-            F_{3} + F_{1} - 1 \right)\\ F_{1} &=& \frac{1}{2} \left( 2 + 1 - 1
-            \right)\\ 1 &=& 1 \end{eqnarray*}
+            F_{\left\lfloor \frac{{2}}{2} \right\rfloor} &= \frac{1}{2} \left(
+            F_{3} + F_{1} - 1 \right)\\ F_{1} &= \frac{1}{2} \left( 2 + 1 - 1
+            \right)\\ 1 &= 1 \end{align*} \]
           </div>
           <p class="blog-paragraph">Thus, $P(1)$ is true.</p>
           <p class="blog-paragraph">
@@ -130,21 +131,21 @@
             integer $n \geq 1$. We examine the sum for $n+1$:
           </p>
           <div class="blog-math">
-            \begin{align*} \sum_{i=1}^{n+1} F_{\left\lfloor \frac{3i-1}{2}
+            \[ \begin{align*} \sum_{i=1}^{n+1} F_{\left\lfloor \frac{3i-1}{2}
             \right\rfloor} &= \left( \sum_{i=1}^{n} F_{\left\lfloor
             \frac{3i-1}{2} \right\rfloor} \right) + F_{\left\lfloor
-            \frac{3(n+1)-1}{2} \right\rfloor} \end{align*}
+            \frac{3(n+1)-1}{2} \right\rfloor} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             By applying the inductive hypothesis to the summation on the right,
             we obtain:
           </p>
           <div class="blog-math">
-            \begin{align*} \sum_{i=1}^{n+1} F_{\left\lfloor \frac{3i-1}{2}
+            \[ \begin{align*} \sum_{i=1}^{n+1} F_{\left\lfloor \frac{3i-1}{2}
             \right\rfloor} &= \frac{1}{2} \left( F_{3 \left\lfloor \frac{n+1}{2}
             \right\rfloor} + F_{3 \left\lfloor \frac{n}{2} \right\rfloor + 1} -
             1 \right) + F_{\left\lfloor \frac{3n+2}{2} \right\rfloor}
-            \end{align*}
+            \end{align*} \]
           </div>
           <p class="blog-paragraph">
             To complete the proof, we must demonstrate that this expression
@@ -158,12 +159,12 @@
             = F_{3k+1}$. Using the inductive hypothesis for $P(2k)$:
           </p>
           <div class="blog-math">
-            \begin{align*} P(2k+1) &= \frac{1}{2} \left( F_{3 \cdot \left\lfloor
+            \[ \begin{align*} P(2k+1) &= \frac{1}{2} \left( F_{3 \cdot \left\lfloor
             \frac{2k+1}{2} \right\rfloor} + F_{3 \cdot \left\lfloor \frac{2k}{2}
             \right\rfloor + 1} - 1 \right) + F_{3k+1} \\ &= \frac{1}{2} \left(
             F_{3k} + F_{3k+1} - 1 \right) + F_{3k+1} \\ &= \frac{1}{2} \left(
             F_{3k} + F_{3k+1} - 1 + 2F_{3k+1} \right) \\ &= \frac{1}{2} \left(
-            F_{3k} + 3F_{3k+1} - 1 \right) \end{align*}
+            F_{3k} + 3F_{3k+1} - 1 \right) \end{align*} \]
           </div>
           <p class="blog-paragraph">
             We know that $3F_{3k+1} = 2F_{3k+1} + F_{3k+1}$. Also, $F_{3k} +
@@ -171,16 +172,16 @@
             F_{3k+3}$. Thus,
           </p>
           <div class="blog-math">
-            \begin{align*} P(2k+1) &= \frac{1}{2} \left( F_{3k+3} + F_{3k+1} - 1
-            \right). \end{align*}
+            \[ \begin{align*} P(2k+1) &= \frac{1}{2} \left( F_{3k+3} + F_{3k+1} - 1
+            \right). \end{align*} \]
           </div>
           <p class="blog-paragraph">Checking the formula for $n+1 = 2k+1$:</p>
           <div class="blog-math">
-            \begin{align*} \frac{1}{2} \left( F_{3 \cdot \left\lfloor
+            \[ \begin{align*} \frac{1}{2} \left( F_{3 \cdot \left\lfloor
             \frac{2k+2}{2} \right\rfloor} + F_{3 \cdot \left\lfloor
             \frac{2k+1}{2} \right\rfloor + 1} - 1 \right) &= \frac{1}{2} \left(
             F_{3(k+1)} + F_{3k+1} - 1 \right) \\ &= \frac{1}{2} \left( F_{3k+3}
-            + F_{3k+1} - 1 \right) \end{align*}
+            + F_{3k+1} - 1 \right) \end{align*} \]
           </div>
           <p class="blog-paragraph">The case holds.</p>
           <p class="blog-paragraph">
@@ -190,7 +191,7 @@
             F_{3k-1}$. Using the inductive hypothesis for $P(2k-1)$:
           </p>
           <div class="blog-math">
-            \begin{align*} P(2k) &= \frac{1}{2} \left( F_{3 \cdot \left\lfloor
+            \[ \begin{align*} P(2k) &= \frac{1}{2} \left( F_{3 \cdot \left\lfloor
             \frac{2k}{2} \right\rfloor} + F_{3 \cdot \left\lfloor \frac{2k-1}{2}
             \right\rfloor + 1} - 1 \right) + F_{3k-1} \\ &= \frac{1}{2} \left(
             F_{3k} + F_{3k-2} - 1 \right) + F_{3k-1} \\ &= \frac{1}{2} \left(
@@ -199,14 +200,14 @@
             \frac{1}{2} \left( F_{3k} + F_{3k} + F_{3k-1} - 1 \right) \\ &=
             \frac{1}{2} \left( 2F_{3k} + F_{3k-1} - 1 \right) \\ &= \frac{1}{2}
             \left( F_{3k} + (F_{3k} + F_{3k-1}) - 1 \right) \\ &= \frac{1}{2}
-            \left( F_{3k} + F_{3k+1} - 1 \right) \end{align*}
+            \left( F_{3k} + F_{3k+1} - 1 \right) \end{align*} \]
           </div>
           <p class="blog-paragraph">Checking the formula for $n+1 = 2k$:</p>
           <div class="blog-math">
-            \begin{align*} \frac{1}{2} \left( F_{3 \cdot \left\lfloor
+            \[ \begin{align*} \frac{1}{2} \left( F_{3 \cdot \left\lfloor
             \frac{2k+1}{2} \right\rfloor} + F_{3 \cdot \left\lfloor \frac{2k}{2}
             \right\rfloor + 1} - 1 \right) &= \frac{1}{2} \left( F_{3k} +
-            F_{3k+1} - 1 \right) \end{align*}
+            F_{3k+1} - 1 \right) \end{align*} \]
           </div>
           <p class="blog-paragraph">The case holds.</p>
           <p class="blog-paragraph">
@@ -220,22 +221,19 @@
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>
     <script>
-      MathJax = {
-        tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
+      function renderKaTeX() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
           ],
-        },
-        svg: {
-          fontCache: "global",
-        },
-      };
+          throwOnError: false
+        });
+      }
     </script>
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
   </body>
 </html>

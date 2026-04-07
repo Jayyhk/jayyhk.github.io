@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+<body class="light">
+<main style="max-width:900px;margin:2em auto">
+
+<h2>Cases with tall brace (in .blog-math):</h2>
+<div class="blog-math">
+\[ F(b, s) = \begin{cases} 0, & \text{if } b = 4 \text{ or } s = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2 F(b+1, s) + 2A(b, s)(1-A(b, s)) F(b, s+1) + (1-A(b, s))^2 (1-p) F(b, s+1), & \text{if } b \in [0,3] \text{ and } s \in [0,2] \end{cases} \]
+</div>
+
+<h2>Same outside .blog-math:</h2>
+\[ F(b, s) = \begin{cases} 0, & \text{if } b = 4 \text{ or } s = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2 F(b+1, s) + 2A(b, s)(1-A(b, s)) F(b, s+1) + (1-A(b, s))^2 (1-p) F(b, s+1), & \text{if } b \in [0,3] \text{ and } s \in [0,2] \end{cases} \]
+
+</main>
+<script>
+function renderKaTeX() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "\\[", right: "\\]", display: true},
+      {left: "$", right: "$", display: false},
+      {left: "\\(", right: "\\)", display: false}
+    ],
+    throwOnError: false
+  });
+}
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
+</body>
+</html>

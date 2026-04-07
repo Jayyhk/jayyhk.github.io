@@ -11,6 +11,10 @@
   box-shadow: none;
   box-sizing: border-box;
 }
+.katex, .katex * {
+  background-color: transparent;
+  box-sizing: content-box;
+}
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -377,9 +381,10 @@ main {
 .blog-math {
   text-align: center;
   margin: 1em 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   max-width: 100%;
+}
+.blog-math .katex-display {
+  padding: 0.25em 0;
 }
 .case-list {
   margin: 1.5em 0;
@@ -409,6 +414,11 @@ main {
   color: var(--clr-fg);
 }
 @media (max-width: 600px) {
+  .blog-math .katex-display {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
   .header {
     height: auto;
     position: fixed;

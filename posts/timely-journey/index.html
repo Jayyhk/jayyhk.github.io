@@ -15,6 +15,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link href="../../styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
     <title>Timely Journey</title>
     <link href="../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
   </head>
@@ -488,9 +489,9 @@
             red and blue letters:
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Red letters: }\ &
+            \[ \begin{align*} \text{Red letters: }\ &
             \text{ASCAAAEGHJIIKEGMNOSUMVRS}\\ \text{Blue letters: }\ &
-            \text{REARKYBKAPNBLIAIADGLRDNZ} \end{align*}
+            \text{REARKYBKAPNBLIAIADGLRDNZ} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             Let's see what happens when we shift these letters by their
@@ -502,17 +503,17 @@
             shifts for each of the colors:
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Red shifts: }\ &
+            \[ \begin{align*} \text{Red shifts: }\ &
             \text{090345211023298333009166}\\ \text{Blue shifts: }\ &
-            \text{5302762144636[10]0949271507} \end{align*}
+            \text{5302762144636[10]0949271507} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             Performing a right shift, we get the following decoded strings:
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Decoded red letters: }\ &
+            \[ \begin{align*} \text{Decoded red letters: }\ &
             \text{ABCDEFGHIJKLMNOPQRSUVWXY}\\ \text{Decoded blue letters: }\ &
-            \text{WHATREDLETTERSAREMISSING} \end{align*}
+            \text{WHATREDLETTERSAREMISSING} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             The red letters were nicely decoded to almost the entire alphabet in
@@ -540,22 +541,19 @@
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>
     <script>
-      MathJax = {
-        tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
+      function renderKaTeX() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
           ],
-        },
-        svg: {
-          fontCache: "global",
-        },
-      };
+          throwOnError: false
+        });
+      }
     </script>
-    <script
-      async=""
-      id="MathJax-script"
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
   </body>
 </html>

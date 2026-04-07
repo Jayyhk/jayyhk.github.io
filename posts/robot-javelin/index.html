@@ -15,6 +15,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link href="../../styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
     <title>Robot Javelin</title>
     <link href="../../favicon.ico" rel="shortcut icon" type="image/x-icon" />
   </head>
@@ -184,9 +185,9 @@
             Setting the two probabilities equal to each other, we have
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Pr[We Win | We Keep}] &= \text{Pr[We Win | We Throw Again]} \\ k^2 &= \frac{k^2 - k + 1}{2} \\ 2k^2 &= k^2 - k + 1
+            \[ \begin{align*} \text{Pr[We Win | We Keep}] &= \text{Pr[We Win | We Throw Again]} \\ k^2 &= \frac{k^2 - k + 1}{2} \\ 2k^2 &= k^2 - k + 1
             \\ k^2 + k - 1 &= 0 \\ k &= \frac{-1 \pm \sqrt{1 + 4}}{2} = \frac{-1
-            \pm \sqrt{5}}{2} \end{align*}
+            \pm \sqrt{5}}{2} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             We take the positive root since $k$ must be in $[0, 1]$, so
@@ -249,13 +250,13 @@
             Thus, we have
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Pr[Spears Wins } | \text{ Spears Keeps}] &=
+            \[ \begin{align*} \text{Pr[Spears Wins } | \text{ Spears Keeps}] &=
             \text{Pr[Spears Wins } | \text{ Spears Throws Again}] \\ \frac{t -
             \varphi^{-1}}{1 - \varphi^{-1}} &= \frac{1 - \varphi^{-1}}{2} \\ t -
             \varphi^{-1} &= \frac{(1 - \varphi^{-1})^2}{2} \\ t &= \frac{1 -
             2\varphi^{-1} + (\varphi^{-1})^2}{2} + \varphi^{-1} \\ t &= \frac{1
             + (\varphi^{-1})^2}{2} \\ t &= \frac{1 + 1 - \varphi^{-1}}{2} \\ t
-            &= 1 - \frac{\varphi^{-1}}{2} \end{align*}
+            &= 1 - \frac{\varphi^{-1}}{2} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             which was simplified using the identity $(\varphi^{-1})^2 = 1 -
@@ -267,8 +268,8 @@
             conditional threshold:
           </p>
           <div class="blog-math">
-            ${ t = \begin{cases} \frac{1}{2}, & \text{if our first throw is} <
-            \varphi^{-1} \\ 1 - \frac{\varphi^{-1}}{2}, & \text{if our first throw is} \geq \varphi^{-1} \end{cases} }$
+            \[ t = \begin{cases} \frac{1}{2}, & \text{if our first throw is} <
+            \varphi^{-1} \\ 1 - \frac{\varphi^{-1}}{2}, & \text{if our first throw is} \geq \varphi^{-1} \end{cases} \]
           </div>
           <p class="blog-paragraph">
             Now we can calculate our updated probability of winning against
@@ -341,10 +342,10 @@
             time, we have
           </p>
           <div class="blog-math">
-            \begin{align*} \text{Pr[We Win } | \text{ We Throw Again}] &=
+            \[ \begin{align*} \text{Pr[We Win } | \text{ We Throw Again}] &=
             \text{Pr[We Win } | \text{ We Keep]} \\ \frac{3}{8} &= \frac{3j}{2}
             - \frac{1}{2} \\ \frac{7}{8} &= \frac{3j}{2} \\ \frac{14}{8} &= 3j
-            \\ j &= \frac{7}{12} \end{align*}
+            \\ j &= \frac{7}{12} \end{align*} \]
           </div>
           <p class="blog-paragraph">
             So our new threshold is $j = \frac{7}{12} \approx 0.583$.
@@ -402,19 +403,19 @@
             </div>
             <li>For $\frac{7}{12} \leq x < \varphi^{-1}$, we have</li>
             <div class="blog-math">
-              \begin{align*} \int_{7/12}^{\varphi^{-1}} \left( \frac{3x}{2} -
+            \[ \begin{align*} \int_{7/12}^{\varphi^{-1}} \left( \frac{3x}{2} -
               \frac{1}{2} \right) \, \mathrm{d}x &= \left. \left( \frac{3x^2}{4}
               - \frac{x}{2} \right) \right|_{7/12}^{\varphi^{-1}} \\ &=
               \frac{3(\varphi^{-1})^2}{4} - \frac{\varphi^{-1}}{2} - \left(
               \frac{3(7/12)^2}{4} - \frac{7/12}{2} \right) \\ &=
               \frac{3(\varphi^{-1})^2}{4} - \frac{\varphi^{-1}}{2} +
-              \frac{7}{192} \end{align*}
-            </div>
+              \frac{7}{192} \end{align*} \]
+          </div>
             <li>
               For $\varphi^{-1} \leq x < 1 - \frac{\varphi^{-1}}{2}$, we have
             </li>
             <div class="blog-math">
-              \begin{align*} \int_{\varphi^{-1}}^{1 - \varphi^{-1}/2} \left( 1 -
+            \[ \begin{align*} \int_{\varphi^{-1}}^{1 - \varphi^{-1}/2} \left( 1 -
               \frac{\varphi^{-1}}{2} \right) x \, \mathrm{d}x &= \left. \left( 1
               - \frac{\varphi^{-1}}{2} \right) \frac{x^2}{2}
               \right|_{\varphi^{-1}}^{1 - \varphi^{-1}/2} \\ &= \left( 1 -
@@ -422,11 +423,11 @@
               \varphi^{-1}/2)^2}{2} - \frac{(\varphi^{-1})^2}{2} \right) \\ &=
               \frac{1}{2} \left( 1 - \frac{\varphi^{-1}}{2} \right) \left(
               \left( 1 - \frac{\varphi^{-1}}{2} \right)^2 - (\varphi^{-1})^2
-              \right) \end{align*}
-            </div>
+              \right) \end{align*} \]
+          </div>
             <li>For $1 - \frac{\varphi^{-1}}{2} \leq x \leq 1$, we have</li>
             <div class="blog-math">
-              \begin{align*} \int_{1 - \varphi^{-1}/2}^1 \left( \left( 1 -
+            \[ \begin{align*} \int_{1 - \varphi^{-1}/2}^1 \left( \left( 1 -
               \frac{\varphi^{-1}}{2} \right) (x - 1) + x \right) \, \mathrm{d}x
               &= \left. \left( \left( 1 - \frac{\varphi^{-1}}{2} \right)
               \frac{(x-1)^2}{2} + \frac{x^2}{2} \right) \right|_{1 -
@@ -435,8 +436,8 @@
               1)^2}{2} + \frac{(1 - \varphi^{-1}/2)^2}{2} \right) \\ &=
               \frac{1}{2} - \frac{1}{2} \left( 1 - \frac{\varphi^{-1}}{2}
               \right) \left( 1 - \frac{\varphi^{-1}}{2} +
-              \frac{\left(\varphi^{-1}\right)^2}{4} \right) \\ \end{align*}
-            </div>
+              \frac{\left(\varphi^{-1}\right)^2}{4} \right) \\ \end{align*} \]
+          </div>
           </ol>
           <p class="blog-paragraph">
             After adding all these cases together and simplifying carefully, we
@@ -460,22 +461,19 @@
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>
     <script>
-      MathJax = {
-        tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
+      function renderKaTeX() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
           ],
-        },
-        svg: {
-          fontCache: "global",
-        },
-      };
+          throwOnError: false
+        });
+      }
     </script>
-    <script
-      async=""
-      id="MathJax-script"
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
   </body>
 </html>

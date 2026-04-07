@@ -15,6 +15,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
     <title>Robot Baseball</title>
     <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
   </head>
@@ -194,11 +195,11 @@
             each count \( (b,s) \) under optimal play by both sides.
           </p>
           <div class="blog-math">
-            \[ P(b, s) = \left.\begin{cases} 1, & \text{if } b = 4 \\ 0, &
+            \[ P(b, s) = \begin{cases} 1, & \text{if } b = 4 \\ 0, &
             \text{if } s = 3 \\ \displaystyle\frac{P(b+1,s) \cdot \left[4p +
             (1-p) \cdot P(b,s+1)\right] - P(b,s+1)^2}{P(b+1,s) - 2P(b,s+1) + 4p
-            + (1-p) \cdot P(b,s+1)}, & \text{if } b \in [0,3] \text { and } s
-            \in [0,2] \\ \end{cases}\right\} \]
+            + (1-p) \cdot P(b,s+1)}, & \text{if } b \in [0,3] \text{ and } s
+            \in [0,2] \end{cases} \]
           </div>
           <p class="blog-paragraph">
             Let's break down this recurrence. At 4 balls, the batter earns 1
@@ -212,12 +213,12 @@
             player to play Row 1 (pitcher throws a ball) is given by
           </p>
           <div class="blog-math">
-            \begin{align*} \mathrm{Pr[Ball]} = \frac{d-c}{a-b-c+d} &= \frac{4p +
+            \[ \begin{align*} \mathrm{Pr[Ball]} = \frac{d-c}{a-b-c+d} &= \frac{4p +
             (1-p) \cdot P(b,s+1) - P(b,s+1)}{P(b+1,s) - P(b,s+1) - P(b,s+1) + 4p
             + (1-p) \cdot P(b,s+1)} \\ &= \frac{p \cdot (4 - P(b,s+1))}{P(b+1,s)
             - 2P(b,s+1) + 4p + P(b,s+1) - p \cdot P(b,s+1)} \\ &= \frac{p \cdot
             (4 - P(b,s+1))}{P(b+1,s) - P(b,s+1) + p \cdot (4 - P(b,s+1))}
-            \end{align*}
+            \end{align*} \]
           </div>
           <p class="blog-paragraph">
             Let us call this probability \( A(b,s) \), the pitcher's probability
@@ -252,10 +253,10 @@
             recurrence is summarized as follows:
           </p>
           <div class="blog-math">
-            \[ A(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
+            \[ A(b, s) = \begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ \displaystyle\frac{p \cdot (4 - P(b,s+1))}{P(b+1,s) -
             P(b,s+1) + p \cdot (4 - P(b,s+1))}, & \text{if } b \in [0,3] \text{
-            and } s \in [0,2] \end{cases}\right\} \]
+            and } s \in [0,2] \end{cases} \]
           </div>
           <p class="blog-paragraph">
             This recurrence is a bit simpler than the one for \( P(b,s) \). If
@@ -317,11 +318,11 @@
             stands for "full count." The recurrence for \( F(b,s) \) is given by
           </p>
           <div class="blog-math">
-            \[ F(b, s) = \left.\begin{cases} 0, & \text{if } b = 4 \text{ or } s
+            \[ F(b, s) = \begin{cases} 0, & \text{if } b = 4 \text{ or } s
             = 3 \\ 1, & \text{if } b = 3 \text{ and } s = 2 \\ (A(b, s))^2
             F(b+1, s) + 2A(b, s)(1-A(b, s)) F(b, s+1) + (1-A(b, s))^2 (1-p) F(b,
             s+1), & \text{if } b \in [0,3] \text{ and } s \in [0,2]
-            \end{cases}\right\} \]
+            \end{cases} \]
           </div>
           <p class="blog-paragraph">
             This is our final recurrence. It might look intimidating, but it's
@@ -368,10 +369,10 @@
             >, we obtain the following results to 10 decimal places:
           </p>
           <div class="blog-math">
-            \begin{align*}
+            \[ \begin{align*}
             \text{Optimal } p\text{: } & 0.2269732360 \\
             \text{Optimal } q\text{: } & \boxed{0.2959679934}
-            \end{align*}
+            \end{align*} \]
           </div>
           <p class="blog-paragraph">
             A plot of \( p \) versus \( q \) is shown in the following figure.
@@ -403,22 +404,19 @@
     <div class="scroll-arrow"></div>
     <script src="../../script.js"></script>
     <script>
-      MathJax = {
-        tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
+      function renderKaTeX() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
           ],
-        },
-        svg: {
-          fontCache: "global",
-        },
-      };
+          throwOnError: false
+        });
+      }
     </script>
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderKaTeX()"></script>
   </body>
 </html>
