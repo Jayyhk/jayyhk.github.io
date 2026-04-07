@@ -44,14 +44,15 @@ body {
   --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .dark {
-  --clr-bg: #23283e;
-  --clr-bg-alt: #2a2f4c;
-  --clr-fg: #bdbddd;
-  --clr-fg-alt: #cdcdff;
-  --clr-primary: #90a0d9;
-  --clr-scroll: #2a2f4c;
+  --clr-bg: #191c2a;
+  --clr-bg-alt: #22263a;
+  --clr-fg: #c4c4de;
+  --clr-fg-alt: #e2e2ff;
+  --clr-primary: #8b9fe8;
+  --clr-scroll: #22263a;
   --shadow:
-    rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    rgba(0, 0, 0, 0.4) 0px 10px 36px 0px,
+    rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
 }
 ::-moz-selection {
   background: var(--clr-primary);
@@ -265,6 +266,9 @@ main {
 .project:hover {
   transform: translateY(-7px);
 }
+.dark .project {
+  background-color: var(--clr-bg-alt);
+}
 .project__description {
   margin-top: 1em;
 }
@@ -367,7 +371,7 @@ main {
   border-collapse: collapse;
 }
 .blog-table-cell {
-  border: 1px solid #000;
+  border: 1px solid var(--clr-fg);
   padding: 8px;
 }
 .blog-math {
@@ -392,7 +396,7 @@ main {
   border-left: 4px solid var(--clr-primary);
   padding-left: 1em;
   margin: 1em 0;
-  background-color: var(--clr-bg);
+  background-color: var(--clr-bg-alt);
 }
 .title {
   font-size: 2.5em;
