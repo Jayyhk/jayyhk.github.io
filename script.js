@@ -108,13 +108,19 @@ if (document.querySelector('.post-content')) {
   const katexCSS = document.createElement('link');
   katexCSS.rel = 'stylesheet';
   katexCSS.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css';
+  katexCSS.integrity = 'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+';
+  katexCSS.crossOrigin = 'anonymous';
   document.head.appendChild(katexCSS);
 
   const katexScript = document.createElement('script');
   katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';
+  katexScript.integrity = 'sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg';
+  katexScript.crossOrigin = 'anonymous';
   katexScript.onload = function () {
     const autoRender = document.createElement('script');
     autoRender.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js';
+    autoRender.integrity = 'sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk';
+    autoRender.crossOrigin = 'anonymous';
     autoRender.onload = function () {
       renderMathInElement(document.body, {
         delimiters: [
