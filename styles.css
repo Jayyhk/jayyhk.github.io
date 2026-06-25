@@ -284,10 +284,24 @@ main {
 .contact {
   flex-direction: column;
 }
-.contact__email {
+.contact__emails {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 0;
+  row-gap: 0.75em;
+  align-items: baseline;
   font-size: 1.6rem;
   font-weight: 500;
   color: var(--clr-fg-alt);
+}
+.contact__label {
+  text-align: right;
+}
+.contact__addr {
+  text-align: left;
+}
+.contact__addr::before {
+  content: "\00a0\00a0\00a0";
 }
 .footer {
   padding: 0;
