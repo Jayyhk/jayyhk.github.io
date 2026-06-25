@@ -98,14 +98,14 @@ if (document.querySelector('.post-content')) {
 
 // Load blog dates and titles from posts and populate them
 const blogLinks = document.querySelectorAll(
-  '.blog__list-item a[href*="posts/"]',
+  '.blog__list-item a[href^="/blog/"]',
 );
 
 blogLinks.forEach((link) => {
   const href = link.getAttribute("href");
-  const slug = (href.match(/posts\/([^/]+)/) || [])[1];
+  const slug = (href.match(/\/blog\/([^/]+)/) || [])[1];
   if (!slug) return;
-  fetch(`/posts/${slug}/index.html`)
+  fetch(`/blog/${slug}/index.html`)
     .then((response) => response.text())
     .then((html) => {
       const parser = new DOMParser();
