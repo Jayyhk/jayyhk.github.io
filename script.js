@@ -15,33 +15,23 @@ const getBodyTheme = localStorage.getItem("portfolio-theme");
 const getBtnTheme = localStorage.getItem("portfolio-btn-theme");
 addThemeClass(getBodyTheme || "dark", getBtnTheme || "fa-sun");
 
-// Inject header
-const headerEl = document.createElement("header");
-headerEl.className = "header center";
-document.body.prepend(headerEl);
+// The header is static HTML (no fetch), so wire the theme toggle directly.
+const btnTheme = document.getElementById("btn-theme").closest("button");
 
-fetch("/assets/header.html")
-  .then((r) => r.text())
-  .then((html) => {
-    headerEl.innerHTML = html;
+const isDark = () => body.classList.contains("dark");
 
-    const btnTheme = document.getElementById("btn-theme").closest("button");
+const setTheme = (bodyClass, btnClass) => {
+  addThemeClass(bodyClass, btnClass);
+  localStorage.setItem("portfolio-theme", bodyClass);
+  localStorage.setItem("portfolio-btn-theme", btnClass);
+};
 
-    const isDark = () => body.classList.contains("dark");
+// Reconcile the icon with the active theme on load.
+setTheme(isDark() ? "dark" : "light", isDark() ? "fa-sun" : "fa-moon");
 
-    const setTheme = (bodyClass, btnClass) => {
-      addThemeClass(bodyClass, btnClass);
-      localStorage.setItem("portfolio-theme", bodyClass);
-      localStorage.setItem("portfolio-btn-theme", btnClass);
-    };
-
-    setTheme(isDark() ? "dark" : "light", isDark() ? "fa-sun" : "fa-moon");
-
-    btnTheme.addEventListener("click", () =>
-      isDark() ? setTheme("light", "fa-moon") : setTheme("dark", "fa-sun"),
-    );
-  })
-  .catch((error) => console.error("Error loading header:", error));
+btnTheme.addEventListener("click", () =>
+  isDark() ? setTheme("light", "fa-moon") : setTheme("dark", "fa-sun"),
+);
 
 window.addEventListener("scroll", () => {
   const btnScrollTop = document.querySelector(".scroll-top");
@@ -54,20 +44,13 @@ window.addEventListener("scroll", () => {
   }
 });
 
-const footer = document.createElement("footer");
-footer.className = "footer";
-document.body.appendChild(footer);
-
 const scrollArrow = document.createElement("div");
 scrollArrow.className = "scroll-arrow";
 document.body.appendChild(scrollArrow);
 
-Promise.all([
-  fetch("/assets/footer.html").then((response) => response.text()),
-  fetch("/assets/scroll.html").then((response) => response.text()),
-])
-  .then(([footerData, scrollData]) => {
-    footer.innerHTML = footerData;
+fetch("/assets/scroll.html")
+  .then((response) => response.text())
+  .then((scrollData) => {
     scrollArrow.innerHTML = scrollData;
 
     const btnScrollTop = document.querySelector(".scroll-top-btn");
@@ -77,7 +60,7 @@ Promise.all([
       );
     }
   })
-  .catch((error) => console.error("Error loading footer or scroll:", error));
+  .catch((error) => console.error("Error loading scroll:", error));
 
 // Load KaTeX on pages that have math
 if (document.querySelector('.post-content')) {
