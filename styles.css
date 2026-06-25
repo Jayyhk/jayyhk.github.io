@@ -344,7 +344,7 @@ main {
 .blog__list-item .link--nav {
   font-size: 1.25rem;
   font-weight: 500;
-  color: var(--clr-fg);
+  color: var(--clr-fg-alt);
   text-decoration: none;
   transition: color 0.2s ease;
   display: flex;
@@ -380,7 +380,7 @@ main {
 }
 .blog__list-item .blog-date {
   font-size: 0.9em;
-  color: var(--clr-fg-alt);
+  color: var(--clr-fg);
   white-space: nowrap;
 }
 .blog-paragraph {
@@ -488,6 +488,9 @@ main {
   .about {
     align-items: center;
     margin-top: 2em;
+  }
+  .contact__emails {
+    font-size: 1.1rem;
   }
   .footer {
     padding: 0;
