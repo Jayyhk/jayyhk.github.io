@@ -154,7 +154,10 @@ button {
 .btn--icon:focus {
   color: var(--clr-primary);
 }
-.btn--icon:active {
+.btn--icon i {
+  transition: transform 0.2s ease-in-out;
+}
+.btn--icon:active i {
   transform: translateY(-5px);
 } /*========  layout========*/
 .center {
@@ -505,6 +508,9 @@ main {
   }
   .contact__emails {
     font-size: 1.1rem;
+  }
+  .blog__list-item .link--nav {
+    font-size: 1.05rem;
   }
   .footer {
     padding: 0;
