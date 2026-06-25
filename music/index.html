@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Jake Mallen" />
+    <meta name="description" content="Jake Mallen — Music" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,9 +16,13 @@
       integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Jake Mallen</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Music — Jake Mallen</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PVND74BJT1"></script>
     <script>
@@ -30,22 +34,24 @@
   </head>
   <body class="dark" id="top">
     <main>
-      <!-- About -->
       <div class="about center">
         <div>
-          <h1><span class="about__name">Jake Mallen</span></h1>
+          <h1><span class="about__name">Music</span></h1>
         </div>
       </div>
-      <!-- Home navigation -->
-      <nav class="home-nav">
-        <ul class="home-nav__list">
-          <li><a href="/projects/" class="home-nav__link">Projects</a></li>
-          <li><a href="/blog/" class="home-nav__link">Blog</a></li>
-          <li><a href="/music/" class="home-nav__link">Music</a></li>
-          <li><a href="/contact/" class="home-nav__link">Contact</a></li>
-        </ul>
-      </nav>
+      <section class="section music" id="music">
+        <div class="about-icon-center">
+          <a
+            href="https://musescore.com/user/21513221"
+            target="_blank"
+            aria-label="MuseScore profile"
+            class="link link--icon"
+          >
+            <i aria-hidden="true" class="material-icons" style="font-size: 3em">piano</i>
+          </a>
+        </div>
+      </section>
     </main>
-    <script src="./script.js"></script>
+    <script src="/script.js"></script>
   </body>
 </html>

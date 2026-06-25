@@ -13,7 +13,7 @@ const addThemeClass = (bodyClass, btnClass) => {
 
 const getBodyTheme = localStorage.getItem("portfolio-theme");
 const getBtnTheme = localStorage.getItem("portfolio-btn-theme");
-addThemeClass(getBodyTheme || "light", getBtnTheme || "fa-moon");
+addThemeClass(getBodyTheme || "dark", getBtnTheme || "fa-sun");
 
 // Inject header
 const headerEl = document.createElement("header");
@@ -25,45 +25,21 @@ fetch("/assets/header.html")
   .then((html) => {
     headerEl.innerHTML = html;
 
-    const btnTheme = document.getElementById("btn-theme");
-    const btnHamburger = document.querySelector(".fa-bars");
+    const btnTheme = document.getElementById("btn-theme").closest("button");
 
     const isDark = () => body.classList.contains("dark");
 
     const setTheme = (bodyClass, btnClass) => {
-      body.classList.remove(localStorage.getItem("portfolio-theme"));
-      btnTheme.classList.remove(localStorage.getItem("portfolio-btn-theme"));
       addThemeClass(bodyClass, btnClass);
       localStorage.setItem("portfolio-theme", bodyClass);
       localStorage.setItem("portfolio-btn-theme", btnClass);
     };
 
+    setTheme(isDark() ? "dark" : "light", isDark() ? "fa-sun" : "fa-moon");
+
     btnTheme.addEventListener("click", () =>
       isDark() ? setTheme("light", "fa-moon") : setTheme("dark", "fa-sun"),
     );
-
-    const displayList = () => {
-      const navUl = document.querySelector(".nav__list");
-      if (navUl.classList.contains("display-nav-list")) {
-        navUl.classList.remove("display-nav-list");
-        body.classList.remove("menu-open");
-      } else {
-        navUl.classList.add("display-nav-list");
-        body.classList.add("menu-open");
-      }
-    };
-
-    btnHamburger.addEventListener("click", displayList);
-
-    document.querySelectorAll(".nav__list-item a").forEach((link) => {
-      link.addEventListener("click", () => {
-        const navUl = document.querySelector(".nav__list");
-        if (navUl.classList.contains("display-nav-list")) {
-          navUl.classList.remove("display-nav-list");
-          body.classList.remove("menu-open");
-        }
-      });
-    });
   })
   .catch((error) => console.error("Error loading header:", error));
 
@@ -139,13 +115,14 @@ if (document.querySelector('.post-content')) {
 
 // Load blog dates and titles from posts and populate them
 const blogLinks = document.querySelectorAll(
-  '.blog__list-item a[href^="posts/"]',
+  '.blog__list-item a[href*="posts/"]',
 );
 
 blogLinks.forEach((link) => {
   const href = link.getAttribute("href");
-  const slug = href.split("/")[1]; // Extract slug from href like "posts/slug/"
-  fetch(`posts/${slug}/index.html`)
+  const slug = (href.match(/posts\/([^/]+)/) || [])[1];
+  if (!slug) return;
+  fetch(`/posts/${slug}/index.html`)
     .then((response) => response.text())
     .then((html) => {
       const parser = new DOMParser();
