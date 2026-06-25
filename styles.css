@@ -168,14 +168,28 @@ button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 1.2em;
 }
 .about-icon-center .link--icon {
+  padding: 0 0 0.4em;
   color: var(--clr-fg-alt);
   transition: color 0.2s ease;
 }
 .about-icon-center .link--icon:hover,
 .about-icon-center .link--icon:focus {
   color: var(--clr-primary);
+}
+.about-icon-center .link--icon svg {
+  display: block;
+  height: 3rem;
+  fill: currentColor;
+  overflow: visible;
+}
+.about-icon-center .link--icon:first-child svg {
+  width: 3.077rem;
+}
+.about-icon-center .link--icon:last-child svg {
+  width: 3rem;
 }
 .header {
   height: 8em;
