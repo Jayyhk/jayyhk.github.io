@@ -301,6 +301,12 @@ main {
 .contact {
   flex-direction: column;
 }
+.error-404 {
+  flex-direction: column;
+}
+.error-404__msg {
+  font-size: 1.3rem;
+}
 .contact__emails {
   display: grid;
   grid-template-columns: auto auto;
