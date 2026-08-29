@@ -298,6 +298,21 @@ main {
   font-size: 0.8rem;
   color: var(--clr-fg-alt);
 }
+.about-bio {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 2.5em;
+  font-size: 1.1rem;
+  list-style: disc;
+  padding-left: 1.3em;
+  text-align: left;
+}
+.about-bio li {
+  margin-bottom: 0.5em;
+}
+.about-bio li:last-child {
+  margin-bottom: 0;
+}
 .contact {
   flex-direction: column;
 }
