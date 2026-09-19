@@ -338,10 +338,6 @@ main {
 .contact__addr {
   text-align: left;
 }
-.contact__addr a {
-  display: inline-block;
-  padding-bottom: 0;
-}
 .footer {
   padding: 0;
   margin: 4em 0 2em;
