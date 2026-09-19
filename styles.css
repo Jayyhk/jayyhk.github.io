@@ -340,6 +340,7 @@ main {
 }
 .contact__addr a {
   display: inline-block;
+  padding-bottom: 0;
 }
 .footer {
   padding: 0;
